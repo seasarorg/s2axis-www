@@ -52,6 +52,9 @@
 	background-color: #eaeaea;
 	color: #333333;
 	border: 1px solid #7e7e7e;
+	line-height: 120%;
+	font-family: Courier New;
+	font-size: 9pt;
 }
 
 .main div.quote {
@@ -77,10 +80,6 @@
 	font-weight: bold;
 }
 
-.main span.enter {
-	background: #CCDDEE;
-}
-
 .menu {
 	font-style: normal;
 	background-color: #ffffff;
@@ -98,13 +97,6 @@
 	font-weight: normal;
 	margin: 3px 14px 3px 14px;
 	list-style: url("images/item_little.gif") disc outside;
-}
-
-.menu dd {
-	font-size: 10pt;
-	font-weight: bold;
-	margin: 14px 14px 3px 23px;
-	line-height: 200%;
 }
 
 .copyright {

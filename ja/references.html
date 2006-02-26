@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- don't edit start -->
+<head>
+<title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/index.html"><img src="images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/projects.html"><img src="images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/products.html"><img src="images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
+<td><a href="http://www.seasar.org/resources.html"><img src="images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><img src="images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
+<td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+<br>
+<h1><a name="reference">S2Axis クイックリファレンス</a></h1>
+<p>本ドキュメントは<code>S2Axis-V1.0.1</code>について記述しています．旧バージョンについては該当バージョンの配布ファイルに含まれているドキュメントを参照してください．</p>
+
+<h2><a name="cot">目次</a></h2>
+<ul>
+<li><a href="#ref-dicon">diconファイル</a>
+<li><a href="#ref-meta">&lt;meta&gt;要素</a>
+<li><a href="#ref-component">コンポーネント</a>
+<li><a href="#ref-other">その他</a>
+</ul>
+
+<h2><a name="ref-dicon">diconファイル</a></h2>
+<h3>s2-axis.dicon</h3>
+<p>S2Axisが提供するdiconファイルです．s2-axis-1.0.1.jarファイルの中に含まれているので，ロケーションを気にすることなくincludeすることができます．<br>
+サーバが側では必須となります．<br>
+クライアント側では，ハンドラやWSDDのデプロイをする場合にのみ必要となります．</p>
+<h2><a name="ref-meta">&lt;meta&gt;要素</a></h2>
+<h3><a name="ref-meta-components">&lt;components&gt;要素の下</a></h3>
+<table border="1" width="700">
+<col span="1" width="100" valign="middle">
+<col span="2" width="20" valign="middle" align="center">
+<col span="1" width="200" valign="middle">
+<tbody>
+<tr>
+<th>名前</th>
+<th>C</th>
+<th>S</th>
+<th>内容</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>axis-deploy</code></td>
+<td>○</td>
+<td>○</td>
+<td>文字列</td>
+<td>内容で指定された文字列をパス名とするWSDDファイルをAxisにデプロイします．WSDDファイルのパス名はクラスパスからの相対パスで指定します．<br>
+WSDDファイルの中で指定されたサービスやハンドラのインスタンス管理はAxisによって行われます．S2およびS2Axisは関与しません．<br>
+WSDDファイルの中では，S2Axisによってデプロイされたサービスやハンドラを参照することができます．</td>
+</tr>
+<tr>
+<td><code>axis-engine</code></td>
+<td>○</td>
+<td>○</td>
+<td>文字列</td>
+<td>サービスやハンドラ，WSDDをデプロイする対象となるAxisエンジンの取得方法を指定しますします．<br>
+詳細は「Axisエンジンの取得方法」を参照してください．</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="ref-meta-component">&lt;component&gt;要素の下</a></h3>
+<table border="1" width="700">
+<col span="1" width="100" valign="middle">
+<col span="2" width="20" valign="middle" align="center">
+<col span="1" width="200" valign="middle">
+<tbody>
+<tr>
+<th>プロパティ</th>
+<th>C</th>
+<th>S</th>
+<th>内容</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>axis-handler</code></td>
+<td>○</td>
+<td>○</td>
+<td>空</td>
+<td>親要素で記述されたコンポーネントをハンドラとしてAxisにデプロイします．</td>
+</tr>
+<tr>
+<td rowspan="3"><code>axis-service</code></td>
+<td rowspan="3">×</td>
+<td rowspan="3">○</td>
+<td>空</td>
+<td>親要素で記述されたコンポーネントをサービスとしてAxisにデプロイします．<br>
+コンポーネントがメソッドの定義されたインタフェースを実装している場合は，そのメソッドが公開されます．インタフェースを実装していなければ，<code>java.lang.Object</code>型で定義されているものを除いた<code>public</code>メソッドが公開されます．</td>
+</tr>
+<tr>
+<td><code>ServiceDef</code>型のコンポーネント</td>
+<td>親要素で記述されたコンポーネントをサービスとしてAxisにデプロイします．<br>
+詳細は<code>ServiceDef</code>の説明を参照してください．</td>
+</tr>
+<tr>
+<td>文字列</td>
+<td>親要素で記述されたコンポーネントをサービスとしてAxisにデプロイします．<br>
+サービスの詳細は，内容で指定された文字列をパス名とするWSDDファイルに記述された<code>&lt;service&gt;</code>要素の指定に従います．WSDDファイルのパス名はクラスパスからの相対パスで指定します．</td>
+</tr>
+</tbody>
+</table>
+<h2><a name="ref-component">コンポーネント</a></h2>
+<h3><code><a name="ref-compo-servicedef">org.seasar.remoting.axis.ServiceDef</a></code></h3>
+<p>サーバ側で使用するコンポーネントで，<code>&lt;meta&gt;</code>要素の内容に設定されます．<br>
+サービスとして公開するコンポーネントの詳細を指定するために使われます．</p>
+<h4>プロパティ</h4>
+<table border="1" width="700">
+<col span="1" width="120">
+<col span="1" width="80">
+<tbody>
+<tr>
+<th>プロパティ</th>
+<th>型</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>serviceType</code></td>
+<td><code>String</code></td>
+<td>公開するサービスの型を指定します．特定のインタフェース型を指定することで，不要なメソッドが公開されることを防ぐことが出来ます．<br>
+省略するとコンポーネントの型になります．ただし，コンポーネントがメソッドの定義されたインタフェースを一つだけ実装している場合には，そのインタフェース型になります．</td>
+</tr>
+<tr>
+<td><code>allowMethods</code></td>
+<td><code>boolean</code></td>
+<td>公開するメソッドの名前を指定します．複数のメソッドを指定する場合は空白で区切ります．<br>
+省略すると次のようになります．
+<dl>
+<dt>1．<code>serviceType</code>が指定されている場合
+<dd>指定された型が持つ<code>public</code>なメソッドが全て公開されます (ただし，<code>java.lang.Object</code>で定義されているメソッドは公開されません)．</dd>
+</dl>
+<dl>
+<dt>2．サービスがメソッドの定義されたインタフェースを実装している場合
+<dd>インタフェースで定義されたメソッドが全て公開されます．</dd>
+</dl>
+<dl>
+<dt>3．サービスがインタフェースを実装していない場合
+<dd>サービスが持つ<code>public</code>なメソッドが全て公開されます．ただし，<code>java.lang.Object</code>で定義されているメソッドは公開されません．</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td><code>provider</code></td>
+<td><code>String</code></td>
+<td>サービスプロバイダの種類を指定します．<br>
+現在サポートされているのは<code>RPC</code>と<code>Msg</code>だけです．省略すると<code>RPC</code>になります．</td>
+</tr>
+</tbody>
+</table>
+<h4>メソッド</h4>
+<table border="1" width="700">
+<col span="1" width="200">
+<tbody>
+<tr>
+<th>メソッド</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>addTypeMapping(TypeMapping)</code></td>
+<td>タイプマッピングを登録します．TypeMappingついては次の項を参照してください．</td>
+</tr>
+</tbody>
+</table>
+<h3><code><a name="ref-compo-typemappingdef">org.seasar.remoting.axis.TypeMappingDef</a></code></h3>
+<p>サーバ側で使用するコンポーネントで，<code>ServiceDef</code>コンポーネントに設定されます．<br>
+サービスとして公開するコンポーネントで使用するタイプマッピングの詳細を指定するために使われます．</p>
+<table border="1" width="700">
+<col span="1" width="120">
+<col span="1" width="80">
+<tbody>
+<tr>
+<th>プロパティ</th>
+<th>型</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>Class</code></td>
+<td>Java型のクラスを指定します．このプロパティは必須です．</td>
+</tr>
+<tr>
+<td><code>namespaceURI</code></td>
+<td><code>String</code></td>
+<td>XML型の名前空間URIを指定します．省略するとJava型の型のパッケージから導出されます．</td>
+</tr>
+<tr>
+<td><code>namespacePrefix</code></td>
+<td><code>String</code></td>
+<td>XML型の名前空間接頭辞を指定します．省略するとデフォルト名前空間になります．</td>
+</tr>
+<tr>
+<td><code>localPart</code></td>
+<td><code>String</code></td>
+<td>XML型のローカル名を指定します．省略するとJava型のクラス名が使われます．</td>
+</tr>
+<tr>
+<td><code>serializer</code></td>
+<td>Class</td>
+<td>シリアライザファクトリを指定します．省略するとAxisの<code>BeanSerialzierFactory</code>が使われます．</td>
+</tr>
+<tr>
+<td><code>deserializer</code></td>
+<td><code>String</code></td>
+<td>デシリアライザファクトリを指定します．省略するとAxisの<code>BeanDeserialzierFactory</code>が使われます．</td>
+</tr>
+<tr>
+<td><code>encodingStyle</code></td>
+<td><code>String</code></td>
+<td>エンコーディングスタイルを指定します．省略すると<code>encoded</code>が使われます．</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="ref-compo-connector">org.seasar.remoting.axis.connector.AxisConnector</a></h3>
+<p>クライアント側で使用するコンポーネントで，Web サービスへの動的な接続に使用されます．</p>
+<h4>プロパティ</h4>
+<table border="1" width="700">
+<col span="1" width="120">
+<col span="1" width="80">
+<tbody>
+<tr>
+<th>プロパティ</th>
+<th>型</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>baseURL</code></td>
+<td><code>String</code></td>
+<td>接続するサービスの基礎になるURLを指定します．<br>
+このURLと，S2RemotinのRemotingInterceptorをアスペクトとして設定されたプロキシコンポーネントの名前
+(&lt;component&gt;要素のname属性の値) を連結したURLが，接続するサービスのURLとなります．</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="ref-compo-interceptor">org.seasar.remoting.common.interceptor.RemotingInterceptor</a></h3>
+<p>S2Remotingが提供するコンポーネントです．<br>
+クライアント側でWebサービスをコンポーネントとして使用する場合に，このコンポーネントをアスペクトとして使用します．</p>
+<h3><a name="ref-compo-service">org.apache.axis.client.Service</a></h3>
+<p>Axisが提供するコンポーネントです．<br>
+クライアント側で動的呼び出しをする場合に必要となります．</p>
+<h2><a name="ref-other">その他</a></h2>
+<h3>公開されるサービスの名前</h3>
+<dl>
+<dt>WSDDを指定された場合
+<dd>WSDDに記述された<code>&lt;service&gt;</code>要素の<code>name</code>属性の値が使われます<br>
+<code><var>context-path</var>/services/<var>name</var></code>
+<dt>diconファイルに名前空間が指定されていない場合
+<dd>diconファイルの<code>&lt;component&gt;</code>要素の<code>name</code>属性の値が使われます．<br>
+<code><var>context-path</var>/services/<var>name</var></code>
+<dt>diconファイルに名前空間が指定されている場合
+<dd>diconファイルの<code>&lt;components&gt;</code>要素の<code>namespace</code>属性の値と<code>&lt;component&gt;</code>要素の<code>name</code>属性の値が使われます．<br>
+<code><var>context-path</var>/services/<var>namespace</var>/<var>name</var></code>
+</dl>
+<h3><a name="ref-other-engine"><code>service-engine</code>に指定できる内容</a></h3>
+<table border="1" width="700">
+<col span="1" width="150">
+<tbody>
+<tr>
+<th>内容</th>
+<th>意味</th>
+</tr>
+<tr>
+<td>(指定なし)</td>
+<td><code>&quot;default&quot;</code>を指定した場合と同じです．</td>
+</tr>
+<tr>
+<td><code>&quot;default&quot;</code></td>
+<td>S2コンテナに<code>javax.servlet.ServletContext</code>が設定されていれば<code>&quot;default-server&quot;</code>，そうでなければ<code>&quot;default-client&quot;</code>を指定した場合と同じです．</td>
+</tr>
+<tr>
+<td><code>&quot;default-client&quot;</code></td>
+<td>S2コンテナから<code>javax.xml.rpc.Service</code>を実装したコンポーネント (サービスまたはサービスロケータ) を取得し，そのエンジンを使用します．</td>
+</tr>
+<tr>
+<td><code>&quot;default-server&quot;</code></td>
+<td>最初に<code>servlet:AxisServlet</code>でエンジンを検索し，見つからなければ<code>servlet:AxisEngine</code>でエンジンを検索します．</td>
+</tr>
+<tr>
+<td><code>&quot;s2:<var>name</var>&quot;</code></td>
+<td>S2コンテナから<code><var>name</var></code>で取得したコンポーネントをAxisエンジンとして使用します．</td>
+</tr>
+<tr>
+<td><code>&quot;servlet:<var>name</var>&quot;</code></td>
+<td><code>ServletContext</code>から<code><var>name</var></code>で取得した属性をAxisエンジンとして使用します．</td>
+</tr>
+<tr>
+<td>(その他)</td>
+<td>S2コンテナから指定された文字列で取得したコンポーネントをAxisエンジンとして使用します．</td>
+</tr>
+</tbody>
+</table>
+<!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766" class="copyright">&copy; Copyright The Seasar Foundation and the others 2004, all rights reserved.</td>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table></body>
+<!-- don't edit end -->
+</html>

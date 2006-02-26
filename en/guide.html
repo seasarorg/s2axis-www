@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- don't edit start -->
+<head>
+<title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head>
+<body onload="preload('en')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/en/index.html"><img src="images/menu01_b_en.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/en/projects.html"><img src="images/menu02_b_en.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/en/products.html"><img src="images/menu06_b_en.gif" height="30" width="110" border="0" alt="" id="menu06" onmouseover="swap(6)" onmouseout="restore(6)"></a></td>
+<td><a href="http://www.seasar.org/en/documents.html"><img src="images/menu04_b_en.gif" height="30" width="109" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><a href="http://www.seasar.org/en/resources.html"><img src="images/menu05_b_en.gif" height="30" width="113" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></a></td>
+<!--
+<td><img src="images/menu07_b_en.gif" height="30" width="109" border="0" alt=""  id="menu07" onmouseover="swap(7)" onmouseout="restore(7)"></td>
+//-->
+<td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
+
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+<br>
+            <H1><A name=guide>S2Axis Basic Usage</A></H1>
+            <P>This is a document for <CODE>S2Axis-V1.0.1</CODE>. Documents for older versions of S2Axis are included in their respective distribution archive file.</P>
+
+            <H2><A name=cot>Table of Content</A></H2>
+            <UL>
+                <LI><A href="#webapp">Web Application Configuration</A>
+
+                <LI><A href="#config-server">Server Configuration</A>
+
+                <LI><A href="#config-client">Client Configuration</A>
+
+                <LI><A href="#config-common">Server/Client Common Configuration</A>
+                </LI>
+            </UL>
+
+            <H2><A name=webapp>Web Application Configuration</A></H2>
+            <P>To use S2Axis, it is necessary to set Axis and S2 in <CODE>web.xml</CODE> configuration file. Refer to Axis and S2 references on detailed setting instructions.<BR>
+S2Axis registers components into Axis during S2 initialization. So, Axis must be initialized before S2. Thus, set Axis's servlet <CODE>load-on-startup</CODE> to be smaller than S2.</P>
+            <P>Below is the content of <CODE>web.xml</CODE> file included with S2AxisExample. In this example, Axis's <CODE>load-on-startup</CODE> to 10 and S2's <CODE>load-on-startup</CODE> is set to 20.</P>
+<PRE>&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
+&lt;!DOCTYPE web-app
+  PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+  "http://java.sun.com/dtd/web-app_2_3.dtd"
+&gt;
+&lt;web-app&gt;
+  &lt;display-name&gt;S2AxisExamples&lt;/display-name&gt;
+
+  &lt;filter&gt;
+    &lt;filter-name&gt;s2filter&lt;/filter-name&gt;
+    &lt;filter-class&gt;
+      org.seasar.framework.container.filter.S2ContainerFilter
+    &lt;/filter-class&gt;
+  &lt;/filter&gt;
+
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;s2filter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+  &lt;/filter-mapping&gt;
+
+  &lt;listener&gt;
+    &lt;listener-class&gt;
+      org.apache.axis.transport.http.AxisHTTPSessionListener
+    &lt;/listener-class&gt;
+  &lt;/listener&gt;
+
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;AxisServlet&lt;/servlet-name&gt;
+    &lt;display-name&gt;Apache-Axis Servlet&lt;/display-name&gt;
+    &lt;servlet-class&gt;
+      org.apache.axis.transport.http.AxisServlet
+    &lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;<STRONG>10</STRONG>&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;AdminServlet&lt;/servlet-name&gt;
+    &lt;display-name&gt;Axis Admin Servlet&lt;/display-name&gt;
+    &lt;servlet-class&gt;
+        org.apache.axis.transport.http.AdminServlet
+    &lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;<STRONG>10</STRONG>&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;SOAPMonitorService&lt;/servlet-name&gt;
+    &lt;display-name&gt;SOAPMonitorService&lt;/display-name&gt;
+    &lt;servlet-class&gt;
+        org.apache.axis.monitor.SOAPMonitorService
+    &lt;/servlet-class&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;SOAPMonitorPort&lt;/param-name&gt;
+      &lt;param-value&gt;5001&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;load-on-startup&gt;<STRONG>10</STRONG>&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;s2servlet&lt;/servlet-name&gt;
+    &lt;display-name&gt;s2servlet&lt;/display-name&gt;
+    &lt;servlet-class&gt;
+      org.seasar.framework.container.servlet.S2ContainerServlet
+    &lt;/servlet-class&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;configPath&lt;/param-name&gt;
+      &lt;param-value&gt;app.dicon&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;debug&lt;/param-name&gt;
+      &lt;param-value&gt;false&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;load-on-startup&gt;<STRONG>20</STRONG>&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;AxisServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/servlet/AxisServlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;AxisServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/services/*&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;SOAPMonitorService&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/SOAPMonitor&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;!-- uncomment this if you want the admin servlet --&gt;
+  &lt;!--
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;AdminServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/servlet/AdminServlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+  --&gt;
+
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;s2servlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/s2servlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;session-config&gt;
+    &lt;!-- Default to 5 minute session timeouts --&gt;
+    &lt;session-timeout&gt;5&lt;/session-timeout&gt;
+  &lt;/session-config&gt;
+
+  &lt;!-- currently the W3C havent settled on a media type for WSDL;
+    http://www.w3.org/TR/2003/WD-wsdl12-20030303/#ietf-draft
+    for now we go with the basic 'it's XML' response --&gt;
+  &lt;mime-mapping&gt;
+    &lt;extension&gt;wsdl&lt;/extension&gt;
+    &lt;mime-type&gt;text/xml&lt;/mime-type&gt;
+  &lt;/mime-mapping&gt;
+
+  &lt;mime-mapping&gt;
+    &lt;extension&gt;xsd&lt;/extension&gt;
+    &lt;mime-type&gt;text/xml&lt;/mime-type&gt;
+  &lt;/mime-mapping&gt;
+
+  &lt;welcome-file-list id="WelcomeFileList"&gt;
+    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+&lt;/web-app&gt;</PRE>
+            <H2><A name=config-server>Server Configuration</A></H2>
+            <H3>Including <CODE>s2-axis.dicon</CODE> File</H3>
+            <P>Server software using S2Axis should include <CODE>s2-axis.dicon</CODE> file in <CODE>app.dicon</CODE> file.</P><PRE>&lt;components&gt;
+    <STRONG>&lt;include path="s2-axis.dicon"/&gt;</STRONG>
+    ・・・
+&lt;/components&gt;</PRE>
+            <P><CODE>s2-axis.dicon</CODE> is included in <CODE>s2axis-1.0.1.jar</CODE> so location does not have to be specified.</P>
+            <H3>Deploying Service</H3>
+            <P>To deploy a component as web service, specify <CODE>&lt;meta&gt;</CODE> element as a child to the component's <CODE>&lt;component&gt;</CODE> element.</P><PRE>    &lt;component <STRONG>name="Echo"</STRONG> class="org.seasar.remoting.axis.examples.ex01.EchoImpl"&gt;
+        <STRONG>&lt;meta name="axis-service"/&gt;</STRONG>
+    &lt;/component&gt;</PRE>
+            <P>Except when WSDD file is specified in <CODE>&lt;meta&gt;</CODE> element (explained later), <CODE>name</CODE> attribute is necessary in <CODE>&lt;component&gt;</CODE>element. URI of released service is as follows:</P>
+            <DL>
+              <DT>When namespace is not specified in a dicon file
+              <DD><CODE><VAR>context-path</VAR>/services/<VAR>name</VAR></CODE>
+              <DT>When namespace is specified in a dicon file
+              <DD><CODE><VAR>context-path</VAR>/services/<VAR>namespace</VAR>/<VAR>name</VAR></CODE>
+              </DD></DL>
+            <H4>Service Definition</H4>
+            <P>Several setting may be done by setting <CODE>org.seasar.remoting.axis.server.ServiceDef</CODE> within <CODE>&lt;meta&gt;</CODE> element.</P><PRE>    &lt;component name="Hello" class="org.seasar.remoting.axis.examples.ex02.HelloImpl"&gt;
+        &lt;meta name="axis-service"&gt;
+            <STRONG>&lt;component class="org.seasar.remoting.axis.server.ServiceDef"&gt;</STRONG>
+                <STRONG>&lt;property name="serviceType"&gt;</STRONG>
+                    <STRONG>@org.seasar.remoting.axis.examples.ex02.Hello@class</STRONG>
+                <STRONG>&lt;/property&gt;</STRONG>
+            <STRONG>&lt;/component&gt;</STRONG>
+        &lt;/meta&gt;
+
+        &lt;property name="..."&gt; ... &lt;/property&gt;
+    &lt;/component&gt;</PRE>
+            <P><CODE>org.seasar.remoting.axis.server.ServiceDef</CODE> has the following properties:</P>
+            <TABLE width=700 border=1>
+              <COLGROUP>
+              <COL width=150>
+              <TBODY>
+              <TR>
+                <TH>Property</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD><CODE>serviceType</CODE></TD>
+                <TD>Type of service to be release. By specifying specific interface type, unecessary method will not be released.</TD></TR>
+              <TR>
+                <TD><CODE>allowMethods</CODE></TD>
+                <TD>Method name to be released. When several methods are to be released, separate method name with spaces.</TD></TR>
+              <TR>
+                <TD><CODE>provider</CODE></TD>
+                <TD>Type of service provider. Currently, only <CODE>RPC</CODE> and <CODE>Msg</CODE> are supported. Defaults to <CODE>RPC</CODE> when not specified.</TD></TR></TBODY></TABLE>
+            <P>Refer to Quick Reference section on <A href="references.html#ref-compo-servicedef">org.seasar.remoting.axis.ServiceDef</A> for details.
+            </P>
+            <H4>Mapping Definition</H4>
+            <P>When Axis is used and argument type and return type of a service is application specific JavaBeans, whose type are not directly supported by JAX-JPC, values to be passed to these types must be <CODE>Serializer / Deserializer</CODE>. Unless specific <CODE>Serializer / Deserializer</CODE> is necessary, it is not necessary to specify one because S2Axis uses automatic type mapping provided by Axis.<BR> In those situations when it is necessary to specify <CODE>Serializer / Deserializer</CODE> or when it is necessary to specify set a Java package to XML namespace, type mapping mapping must be registered.<BR>Several type mapping may be registered in <CODE>ServiceDef</CODE>.</P><PRE>    &lt;component name="Hello" class="org.seasar.remoting.axis.examples.ex02.HelloImpl"&gt;
+        &lt;meta name="axis-service"&gt;
+            &lt;component class="org.seasar.remoting.axis.server.ServiceDef"&gt;
+                <STRONG>&lt;initMethod name="addTypeMapping"&gt;</STRONG>
+                    <STRONG>&lt;arg&gt;</STRONG>
+                        <STRONG>&lt;component type="org.seasar.remoting.axis.server.TypeMappingDef"&gt;</STRONG>
+                            <STRONG>&lt;property name="..."&gt;・・・&lt;/property&gt;</STRONG>
+                        <STRONG>&lt;/component&gt;</STRONG>
+                    <STRONG>&lt;/arg&gt;</STRONG>
+                <STRONG>&lt;/initMethod&gt;</STRONG>
+            &lt;/component&gt;
+        &lt;/meta&gt;
+
+        &lt;property name="..."&gt; ...&lt;/property&gt;
+    &lt;/component&gt;</PRE>
+            <P><CODE>org.seasar.remoting.axis.server.TypeMappingDef</CODE> has the following properties:</P>
+            <TABLE width=640 border=1>
+              <TBODY>
+              <TR>
+                <TH>Property</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD><CODE>type</CODE></TD>
+                <TD>Java type class. This property must be specified.</TD></TR>
+              <TR>
+                <TD><CODE>namespaceURI</CODE></TD>
+                <TD>Namespace URI of XML type. If omitted, defaults to URI from Java type package.</TD></TR>
+              <TR>
+                <TD><CODE>namespacePrefix</CODE></TD>
+                <TD>Namespace prefix of XML type. If omitted, defaults to default namespace.</TD></TR>
+              <TR>
+                <TD><CODE>localPart</CODE></TD>
+                <TD>Local name of XML type. If omitted, defaults to Java type class.</TD></TR>
+              <TR>
+                <TD><CODE>serializer</CODE></TD>
+                <TD>Serializer. If omitted, defaults to Axis <CODE>BeanSerialzierFactory</CODE>.</TD></TR>
+              <TR>
+                <TD><CODE>deserializer</CODE></TD>
+                <TD>Deserializer. If omitted, defaults to Axis <CODE>BeanDeserialzierFactory</CODE>.</TD></TR>
+              <TR>
+                <TD><CODE>encodingStyle</CODE></TD>
+                <TD>Encoding style. If omitted, defaults to <CODE>encoded</CODE>.</TD></TR></TBODY></TABLE>
+            <P>Refer to Quick Reference section on <A
+            href="references.html#ref-compo-typemappingdef">org.seasar.remoting.axis.TypeMappingDef</A> for details.
+            </P>
+            <H4>WSDD Service Properties</H4>
+            <P>When Web service has a WSDL and Java implementation class was generated by using Axis's WSDL2Java, web service may be deployed by specifying <CODE>deploy.wsdd</CODE> generated by WSDL2Java.</P>
+<PRE>    &lt;component name="Magazine"
+      class="org.seasar.remoting.axis.examples.ex05.MagazineSoapBindingImpl"&gt;
+      &lt;meta name="axis-service"&gt;
+        <STRONG>"org/seasar/remoting/axis/examples/ex05/deploy.wsdd"
+      </STRONG>&lt;/meta&gt;
+      ...
+    &lt;/component&gt;</PRE>
+            <P>In this situation, because Java type and XML type mapping, which are specified when executing WSDL2Java, are included in <CODE>deploy.wsdd</CODE> all necessary type mapping are deployed. <BR>It is possible to include one service definition (&lt;service&gt; element) in WSDD. Deployment fails when there are several service definitions.</P>
+            <H2><A name=config-client>Client Configuration</A></H2>
+            <P>S2Axis allows web services to be used as a component.</P>
+            <H3>Dynamic Call</H3>
+            <P>To call service through Java interface, write dicon file as follows:</P>
+<PRE>    &lt;!-- Web service proxy --&gt;
+    &lt;component name="Echo" class="org.seasar.remoting.axis.examples.ex01.Echo"&gt;
+        &lt;aspect&gt;remoting&lt;/aspect&gt;
+    &lt;/component&gt;
+
+    &lt;!-- Remote call interceptor --&gt;
+    &lt;component name="remoting"
+      class="org.seasar.remoting.common.interceptor.RemotingInterceptor"/&gt;
+
+    &lt;!-- Axis connector --&gt;
+    &lt;component name="connector"
+      class="org.seasar.remoting.axis.connector.AxisConnector"&gt;
+        &lt;property name="baseURL"&gt;
+            "http://localhost:8080/s2-axis-examples/services/"
+        &lt;/property&gt;
+    &lt;/component&gt;
+
+    &lt;!-- Axis service --&gt;
+    &lt;component class="org.apache.axis.client.Service" autoBinding="none"/&gt;</PRE>
+            <P>Proxy is necessary for each web service. Specify Java interface of web service in <CODE>class</CODE> attribute of <CODE>&lt;component&gt;</CODE> element. In this component, specify <CODE>RemotingInterceptor</CODE> as an aspcet. Proxy must have one <CODE>&lt;component&gt;</CODE> definition for each web service interface.</P>
+            <P><CODE>RemotingInterceptor</CODE> intercepts calls to proxy methods, and redirect the call to Axis connector. In the above sample, RemoteInterceptor property is set to Axis connector by S2's remote binding. RemotingInterceptor must have one <CODE>&lt;component&gt;</CODE> definition for each Axis connector.</P>
+            <P>Axis connector calls a web service through Axis service. In the above sample, Axis connector property is set to Axis service by S2's automatic binding. baseURL property is set to base URI of web service endpoint. In the actual communication, value specified in the name attribute of proxy's &lt;component&gt; element is appended to this base URI. Axis connector must have one <CODE>&lt;component&gt;</CODE> definition for each web service endpoint.</P>
+            <P>Axis service uses SOAP protocol to communicate with other web services. Axis service requires at lease one &lt;component&gt; definition for each S2 container.</P>
+            <H3>Static Call</H3>
+            <P>To call a service using stub generated by WSDL, create a dicon file as follows:</P>
+<PRE>    &lt;component class="org.seasar.axis.examples.ex05.Magazine"&gt;
+        locator.getMagazine()
+    &lt;/component&gt;
+
+    &lt;component name="locator"
+      class="org.seasar.axis.examples.ex05.MagazineServiceLocator"/&gt;</PRE>
+            <P>Service locator is the class generated by WSDL2Java. Stub with implementation of service's Java interface may be retrieved by the <CODE>get<VAR>Xxx</VAR>()</CODE> method of this class.</P>
+            <H2><A name=config-common>Client/Server Common Configuration</A></H2>
+            <H3><CODE>s2-axis.dicon</CODE>File Include</H3>
+            <P>When the following features are to be used, <CODE>s2-axis.dicon</CODE> file must be included in <CODE>app.dicon</CODE> file at <B>both server and client</B>.</P><PRE>&lt;components&gt;
+    <STRONG>&lt;include path="s2-axis.dicon"/&gt;</STRONG>
+    ・・・
+&lt;/components&gt;</PRE>
+            <P><CODE>s2-axis.dicon</CODE> does not have to be concerned about location because it is included in <CODE>s2axis-1.0.1.jar</CODE>.</P>
+            <H3>Handler Properties</H3>
+            <P>Beside services, S2 instance may manage handlers.</P>
+<PRE>    &lt;component <STRONG>name="fooRequestHandler"</STRONG>
+      class="org.seasar.remoting.axis.examples.ex06.LoggingHandler"&gt;
+        <STRONG>&lt;meta name="axis-handler"/&gt;</STRONG>
+
+        ...
+    &lt;/component&gt;</PRE>
+            <P><CODE>name</CODE> attribute must be specified in a <CODE>&lt;component&gt;</CODE>. In handler chain definition, a handler may be referenced by this name.</P>
+            <H3>Deploying WSDD</H3>
+            <P>Arbitrary WSDD file may be deployed by S2Axis.</P><PRE>&lt;components&gt;
+    <STRONG>&lt;meta name="axis-deploy"&gt;"org/seasar/remoting/axis/examples/ex07/deploy.wsdd"&lt;/meta&gt;</STRONG>
+&lt;/components&gt;</PRE>
+            <P>This is the same as deploying using Axis AdminClient, but S2Axis deploys when S2 is initialized.</P>
+            <H3>Specifying Axis Engine</H3>
+            <P>Service, handler, and Axis engine that is to be used to deploy WSDD file may be specified in a dicon file.</P><PRE>&lt;components&gt;
+    <STRONG>&lt;meta name="axis-engine"&gt;"default-client"&lt;/meta&gt;</STRONG>
+&lt;/components&gt;</PRE>
+            <P>Axis engine is determined by the content of <CODE>&lt;meta&gt;</CODE> element. <BR>Refer to section "<A href="references.html#ref-other-engine">Content that can be specified in service-engine</A>" in the the quick reference.
+            </P>
+
+<!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt=""></td></tr><tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+<TD class=copyright><TABLE cellSpacing=0 cellPadding=0 width=744><TR><TD align="left">Trans. by H.Ozawa</TD><TD align="right">Copyright&copy; 2004-2005, The Seasar Foundation and
+            the others. All rights reserved.</TD></TR></TABLE></TD>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table>
+</body>
+<!-- don't edit end -->
+</html>

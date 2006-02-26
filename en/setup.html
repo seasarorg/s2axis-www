@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- don't edit start -->
+<head>
+<title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head>
+<body onload="preload('en')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/en/index.html"><img src="images/menu01_b_en.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/en/projects.html"><img src="images/menu02_b_en.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/en/products.html"><img src="images/menu06_b_en.gif" height="30" width="110" border="0" alt="" id="menu06" onmouseover="swap(6)" onmouseout="restore(6)"></a></td>
+<td><a href="http://www.seasar.org/en/documents.html"><img src="images/menu04_b_en.gif" height="30" width="109" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><a href="http://www.seasar.org/en/resources.html"><img src="images/menu05_b_en.gif" height="30" width="113" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></a></td>
+<!--
+<td><img src="images/menu07_b_en.gif" height="30" width="109" border="0" alt=""  id="menu07" onmouseover="swap(7)" onmouseout="restore(7)"></td>
+//-->
+<td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
+
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+<br>
+            <H1><A name=setup>S2Axis Setup</A></H1>
+            <P>This is a document for <CODE>S2Axis-V1.0.1</CODE>. Documents for older versions of S2Axis are included in their respective distribution archive file.</P>
+
+            <H2><A name=cot>Table of Content</A></H2>
+            <UL>
+                <LI><A href="#requirement">Requirements</A>
+                <LI><A href="#downlod">Download</A>
+                <LI><A
+                href="#install">Installation</A>
+                <LI><A
+                href="#confirm">Running the Sample Program</A>
+                </LI>
+            </UL>
+
+            <H2><A name=requirement>Requirements</A></H2>
+            <P>S2Axis requires S2, S2Remoting, and Axis. Following versions are currently supported:</P>
+            <TABLE border=1>
+              <COLGROUP>
+              <COL span=4 width=150>
+              <THEAD>
+              <TR>
+                <TH>S2Axis</TH>
+                <TH>S2</TH>
+                <TH>S2Remoting</TH>
+                <TH>Axis</TH></TR></THEAD>
+              <TBODY>
+              <TR>
+                <TD>1.0.1</TD>
+                <TD>2.1.3 and later</TD>
+                <TD>0.0.7 and later</TD>
+                <TD>1.2 and later</TD></TR>
+              <TR>
+                <TD>1.0.0</TD>
+                <TD>2.1.3 and later</TD>
+                <TD>0.0.7 and later</TD>
+                <TD>1.2 and later</TD></TR>
+              </TBODY>
+            </TABLE>
+            <P>Not all combinations of versions have been tested. Following combination of versions have been tested:</P>
+            <H3>Runtime Environment</H3>
+            <P>S2Axis requires the following software:</P>
+            <UL>
+              <LI>Sun JDK (J2SE SDK) 1.4 or later. S2Axis-V1.0.1 is developed using JDK 1.4.2_08. Sun JDK may be downloaded from <A href="http://java.sun.com/j2se/1.4.2/ja/download.html">here</A>.
+              <LI>S2 version 2.1.3 or later is required.
+              (When using J2SE5.0 or later, S2.2 or later is required.) S2Axis-V1.0.1 is developed and tested with S2.3.7. It may be downloaded from <A href="http://s2container.seasar.org/en/">here</A>.
+              <LI>S2Remoting version 0.0.7 or later. S2Axis-V1.0.1 is developed and tested with S2Remoting-V1.0.0a. It may be downloaded from <A
+              href="http://s2remoting.seasar.org/en/">here</A>.
+              <LI>Axis version 1.2 or later is required. S2Axis-V1.0.1 is developed and tested with Axis 1.3 (Axis ver1.3 is included with S2Axis). It may be downloaded from <A href="http://ws.apache.org/axis/java/releases.html">here</A>.
+              <LI>Web container supporting Servlet2.3 or later is required. S2Axis-V1.0.1 is developed and tested with Tomcat 5.0.30. It may be downloaded from <A href="http://jakarta.apache.org/site/binindex.cgi">here</A>.
+            </LI></UL>
+
+            <H3>Development Environment</H3>
+            <P>Similar to other S2 software, S2Axis is distributed as archived Eclipse Java project.</P>
+            <UL>
+              <LI>Eclipse3.0 or later is required. S2Axis-V1.0.1 is developed and tested with Eclipse3.1.2. It may be downloaded from <A href="http://www.eclipse.org/downloads/">here</A>.
+              <LI>S2 version 2.1.3 or later is required. (When using J2SE5.0 or later, S2.2 or later is required.) S2Axis-V1.0.1 is developed and tested with はS2.3.7. It may be downloaded from <A href="http://s2container.seasar.org/en/">here</A>. After downloading the file, import it to Eclipse workspace.
+              <LI>S2Remoting version 0.0.7 or later is required. S2Axis-V1.0.1 is developed and tested with S2Remoting 1.0.0a. It may be downloaded from <A href="http://s2remoting.seasar.org/en/">here</A>. After downloading the file, import it to Eclipse workspace.
+              </LI></UL>
+            <P>S2AxisExamples archive file is distributed as an Eclipse Tomcat project with Sysdeo Tomcat plugin.</P>
+            <UL>
+              <LI>WTP (Web Tools Project) plugin is required. S2AxisExamples-V1.0.1 is developed and tested with WTP V1.0. It may be downloaded from <A href="http://www.eclipse.org/webtools/">here</A>.
+              </LI></UL>
+
+            <H2><A name=downlod>Download</A></H2>
+            <P>S2Axis and S2AxisExamples may be downloaded from <A
+            href="http://s2axis.seasar.org/en/">here</A>.</P>
+
+            <H2><A name=install>Installation</A></H2>
+            <H3>S2Axis</H3>
+            <UL>
+              <LI>After downloading <CODE>S2Axis-V1.0.1.zip</CODE> file, extract the content to some directory.
+              <LI>Execute Eclipse and select [File]-[Import] from the menu.
+              <LI>From [Import] wizard, select [Existing Projects into Workspace] and then select the [Next>] button.
+              <LI>Select [Select root directory] radio button and then select the [Browse] button to the right of it. Browse through directories to the <CODE>s2axis</CODE> directory where the archive files where extracted. Select the [OK] button to select this directory.
+              <LI>Select the [Finish] button to import from this directory.</LI></UL>
+            <H3>S2AxisExamples</H3>
+            <UL>
+              <LI>Extract files in the <CODE>S2AxisExamples-V1.0.1.zip</CODE> archive file to a directory.
+              <LI>Execute Eclipse and select [File]-[Import] from the menu.
+              <LI>From [Import] wizard, select [Existing Projects into Workspace] and then select the [Next>] button.
+              <LI>Select [Select root directory] radio button and then select the [Browse] button to the right of it. Browse through directories to the <CODE>s2axis-examples</CODE> directory where the archive files where extracted. Select the [OK] button to select this directory.
+              <LI>Select the [Finish] button to import from this directory.</LI></UL>
+
+            <H2><A name=confirm>Running the Sample Program</A></H2>
+            <P>To verify that software were properly installed, run the sample program.</P>
+            <UL>
+              <LI>Right click the s2axis-examples project and select [Run As]-[Run on Server].
+              <LI>Check to be sure the following message appears in the console view "Info: Server startup in <VAR>99999</VAR> ms".
+              <LI>Open a web browser (such as Mozilla Firefox) and open the URI: </LI></UL>
+            <BLOCKQUOTE><A
+              href="http://localhost:8080/s2axis-examples/services">http://localhost:8080/s2axis-examples/services</A></BLOCKQUOTE>
+            <UL>
+              <LI>If a page similar to the following appears, S2Axis example was successfully installed.</LI></UL>
+            <P><IMG height=671 src="../ja/images/services.png" width=649
+            border=0></P>
+            <P>If there is an error, there may be some error in web container settings.</P>
+
+<!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt=""></td></tr><tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+<TD class=copyright><TABLE cellSpacing=0 cellPadding=0 width=744><TR><TD align="left">Trans. by H.Ozawa</TD><TD align="right">Copyright&copy; 2004-2005, The Seasar Foundation and
+            the others. All rights reserved.</TD></TR></TABLE></TD>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table>
+</body>
+<!-- don't edit end -->
+</html>

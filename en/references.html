@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- don't edit start -->
+<head>
+<title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head>
+<body onload="preload('en')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/en/index.html"><img src="images/menu01_b_en.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/en/projects.html"><img src="images/menu02_b_en.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/en/products.html"><img src="images/menu06_b_en.gif" height="30" width="110" border="0" alt="" id="menu06" onmouseover="swap(6)" onmouseout="restore(6)"></a></td>
+<td><a href="http://www.seasar.org/en/documents.html"><img src="images/menu04_b_en.gif" height="30" width="109" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><a href="http://www.seasar.org/en/resources.html"><img src="images/menu05_b_en.gif" height="30" width="113" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></a></td>
+<!--
+<td><img src="images/menu07_b_en.gif" height="30" width="109" border="0" alt=""  id="menu07" onmouseover="swap(7)" onmouseout="restore(7)"></td>
+//-->
+<td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
+
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+<br>
+            <H1><A name=reference>S2Axis Quick Reference</A></H1>
+            <P>This is a document for <CODE>S2Axis-V1.0.1</CODE>. Documents for older versions of S2Axis are included in their respective distribution archive file.</P>
+
+            <H2><A name=cot>Table of Content</A></H2>
+            <UL>
+                <LI><A href="#ref-dicon">dicon File</A>
+                <LI><A href="#ref-meta">&lt;meta&gt; Element</A>
+                <LI><A href="#ref-component">Component</A>
+                <LI><A href="#ref-other">Miscellaneous</A>
+            </UL>
+
+            <H2><A name=ref-dicon>dicon file</A></H2>
+            <H3>s2-axis.dicon</H3>
+            <P>dicon file used by S2Axis. It is included in s2axis-1.0.1.jar file so it can be included without specifying the location.<BR>It is required at the server side.<BR>At the client side, it is only necessary if handler or WSDD is to be deployed.</P>
+            <H2><A name=ref-meta>&lt;meta&gt; Element</A></H2>
+            <H3><A name=ref-meta-components>Content of &lt;components&gt; element</A></H3>
+            <TABLE width=700 border=1>
+              <COLGROUP>
+              <COL vAlign=center width=100>
+              <COL span=2 vAlign=center align=middle width=20>
+              <COL vAlign=center width=200>
+              <TBODY>
+              <TR>
+                <TH>Name</TH>
+                <TH>C</TH>
+                <TH>S</TH>
+                <TH>Content</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD><CODE>axis-deploy</CODE></TD>
+                <TD>yes</TD>
+                <TD>yes</TD>
+                <TD>String</TD>
+                <TD>Deploy WSDD file, which has a content specified path string, to Axis. Path name of WSDD file is specified as a relatvie path from the class path.<BR>Instance management of service and handler that have been specified in WSDD file are done by Axis. S2 and S2 do not management them.<BR>Service and handler, which have been deployed by S2Axis, may be referenced from within WSDD file.</TD></TR>
+              <TR>
+                <TD><CODE>axis-engine</CODE></TD>
+                <TD>yes</TD>
+                <TD>yes</TD>
+                <TD>String</TD>
+                <TD>Specify method to get Axis engine that will deploy services, handlers, and WSDD.<BR>Refer to "Method to Get Axis Engine" for details.</TD></TR></TBODY></TABLE>
+            <H3><A name=ref-meta-component>Content of &lt;component&gt; Element</A></H3>
+            <TABLE width=700 border=1>
+              <COLGROUP>
+              <COL vAlign=center width=100>
+              <COL span=2 vAlign=center align=middle width=20>
+              <COL vAlign=center width=200>
+              <TBODY>
+              <TR>
+                <TH>Property</TH>
+                <TH>C</TH>
+                <TH>S</TH>
+                <TH>Content</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD><CODE>axis-handler</CODE></TD>
+                <TD>yes</TD>
+                <TD>yes</TD>
+                <TD>Empty</TD>
+                <TD>Deploy as a handler a component written as a new element.</TD></TR>
+              <TR>
+                <TD rowSpan=3><CODE>axis-service</CODE></TD>
+                <TD rowSpan=3>no</TD>
+                <TD rowSpan=3>yes</TD>
+                <TD>empty</TD>
+                <TD>Deploy component, which was written in a parent element, as a Axis service.<BR>When component implements an interface defined in a method, that method will be released. If an interface is not implemented, <CODE>public</CODE> methods that have not been defined as <CODE>java.lang.Object</CODE> is released.</TD></TR>
+              <TR>
+                <TD><CODE>ServiceDef</CODE> type component</TD>
+                <TD>Deploy components that has been written in a parent element as Axis service.<BR>Refer to <CODE>ServiceDef</CODE> for detailds.</TD></TR>
+              <TR>
+                <TD>String</TD>
+                <TD>Deploy components that has been written in a parent element as Axis service.<BR>Details of a service is as specified in <CODE>&lt;service&gt;</CODE> element in the WSDD file, which has been specified by the string path of the content. WSDD file path is specified by relative path from the class path.</TD></TR></TBODY></TABLE>
+            <H2><A name=ref-component>Component</A></H2>
+            <H3><CODE><A
+            name=ref-compo-servicedef>org.seasar.remoting.axis.ServiceDef</A></CODE></H3>
+            <P>Components that are used on the server is set in the <CODE>&lt;meta&gt;</CODE> element.<BR>It is used to specified which components are to be released as a service.</P>
+            <H4>Properties</H4>
+            <TABLE width=700 border=1>
+              <COLGROUP>
+              <COL width=120>
+              <COL width=80>
+              <TBODY>
+              <TR>
+                <TH>Property</TH>
+                <TH>Type</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD><CODE>serviceType</CODE></TD>
+                <TD><CODE>String</CODE></TD>
+                <TD>Specify type of service that are to be released. Unnecessary method may be avoided from being released by specifying an interface type.<BR>Defaults to component type. However, if a component has only one method definition that has an implemented interface, type of that interface is used.</TD></TR>
+              <TR>
+                <TD><CODE>allowMethods</CODE></TD>
+                <TD><CODE>boolean</CODE></TD>
+                <TD>Name of method to release. To release several methods, separate method names with a space.<BR>If omitted, defaults as follows:
+
+                  <DL>
+                    <DT>1.When <CODE>serviceType</CODE> is specied.
+                    <DD>All <CODE>public</CODE> methods with specified type will be release. However, method with <CODE>java.lang.Object</CODE> type will not be released.
+                    </DD></DL>
+                  <DL>
+                    <DT>2.When service has a method with an implemented interface
+                    <DD>All methods defined in the interface will be released.</DD></DL>
+                  <DL>
+                    <DT>3.When a service does not have an implemented interface
+                    <DD>All <CODE>public</CODE> will be released. However, method with <CODE>java.lang.Object</CODE> type will not be released.
+                    </DD></DL></TD></TR>
+              <TR>
+                <TD><CODE>provider</CODE></TD>
+                <TD><CODE>String</CODE></TD>
+                <TD>Type of service provider.<BR>Currently, only <CODE>RPC</CODE> and <CODE>Msg</CODE> are supported. Defaults to <CODE>RPC</CODE> when omitted.</TD></TR></TBODY></TABLE>
+            <H4>Method</H4>
+            <TABLE width=700 border=1>
+              <COLGROUP>
+              <COL width=200>
+              <TBODY>
+              <TR>
+                <TH>Method</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD><CODE>addTypeMapping(TypeMapping)</CODE></TD>
+                <TD>Register type mapping. Refer to the next section for detail on TypeMapping.</TD></TR></TBODY></TABLE>
+            <H3><CODE><A
+            name=ref-compo-typemappingdef>org.seasar.remoting.axis.TypeMappingDef</A></CODE></H3>
+            <P>Components used at the server, set to <CODE>ServiceDef</CODE> component.<BR>Used to specify detailed type mapping of components to be released as a service.</P>
+            <TABLE width=700 border=1>
+              <COLGROUP>
+              <COL width=120>
+              <COL width=80>
+              <TBODY>
+              <TR>
+                <TH>Property</TH>
+                <TH>Type</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD><CODE>type</CODE></TD>
+                <TD><CODE>Class</CODE></TD>
+                <TD>Java type class. It propery is required.</TD></TR>
+              <TR>
+                <TD><CODE>namespaceURI</CODE></TD>
+                <TD><CODE>String</CODE></TD>
+                <TD>XML type namespace URI. Defaults to URI from Java type package.</TD></TR>
+              <TR>
+                <TD><CODE>namespacePrefix</CODE></TD>
+                <TD><CODE>String</CODE></TD>
+                <TD>XML type namespace prefix. Defaults to default namespace.</TD></TR>
+              <TR>
+                <TD><CODE>localPart</CODE></TD>
+                <TD><CODE>String</CODE></TD>
+                <TD>XML type local name. Defaults to Java type class name.</TD></TR>
+              <TR>
+                <TD><CODE>serializer</CODE></TD>
+                <TD>Class</TD>
+                <TD>Serializer. Defaults to Axis <CODE>BeanSerialzierFactory</CODE>.</TD></TR>
+              <TR>
+                <TD><CODE>deserializer</CODE></TD>
+                <TD><CODE>String</CODE></TD>
+                <TD>Deserializer. Defaults to Axis <CODE>BeanDeserialzierFactory</CODE>.</TD></TR>
+              <TR>
+                <TD><CODE>encodingStyle</CODE></TD>
+                <TD><CODE>String</CODE></TD>
+                <TD>Encoding style. Defaults to <CODE>encoded</CODE>.</TD></TR></TBODY></TABLE>
+            <H3><A
+            name=ref-compo-connector>org.seasar.remoting.axis.connector.AxisConnector</A></H3>
+            <P>Used to dynamically connect to a web service from a component used at a client.</P>
+            <H4>Properties</H4>
+            <TABLE width=700 border=1>
+              <COLGROUP>
+              <COL width=120>
+              <COL width=80>
+              <TBODY>
+              <TR>
+                <TH>Property</TH>
+                <TH>Type</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD><CODE>baseURL</CODE></TD>
+                <TD><CODE>String</CODE></TD>
+                <TD>Base URI of service to connect.<BR>This URI concatenated with proxy component name (value of name attribute in &lt;component&gt; element), which is an aspect of S2Remoting's RemotingInterceptor, is actually used to connect to a service.</TD></TR></TBODY></TABLE>
+            <H3><A
+            name=ref-compo-interceptor>org.seasar.remoting.common.interceptor.RemotingInterceptor</A></H3>
+            <P>Component offering S2Remoting.<BR>To use a component as a web service at the client, this component is used as an aspect.</P>
+            <H3><A
+name=ref-compo-service>org.apache.axis.client.Service</A></H3>
+            <P>Component offered by Axis.<BR>Required when dynamic call is used at a client.</P>
+            <H2><A name=ref-other>Miscellaneous</A></H2>
+            <H3>Service name released</H3>
+            <DL>
+              <DT>When WSDD is specified
+              <DD>Value of <CODE>name</CODE> attribute in <CODE>&lt;service&gt;</CODE> element specified in WSDD is used.<BR><CODE><VAR>context-path</VAR>/services/<VAR>name</VAR></CODE>
+
+              <DT>When namespace is not specified in a dicon file
+              <DD>Value of の<CODE>name</CODE> attribute in <CODE>&lt;component&gt;</CODE> element in dicon file is used.<BR><CODE><VAR>context-path</VAR>/services/<VAR>name</VAR></CODE>
+
+              <DT>When namespace of dicon file is specified
+              <DD>Value of <CODE>namespace</CODE> attribute in <CODE>&lt;components&gt;</CODE> element and value of <CODE>name</CODE> attribute in <CODE>&lt;component&gt;</CODE> element in dicon file is used.<BR><CODE><VAR>context-path</VAR>/services/<VAR>namespace</VAR>/<VAR>name</VAR></CODE>
+              </DD></DL>
+            <H3><A name=ref-other-engine><CODE>service-engine</CODE> Settings</A></H3>
+            <TABLE width=700 border=1>
+              <COLGROUP>
+              <COL width=150>
+              <TBODY>
+              <TR>
+                <TH>Content</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD>(Unspecified)</TD>
+                <TD>Same as setting <CODE>"default"</CODE></TD></TR>
+              <TR>
+                <TD><CODE>"default"</CODE></TD>
+                <TD>If S2 container is set <CODE>javax.servlet.ServletContext</CODE> then same as <CODE>"default-server"</CODE>, if not then same as setting <CODE>"default-client"</CODE>.</TD></TR>
+              <TR>
+                <TD><CODE>"default-client"</CODE></TD>
+                <TD>Retrieve component implemenation set by <CODE>javax.xml.rpc.Service</CODE> from S2 container and use that engine.</TD></TR>
+              <TR>
+                <TD><CODE>"default-server"</CODE></TD>
+                <TD>To try find engine from searching <CODE>servlet:AxisServlet</CODE>. If it could not find one, try to find an engine by searching <CODE>servlet:AxisEngine</CODE>.</TD></TR>
+              <TR>
+                <TD><CODE>"s2:<VAR>name</VAR>"</CODE></TD>
+                <TD>Use component as Axis engine retrieved from S2 container <CODE><VAR>name</VAR></CODE>.</TD></TR>
+              <TR>
+                <TD><CODE>"servlet:<VAR>name</VAR>"</CODE></TD>
+                <TD>Use attribute as Axis engine retrieved from <CODE>ServletContext</CODE>'s <CODE><VAR>name</VAR></CODE>.</TD></TR>
+              <TR>
+                <TD>(Other)</TD>
+                <TD>Use component retrieved by string specified from S2 container string as Axis engine.</TD></TR></TBODY></TABLE><!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt=""></td></tr><tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+<TD class=copyright><TABLE cellSpacing=0 cellPadding=0 width=744><TR><TD align="left">Trans. by H.Ozawa</TD><TD align="right">Copyright&copy; 2004-2005, The Seasar Foundation and
+            the others. All rights reserved.</TD></TR></TABLE></TD>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table>
+</body>
+<!-- don't edit end -->
+</html>

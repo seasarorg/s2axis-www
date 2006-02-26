@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- don't edit start -->
+<head>
+<title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head>
+<body onload="preload('en')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/en/index.html"><img src="images/menu01_b_en.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/en/projects.html"><img src="images/menu02_b_en.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/en/products.html"><img src="images/menu06_b_en.gif" height="30" width="110" border="0" alt="" id="menu06" onmouseover="swap(6)" onmouseout="restore(6)"></a></td>
+<td><a href="http://www.seasar.org/en/documents.html"><img src="images/menu04_b_en.gif" height="30" width="109" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><a href="http://www.seasar.org/en/resources.html"><img src="images/menu05_b_en.gif" height="30" width="113" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></a></td>
+<!--
+<td><img src="images/menu07_b_en.gif" height="30" width="109" border="0" alt=""  id="menu07" onmouseover="swap(7)" onmouseout="restore(7)"></td>
+//-->
+<td><img height="30" width="34" src="images/menu06.gif" alt=""></td></tr><tr>
+
+<td colspan="6"><img height="19" width="545" src="images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+<br>
+            <H1><A name=examples>S2Axis Samples</A></H1>
+            <P>This is a document for <CODE>S2Axis-V1.0.1</CODE>. Documents for older versions of S2Axis are included in their respective distribution archive file.</P>
+            <H1><A name=cot>Table of Content</A></H1>
+            <UL>
+                <LI><A href="#abstraction">Abstract</A>
+                <LI><A href="#ex01">ex01
+                Releasing a component as a web service</A>
+                <LI><A href="#ex02">ex02
+                Releasing an interface instead of an implementation</A>
+                <LI><A href="#ex03">ex03
+                Using automatic type mapping</A>
+                <LI><A href="#ex04">ex04
+                Using session scope</A>
+                <LI><A href="#ex05">ex05
+                Using WSDL</A>
+                <LI><A href="#ex06">ex06
+                Using S2 to manage handler instance</A>
+                <LI><A href="#ex07">ex07
+                Deploying WSDD with S2Axis</A>
+                <LI><A href="#ex08">ex08
+                Deploying Handler and WSDD from a client</A> </LI></UL>
+
+<H2><A name=abstraction>Abstract</A></H2>
+            <P>S2Axis-Examples demostrates most basic features supported by S2Axis. Source is divided into server side and client side sources. Client source is created as JUnit (S2Unit) test case. Source codes files are in the following directories:</P>
+            <DL>
+              <DT>Server side
+              <DD><CODE>org.seasar.axis.examples.ex<VAR>nn</VAR></CODE> package in <CODE>src/server</CODE> directory
+
+              <DT>Client side
+              <DD><CODE>org.seasar.axis.examples.ex<VAR>nn</VAR></CODE> package in <CODE>src/client</CODE> directory
+              </DD></DL>
+            <H2><A name=ex01>ex01 Releasing a Component as a Web Service</A></H2>
+            <P>Sample to release a simple web service</P><PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+        &lt;component name="Echo" class="org.seasar.remoting.axis.examples.ex01.EchoImpl"&gt;
+                <STRONG>&lt;meta name="axis-service"/&gt;</STRONG>
+        &lt;/component&gt;
+&lt;/components&gt;</PRE>
+            <P>Client side is call dynamically.</P>
+<PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+    &lt;component name="remoting"
+      class="org.seasar.remoting.common.interceptor.RemotingInterceptor"/&gt;
+
+    &lt;component class="org.apache.axis.client.Service"/&gt;
+
+    &lt;component name="connector"
+      class="org.seasar.remoting.axis.connector.AxisConnector"&gt;
+        &lt;property name="baseURL"&gt;
+            "http://localhost:8080/s2-axis-examples/services/"
+        &lt;/property&gt;
+    &lt;/component&gt;
+
+    &lt;component class="org.seasar.remoting.axis.examples.ex01.Echo"&gt;
+        &lt;aspect&gt;remoting&lt;/aspect&gt;
+    &lt;/component&gt;
+&lt;/components&gt;</PRE>
+            <H2><A name=ex02>ex02 Releasing Specific Interface</A></H2>
+            <P>When implementation class is released, unnecessary methods may also become released. For example, interfaces that were not implemented or when several interfaces are implemented. In ex02, implemented class <CODE>HelloImpl</CODE> implements two interfaces, but <CODE>setMessage(String)</CODE> method in MessageSettable is not released as a web service.<BR>In this situation, Java interface to become available is made public. (If only one interface is implemented or if all implemented interfaces are to be released, it is not necessary to specify as in this sample.)</P>
+<PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+    &lt;component name="Hello"
+        class="org.seasar.remoting.axis.examples.ex02.HelloImpl"&gt;
+        &lt;meta name="axis-service"&gt;
+            &lt;component class="org.seasar.remoting.axis.server.ServiceDef"&gt;
+                <STRONG>&lt;property name="serviceType"&gt;</STRONG>
+                    <STRONG>@org.seasar.remoting.axis.examples.ex02.Hello@class</STRONG>
+                <STRONG>&lt;/property&gt;</STRONG>
+            &lt;/component&gt;
+        &lt;/meta&gt;
+        &lt;property name="message"&gt;"Hello"&lt;/property&gt;
+    &lt;/component&gt;
+&lt;/components&gt;</PRE>
+Comment out <CODE>&lt;property&gt;</CODE> element and restart the web container. WSDL for <CODE>Hello</CODE> should contain に<CODE>setServiceType(String)</CODE> method.
+            <H2><A name=ex03>ex03 Using Automatic Type Mapping</A></H2>
+            <P>In this sample, argument and return value data type of a service is a JavaBean. Nevertheless, type mapping are done automatically at both client side and server side.</P>
+            <H2><A name=ex04>ex04 Using Session Scope</A></H2>
+            <P>Axis has a proprietary session scope service that uses HTTP session. When session scope service is used in S2Axis, service life cycle management is doen by S2.</P><PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+        &lt;component name="Counter" class="org.seasar.axis.examples.ex04.CounterImpl"
+            <STRONG>instance="session"</STRONG>
+        &gt;
+                &lt;meta name="axis-service"/&gt;
+        &lt;/component&gt;
+&lt;/components&gt;</PRE>
+            <P>This sample will not properly work if value of <CODE>instance</CODE> attribute is changed to<CODE>singleton</CODE> or <CODE>prototype</CODE> (client will error.)</P>
+            <P>When session scope is to be used, session tracking must be made effective at the client.</P>
+<PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+    &lt;component name="remoting"
+      class="org.seasar.remoting.common.interceptor.RemotingInterceptor"/&gt;
+
+    &lt;component class="org.apache.axis.client.Service"&gt;
+        <STRONG>&lt;property name="maintainSession"&gt;true&lt;/property&gt;</STRONG>
+    &lt;/component&gt;
+
+    &lt;component name="connector"
+      class="org.seasar.remoting.axis.connector.AxisConnector"&gt;
+        &lt;property name="baseURL"&gt;
+            "http://localhost:8080/s2-axis-examples/services/"
+        &lt;/property&gt;
+    &lt;/component&gt;
+
+    &lt;component class="org.seasar.remoting.axis.examples.ex04.Counter"&gt;
+        &lt;aspect&gt;remoting&lt;/aspect&gt;
+    &lt;/component&gt;
+&lt;/components&gt;</PRE>
+            <P>The sample will not work properly if value of <CODE>maintainSession</CODE> attribute is set to <CODE>false</CODE>.</P>
+            <H2><A name=ex05>ex05 Using WSDL</A></H2>
+            <P>This is a sample created using WSDL2Java to generated Java stubs and a skelton. WSDD file generated by WSDL2Java is specified.</P>
+<PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+    &lt;component name="Magazine"
+      class="org.seasar.remoting.axis.examples.ex05.MagazineSoapBindingImpl"&gt;
+        <STRONG>&lt;meta name="axis-service"&gt;</STRONG>
+            <STRONG>"org/seasar/remoting/axis/examples/ex05/deploy.wsdd"</STRONG>
+        <STRONG>&lt;/meta&gt;</STRONG>
+
+        &lt;property name="title"&gt;"CanCam"&lt;/property&gt;
+        &lt;initMethod name="addModel"&gt;
+            &lt;arg&gt;
+                &lt;component
+                  class="org.seasar.remoting.axis.examples.ex05.Model"&gt;
+                    &lt;property name="name"&gt;"Yuri Ebihara"&lt;/property&gt;
+                    &lt;property name="age"&gt;25&lt;/property&gt;
+                &lt;/component&gt;
+            &lt;/arg&gt;
+        &lt;/initMethod&gt;
+        &lt;initMethod name="addModel"&gt;
+            &lt;arg&gt;
+                &lt;component
+                  class="org.seasar.remoting.axis.examples.ex05.Model"&gt;
+                    &lt;property name="name"&gt;"Naoko Tokuzawa"&lt;/property&gt;
+                    &lt;property name="age"&gt;20&lt;/property&gt;
+                &lt;/component&gt;
+            &lt;/arg&gt;
+        &lt;/initMethod&gt;
+        &lt;initMethod name="addModel"&gt;
+            &lt;arg&gt;
+                &lt;component
+                  class="org.seasar.remoting.axis.examples.ex05.Model"&gt;
+                    &lt;property name="name"&gt;"Asami Usuda"&lt;/property&gt;
+                    &lt;property name="age"&gt;20&lt;/property&gt;
+                &lt;/component&gt;
+            &lt;/arg&gt;
+        &lt;/initMethod&gt;
+    &lt;/component&gt;
+&lt;/components&gt;</PRE>
+            <P>On the client side, static stub generated from WSDL is called.</P><PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+        <STRONG>&lt;component name="locator" </STRONG>
+                <STRONG>class="org.seasar.remoting.axis.examples.ex05.MagazineServiceLocator"</STRONG>
+        <STRONG>/&gt;</STRONG>
+
+        &lt;component class="org.seasar.remoting.axis.examples.ex05.Magazine"&gt;
+                &lt;!-- locator.getMagazine() --&gt;
+                <STRONG>locator.getMagazine(</STRONG>
+                    <STRONG>new java.net.URL(locator.getMagazineAddress() + </STRONG>
+                        <STRONG>locator.getMagazineWSDDServiceName()))</STRONG>
+        &lt;/component&gt;
+&lt;/components&gt;</PRE>
+            <H2><A name=ex06>ex06 Using S2 To Manage Handler Instance</A></H2>
+            <P>This sample, handler instance managed by S2 is used in service request chain and response chain.</P>
+<PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+    &lt;component name="Foo"
+      class="org.seasar.remoting.axis.examples.ex06.FooSoapBindingImpl"&gt;
+        &lt;meta name="axis-service"&gt;
+            "org/seasar/remoting/axis/examples/ex06/deploy.wsdd"
+        &lt;/meta&gt;
+    &lt;/component&gt;
+
+    &lt;component name="fooRequestHandler"
+      class="org.seasar.remoting.axis.examples.ex06.LoggingHandler"&gt;
+        <STRONG>&lt;meta name="axis-handler"/&gt;</STRONG>
+
+        &lt;property name="message"&gt;"Enter Foo"&lt;/property&gt;
+    &lt;/component&gt;
+
+    &lt;component name="fooResponseHandler"
+      class="org.seasar.remoting.axis.examples.ex06.LoggingHandler"&gt;
+        <STRONG>&lt;meta name="axis-handler"/&gt;</STRONG>
+
+        &lt;property name="message"&gt;"Exit Foo"&lt;/property&gt;
+    &lt;/component&gt;
+&lt;/components&gt;</PRE>
+            <P>To use this handler, request flow and response flow are inserted into WSDD generated by WSDL2Java.</P>
+<PRE>&lt;!-- Use this file to deploy some handlers/chains and services      --&gt;
+&lt;!-- Two ways to do this:                                           --&gt;
+&lt;!--   java org.apache.axis.client.AdminClient deploy.wsdd          --&gt;
+&lt;!--      after the axis server is running                          --&gt;
+&lt;!-- or                                                             --&gt;
+&lt;!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --&gt;
+&lt;!--      from the same directory that the Axis engine runs         --&gt;
+
+&lt;deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java"&gt;
+
+  &lt;!-- Services from FooService WSDL service --&gt;
+
+  &lt;service name="Foo" provider="java:RPC" style="rpc" use="encoded"&gt;
+      &lt;parameter name="wsdlTargetNamespace"
+        value="http://ex06.examples.axis.remoting.seasar.org"/&gt;
+      &lt;parameter name="wsdlServiceElement" value="FooService"/&gt;
+      &lt;parameter name="wsdlServicePort" value="Foo"/&gt;
+      &lt;parameter name="className"
+        value="org.seasar.remoting.axis.examples.ex06.FooSoapBindingImpl"/&gt;
+      &lt;parameter name="wsdlPortType" value="Foo"/&gt;
+      &lt;operation name="ping" qname="operNS:ping"
+          xmlns:operNS="http://ex06.examples.axis.remoting.seasar.org" soapAction=""
+      &gt;
+      &lt;/operation&gt;
+      &lt;parameter name="allowedMethods" value="ping"/&gt;
+
+<STRONG>      &lt;requestFlow&gt;
+          &lt;handler type="fooRequestHandler"/&gt;
+      &lt;/requestFlow&gt;
+      &lt;responseFlow&gt;
+          &lt;handler type="fooResponseHandler"/&gt;
+      &lt;/responseFlow&gt;
+</STRONG>  &lt;/service&gt;
+&lt;/deployment&gt;</PRE>
+            <P>When client software is executed, following message is displayed at the server.</P><PRE>[DEBUG] http-8080-Processor24 org.seasar.remoting.axis.examples.ex06.LoggingHandler
+    Enter Foo
+[DEBUG] http-8080-Processor24 org.seasar.remoting.axis.examples.ex06.LoggingHandler
+    Exit Foo</PRE>
+            <H2><A name=ex07>ex07 Deploying WSDD with S2Axis</A></H2>
+            <P>In this sample, <CODE>EchoHandler</CODE>, which comes as a sample in Axis, will be added in WSDD as a provider service and then deployed.</P><PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+        <STRONG>&lt;meta name="axis-deploy</STRONG>
+            "&gt;"org/seasar/remoting/axis/examples/ex07/deploy.wsdd"
+        <STRONG>&lt;/meta&gt;</STRONG>
+&lt;/components&gt;</PRE>
+            <P>The difference between ex05 is &lt;components&gt; element is used instead of <CODE>&lt;component&gt;</CODE>.<BR>WSDD that is deployed is as follows:</P><PRE>&lt;deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java"&gt;
+
+    &lt;service name="EchoHandler" provider="Handler" style="rpc" use="encoded"&gt;
+        &lt;parameter name="handlerClass" value="org.apache.axis.handlers.EchoHandler"/&gt;
+    &lt;/service&gt;
+&lt;/deployment&gt;</PRE>
+            <P>S2 and S2Axis do not manage <CODE>EchoHandler</CODE> instance written in WSDD. They only take part in deployment.</P>
+            <H2><A name=ex08>ex08 Deploying Handler and WSDD at Client</A></H2>
+            <P>In this sample, handler and WSDD file specified in dicon file will be deployed.</P>
+<PRE>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+        "http://www.seasar.org/dtd/components21.dtd"&gt;
+&lt;components&gt;
+    <STRONG>&lt;include path="s2-axis.dicon"/&gt;</STRONG>
+
+    &lt;component name="remoting"
+      class="org.seasar.remoting.common.interceptor.RemotingInterceptor"/&gt;
+
+    &lt;component class="org.apache.axis.client.Service"/&gt;
+
+    &lt;component name="connector"
+      class="org.seasar.remoting.axis.connector.AxisConnector"&gt;
+        &lt;property name="baseURL"&gt;
+            "http://localhost:8080/s2-axis-examples/services/"
+        &lt;/property&gt;
+    &lt;/component&gt;
+
+    &lt;component class="org.seasar.remoting.axis.examples.ex01.Echo"&gt;
+        &lt;aspect&gt;remoting&lt;/aspect&gt;
+    &lt;/component&gt;
+
+    <STRONG>&lt;component name="countHandler" </STRONG>
+            <STRONG>class="org.seasar.remoting.axis.examples.ex08.CountHandler"&gt;</STRONG>
+        <STRONG>&lt;meta name="axis-handler"/&gt;</STRONG>
+    <STRONG>&lt;/component&gt;</STRONG>
+
+    <STRONG>&lt;meta name="axis-deploy"&gt;
+      "org/seasar/remoting/axis/examples/ex08/deploy.wsdd"
+    &lt;/meta&gt;</STRONG>
+&lt;/components&gt;</PRE>
+            <P>Deployed WSDD is as follows:</P><PRE>&lt;deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java"&gt;
+    &lt;globalConfiguration&gt;
+         &lt;requestFlow&gt;
+             &lt;handler type="countHandler"/&gt;
+         &lt;/requestFlow&gt;
+         &lt;responseFlow&gt;
+             &lt;handler type="countHandler"/&gt;
+         &lt;/responseFlow&gt;
+     &lt;/globalConfiguration&gt;
+&lt;/deployment&gt;
+</PRE>
+            <P>Management of <CODE>countHandler</CODE> instance specified in WSDD is done by S2.</P>
+
+<!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="30" width="14" src="images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="images/spacer.gif" alt=""></td></tr><tr>
+<td width="14"><img height="14" width="14" src="images/spacer.gif" alt=""></td>
+<TD class=copyright><TABLE cellSpacing=0 cellPadding=0 width=744><TR><TD align="left">Trans. by H.Ozawa</TD><TD align="right">Copyright&copy; 2004-2005, The Seasar Foundation and
+            the others. All rights reserved.</TD></TR></TABLE></TD>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table>
+</body>
+<!-- don't edit end -->
+</html>
