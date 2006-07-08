@@ -28,7 +28,7 @@
 <!-- document start -->
 <br>
 <h1><a name="setup">S2Axis2 セットアップ</a></h1>
-<p>本ドキュメントは<code>S2Axis2-V0.1.0</code>について記述しています。</p>
+<p>本ドキュメントは<code>S2Axis2</code>について記述しています。</p>
 <h2><a name="cot">目次</a></h2>
 <ul>
 <li><a href="#requirement">前提条件</a></li>
@@ -51,9 +51,9 @@
 </thead>
 <tbody>
 <tr>
-<td>0.1.0</td>
-<td>2.3.7～</td>
-<td>1.0.0～</td>
+<td>0.2.0</td>
+<td>2.3.10～</td>
+<td>1.0.2～</td>
 <td>1.0</td>
 </tr>
 </tbody>
@@ -62,34 +62,33 @@
 <h3>実行環境</h3>
 <p>S2Axis2を実行するには、以下のものが必要です。</p>
 <ul>
-<li>JDK (J2SE SDK) 1.4以降が必要です．S2Axis2-V0.1.0の開発とテストはJDK 1.4.2_08で行っています．ダウンロードは<a href="http://java.sun.com/j2se/1.4.2/ja/download.html">こちら</a>。</li>
-<li>S2の2.3.7以降が必要です。S2Axis2-V0.1.0の開発とテストはS2.3.7で行っています。ダウンロードは<a href="http://s2container.seasar.org/ja/">こちら</a>。</li>
-<li>S2Remotingの1.0.0以降が必要です。S2Axis2-V0.1.0の開発とテストはS2Remoting-V1.0.0で行っています。ダウンロードは<a href="http://s2remoting.seasar.org/ja/">こちら</a>。</li>
-<li>Axis2の1.0以降が必要です。S2Axis2-V0.1.0の開発とテストはAxis2 1.0で行っています。
-(S2Axis2に同梱されています)。ダウンロードは<a href="http://ws.apache.org/axis2/download.cgi">こちら</a>。</li>
-<li>Servlet2.3以降をサポートしたWebコンテナが必要です。S2Axis2-V0.1.0の開発とテストは、Tomcat
+<li>JDK (J2SE SDK) 1.4以降が必要です．S2Axis2の開発とテストはJDK 1.4.2_12で行っています．ダウンロードは<a href="http://java.sun.com/j2se/1.4.2/ja/download.html">こちら</a>。</li>
+<li>S2の2.3.10以降が必要です。S2Axis2の開発とテストはS2.3.10で行っています。ダウンロードは<a href="http://s2container.seasar.org/ja/">こちら</a>。</li>
+<li>S2Remotingの1.0.0以降が必要です。S2Axis2の開発とテストはS2Remoting-V1.0.2で行っています。ダウンロードは<a href="http://s2remoting.seasar.org/ja/">こちら</a>。</li>
+<li>Axis2の1.0以降が必要です。S2Axis2の開発とテストはAxis2 1.0で行っています(S2Axis2に同梱されています)。ダウンロードは<a href="http://ws.apache.org/axis2/download.cgi">こちら</a>。</li>
+<li>Servlet2.3以降をサポートしたWebコンテナが必要です。S2Axis2の開発とテストは、Tomcat
 5.5.9で行っています。ダウンロードは<a href="http://jakarta.apache.org/site/binindex.cgi">こちら</a>。</li>
 </ul>
 <h3>開発環境</h3>
 <p>S2Axis2のディストリビューションは、他のS2関連プロダクトの多くと同様、Eclipse
 Javaプロジェクトをアーカイブしたものとなっています。</p>
 <ul>
-<li>Eclipse3.0以降が必要です。S2Axis2-V0.1.0の開発とテストは、Eclipse3.1.1で行っています。ダウンロードは<a href="http://www.eclipse.org/downloads/index.php">こちら</a>。</li>
-<li>S2の2.3.7以降が必要です 。S2Axis2-V0.1.0の開発とテストはS2.3.8で行っています。ダウンロードは<a href="http://s2container.seasar.org/ja/">こちら</a>。ダウンロード後、ワークスペースにインポートしてください。</li>
-<li>S2Remotingの1.0.0以降が必要です。S2Axis2-V0.1.0の開発とテストはS2Remoting
-1.0.1で行っています。ダウンロードは<a href="http://s2remoting.seasar.org/ja/">こちら</a>。ダウンロード後、ワークスペースにインポートしてください。</li>
+<li>Eclipse3.0以降が必要です。S2Axis2の開発とテストは、Eclipse3.1.1で行っています。ダウンロードは<a href="http://www.eclipse.org/downloads/index.php">こちら</a>。</li>
+<li>S2の2.3.10以降が必要です 。S2Axis2の開発とテストはS2.3.10で行っています。ダウンロードは<a href="http://s2container.seasar.org/ja/">こちら</a>。ダウンロード後、ワークスペースにインポートしてください。</li>
+<li>S2Remotingの1.0.0以降が必要です。S2Axis2の開発とテストはS2Remoting
+1.0.2で行っています。ダウンロードは<a href="http://s2remoting.seasar.org/ja/">こちら</a>。ダウンロード後、ワークスペースにインポートしてください。</li>
 </ul>
 <p>S2Axis2Examplesのディストリビューションは、WTP(Web Tools Project)プラグインを使用した
 動的Webプロジェクトをアーカイブしたものとなっています。</p>
 <ul>
-<li>WTPプラグインが必要です。S2Axis2Examples-V0.1.0の開発とテストは、WTPプラグイン1.0で行っています。ダウンロードは<a href="http://www.eclipse.org/webtools/">こちら</a>。</li>
+<li>WTPプラグインが必要です。S2Axis2Examplesの開発とテストは、WTPプラグイン1.0で行っています。ダウンロードは<a href="http://www.eclipse.org/webtools/">こちら</a>。</li>
 </ul>
 <h2><a name="downlod">ダウンロード</a></h2>
 <p>S2Axis2およびS2Axis2Examplesは<a href="http://s2axis.seasar.org/ja/">こちら</a>からダウンロードすることが出来ます。</p>
 <h2><a name="install">インストール</a></h2>
 <h3>S2Axis2</h3>
 <ul>
-<li>ダウンロードした<code>S2Axis2-V0.1.0.zip</code>ファイルを適当なディレクトリに解凍してください。</li>
+<li>ダウンロードした<code>S2Axis2-Vx.x.x.zip</code>ファイルを適当なディレクトリに解凍してください。</li>
 <li>Eclipseを起動し、「ファイル」－「インポート」メニューを選択してください。</li>
 <li>「インポート」ウィザードで「既存プロジェクトをワークスペースへ」を選択し、「次へ」をクリックしてください。</li>
 <li>「参照」ボタンをクリックし、先に解凍したディレクトリに出来ている<code>s2axis2</code>ディレクトリを選択し、「OK」ボタンをクリックします。</li>
@@ -97,7 +96,7 @@ Javaプロジェクトをアーカイブしたものとなっています。</p>
 </ul>
 <h3>S2Axis2Examples</h3>
 <ul>
-<li>ダウンロードした<code>S2Axis2Examples-V0.1.0.zip</code>ファイルを適当なディレクトリに解凍してください。</li>
+<li>ダウンロードした<code>S2Axis2Examples-Vx.x.x.zip</code>ファイルを適当なディレクトリに解凍してください。</li>
 <li>Eclipseを起動し、「ファイル」－「インポート」メニューを選択してください。</li>
 <li>「インポート」ウィザードで「既存プロジェクトをワークスペースへ」を選択し、「次へ」をクリックしてください。</li>
 <li>「参照」ボタンをクリックし、先に解凍したディレクトリに出来ている<code>s2axis2-examples</code> (リネームした場合は<code>s2-axis2-examples</code>) ディレクトリを選択し、「OK」ボタンをクリックします。</li>

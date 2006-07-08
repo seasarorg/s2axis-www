@@ -28,7 +28,7 @@
 <!-- document start -->
 <br>
 <h1><a name="guide">S2Axis2 基本的な使い方</a></h1>
-<p>本ドキュメントは<code>S2Axis2-V0.1.0</code>について記述しています。</p>
+<p>本ドキュメントは<code>S2Axis2</code>について記述しています。</p>
 
 <h2><a name="cot">目次</a></h2>
 <ul>
@@ -41,7 +41,7 @@
 <p>S2Axis2を使用するには、Axis2およびS2を<code>web.xml</code>に設定する必要があります。Axis2およびS2の設定の詳細はそれぞれのドキュメントを参照してください。</p>
 <p> S2Axis2はS2コンテナの初期化時にコンポーネントをAxisに登録します。このため、S2よりも先にAxis2が初期化されている必要があります。そのためには、Axis2が提供するサーブレットの<code>load-on-startup</code>をS2よりも小さくします。</p>
 <p>以下はS2Axis2Examplesに含まれている<code>web.xml</code>です。このサンプルでは、Axis2の<code>load-on-startup</code>を10、S2の<code>load-on-startup</code>を20に設定しています。ただし、S2Axisの場合と、Axis2のサーブレット部分の設定内容が異なっている点に注意してください。</p>
-<pre style="overflow:auto;height:400">
+<pre style="overflow:auto;height:200">
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;web-app id=&quot;WebApp_ID&quot; version=&quot;2.4&quot;
     xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
@@ -139,7 +139,7 @@
     <strong>&lt;include path=&quot;s2-axis.dicon&quot;/&gt;</strong>
     ・・・
 &lt;/components&gt;</pre>
-<p><code>s2-axis.dicon</code>は<code>s2axis2-0.1.0.jar</code>の中に含まれているため、ロケーションを気にする必要はありません。</p>
+<p><code>s2-axis.dicon</code>は<code>s2axis2-x.x.x.jar</code>の中に含まれているため、ロケーションを気にする必要はありません。</p>
 <h3>サービスのデプロイ</h3>
 <p>基本的には、S2Axisの場合と変わりありません。コンポーネントをWebサービスとしてAxis2にデプロイするには、そのコンポーネントの<code>&lt;component&gt;</code>要素の子として<code>&lt;meta&gt;</code>要素を指定します。</p>
 <pre>    &lt;component <strong>name=&quot;Echo&quot;</strong> class=&quot;org.seasar.remoting.axis2.examples.ex01.EchoImpl&quot;&gt;
@@ -156,23 +156,26 @@
 <h2><a name="config-client">クライアント側の設定</a></h2>
 <p>S2Axis2を使うことで、Webサービスをコンポーネントとして使用することが出来ます。</p>
 <p>Javaインタフェースを使用してサービスを呼び出すには、diconファイルを次のように記述します。</p>
-<pre>    &lt;!-- リモート呼び出しのインターセプタ --&gt;
-    &lt;component name=&quot;remoting&quot; class=&quot;org.seasar.remoting.common.interceptor.RemotingInterceptor&quot;/&gt;
+<pre style="overflow-y:auto;height:200">
+&lt;!-- リモート呼び出しのインターセプタ --&gt;
+&lt;component name=&quot;remoting&quot;
+           class=&quot;org.seasar.remoting.common.interceptor.RemotingInterceptor&quot;/&gt;
 
-    &lt;!-- Axisサービス --&gt;
-    &lt;component class=&quot;org.apache.axis2.description.AxisService&quot; autoBinding=&quot;none&quot;/&gt;
+&lt;!-- Axisサービス --&gt;
+&lt;component class=&quot;org.apache.axis2.description.AxisService&quot; autoBinding=&quot;none&quot;/&gt;
 
-    &lt;!-- Axisコネクタ --&gt;
-    &lt;component name=&quot;connector&quot; class=&quot;org.seasar.remoting.axis2.connector.AxisInOutConnector&quot;&gt;
-        &lt;property name=&quot;baseURL&quot;&gt;
-            new java.net.URL(&quot;http://localhost:8080/s2axis2-examples/services/&quot;)
-        &lt;/property&gt;
-    &lt;/component&gt;
+&lt;!-- Axisコネクタ --&gt;
+&lt;component name=&quot;connector&quot;
+           class=&quot;org.seasar.remoting.axis2.connector.AxisInOutConnector&quot;&gt;
+    &lt;property name=&quot;baseURL&quot;&gt;
+        new java.net.URL(&quot;http://localhost:8080/s2axis2-examples/services/&quot;)
+    &lt;/property&gt;
+&lt;/component&gt;
 
-    &lt;!-- Webサービスのプロキシ --&gt;
-    &lt;component name=&quot;Echo&quot; class=&quot;org.seasar.remoting.axis2.examples.ex01.Echo&quot;&gt;
-        &lt;aspect&gt;remoting&lt;/aspect&gt;
-    &lt;/component&gt;
+&lt;!-- Webサービスのプロキシ --&gt;
+&lt;component name=&quot;Echo&quot; class=&quot;org.seasar.remoting.axis2.examples.ex01.Echo&quot;&gt;
+    &lt;aspect&gt;remoting&lt;/aspect&gt;
+&lt;/component&gt;
 </pre>
 <p> 呼び出すWebサービスごとにプロキシが必要です。プロキシの<code>&lt;component&gt;</code>要素の<code>class</code>属性にはWebサービスのJavaインタフェースを指定します。このコンポーネントには<code>RemotingInterceptor</code>をアスペクトとして指定します。プロキシはWebサービスのインタフェースごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
 <p><code>RemotingIntercepto</code>rはプロキシのメソッド呼び出しを横取りし、Axisコネクタを呼び出します。上の例では、S2の自動バインディングによりRemotingInterceptorのプロパティにAxisコネクタが設定されています。RemotingInterceptorは、Axisコネクタごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
@@ -203,6 +206,35 @@
     <td>※今後、対応予定</td>
   </tr>
 </table>
+<p></p>
+<p>diconファイルは、次のように記述します。</p>
+<pre style="overflow-y:auto;height:200">
+&lt;!-- 同期型要求応答形式 --&gt;
+&lt;component name="ioRemoting"
+           class="org.seasar.remoting.common.interceptor.RemotingInterceptor"&gt;
+    &lt;property name="connector"&gt;ioConnector&lt;/property&gt;
+&lt;/component&gt;
+&lt;component name="ioConnector"
+           class="org.seasar.remoting.axis2.connector.AxisInOutConnector"&gt;
+    &lt;property name="baseURL"&gt;baseURL&lt;/property&gt;
+&lt;/component&gt;
+
+&lt;!-- 一方向形式 --&gt;
+&lt;component name="oneWayRemoting"
+           class="org.seasar.remoting.common.interceptor.RemotingInterceptor"&gt;
+    &lt;property name="connector"&gt;oneWayConnector&lt;/property&gt;
+&lt;/component&gt;
+&lt;component name="oneWayConnector"
+           class="org.seasar.remoting.axis2.connector.AxisOnewayConnector"&gt;
+    &lt;property name="baseURL"&gt;baseURL&lt;/property&gt;
+&lt;/component&gt;
+
+&lt;component class="org.apache.axis2.description.AxisService" autoBinding="none"/&gt;
+
+&lt;component name="baseURL" class="java.net.URL" autoBinding="none"&gt;
+    &lt;arg&gt;"http://localhost:8080/s2axis2-examples/services/"&lt;/arg&gt;
+&lt;/component&gt;
+</pre>
 <!-- document end -->
 <!-- don't edit start -->
 </td>
