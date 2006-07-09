@@ -28,7 +28,7 @@
 <!-- document start -->
 <br>
 <h1><a name="reference">S2Axis クイックリファレンス</a></h1>
-<p>本ドキュメントは<code>S2Axis-V1.0.1</code>について記述しています．旧バージョンについては該当バージョンの配布ファイルに含まれているドキュメントを参照してください．</p>
+<p>本ドキュメントは<code>S2Axis-V1.0.2</code>について記述しています．旧バージョンについては該当バージョンの配布ファイルに含まれているドキュメントを参照してください．</p>
 
 <h2><a name="cot">目次</a></h2>
 <ul>
@@ -40,7 +40,7 @@
 
 <h2><a name="ref-dicon">diconファイル</a></h2>
 <h3>s2-axis.dicon</h3>
-<p>S2Axisが提供するdiconファイルです．s2-axis-1.0.1.jarファイルの中に含まれているので，ロケーションを気にすることなくincludeすることができます．<br>
+<p>S2Axisが提供するdiconファイルです．s2-axis-1.0.2.jarファイルの中に含まれているので，ロケーションを気にすることなくincludeすることができます．<br>
 サーバが側では必須となります．<br>
 クライアント側では，ハンドラやWSDDのデプロイをする場合にのみ必要となります．</p>
 <h2><a name="ref-meta">&lt;meta&gt;要素</a></h2>
@@ -244,6 +244,11 @@ WSDDファイルの中では，S2Axisによってデプロイされたサービスやハンドラを参照するこ
 <td>接続するサービスの基礎になるURLを指定します．<br>
 このURLと，S2RemotinのRemotingInterceptorをアスペクトとして設定されたプロキシコンポーネントの名前
 (&lt;component&gt;要素のname属性の値) を連結したURLが，接続するサービスのURLとなります．</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td><code>int</code></td>
+<td>サービス呼び出し時のタイムアウト値（ミリ秒）を指定します。</td>
 </tr>
 </tbody>
 </table>
