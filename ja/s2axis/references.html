@@ -28,7 +28,7 @@
 <!-- document start -->
 <br>
 <h1><a name="reference">S2Axis クイックリファレンス</a></h1>
-<p>本ドキュメントは<code>S2Axis-V1.0.2</code>について記述しています．旧バージョンについては該当バージョンの配布ファイルに含まれているドキュメントを参照してください．</p>
+<p>本ドキュメントは<code>S2Axis-1.0.3</code>について記述しています．旧バージョンについては該当バージョンの配布ファイルに含まれているドキュメントを参照してください．</p>
 
 <h2><a name="cot">目次</a></h2>
 <ul>
@@ -173,7 +173,47 @@ WSDDファイルの中では，S2Axisによってデプロイされたサービスやハンドラを参照するこ
 </tr>
 <tr>
 <td><code>addTypeMapping(TypeMapping)</code></td>
-<td>タイプマッピングを登録します．TypeMappingついては次の項を参照してください．</td>
+<td>タイプマッピングを登録します．TypeMappingついては<a href="#ref-compo-typemappingdef">こちら</a>を参照してください．</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="ref-compo-connector">org.seasar.remoting.axis.connector.AxisConnector</a></h3>
+<p>クライアント側で使用するコンポーネントで，Web サービスへの動的な接続に使用されます．</p>
+<h4>プロパティ</h4>
+<table border="1" width="700">
+<col span="1" width="120">
+<col span="1" width="80">
+<tbody>
+<tr>
+<th>プロパティ</th>
+<th>型</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>baseURL</code></td>
+<td><code>String</code></td>
+<td>接続するサービスの基礎になるURLを指定します．<br>
+このURLと，S2RemotinのRemotingInterceptorをアスペクトとして設定されたプロキシコンポーネントの名前
+(&lt;component&gt;要素のname属性の値) を連結したURLが，接続するサービスのURLとなります．</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td><code>int</code></td>
+<td>サービス呼び出し時のタイムアウト値（ミリ秒）を指定します。</td>
+</tr>
+</tbody>
+</table>
+<h4>メソッド</h4>
+<table border="1" width="700">
+<col span="1" width="200">
+<tbody>
+<tr>
+<th>メソッド</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>addTypeMapping(TypeMapping)</code></td>
+<td>タイプマッピングを登録します．TypeMappingついては<a href="#ref-compo-typemappingdef">こちら</a>を参照してください．</td>
 </tr>
 </tbody>
 </table>
@@ -211,44 +251,18 @@ WSDDファイルの中では，S2Axisによってデプロイされたサービスやハンドラを参照するこ
 </tr>
 <tr>
 <td><code>serializer</code></td>
-<td>Class</td>
+<td><code>Class</code></td>
 <td>シリアライザファクトリを指定します．省略するとAxisの<code>BeanSerialzierFactory</code>が使われます．</td>
 </tr>
 <tr>
 <td><code>deserializer</code></td>
-<td><code>String</code></td>
+<td><code>Class</code></td>
 <td>デシリアライザファクトリを指定します．省略するとAxisの<code>BeanDeserialzierFactory</code>が使われます．</td>
 </tr>
 <tr>
 <td><code>encodingStyle</code></td>
 <td><code>String</code></td>
 <td>エンコーディングスタイルを指定します．省略すると<code>encoded</code>が使われます．</td>
-</tr>
-</tbody>
-</table>
-<h3><a name="ref-compo-connector">org.seasar.remoting.axis.connector.AxisConnector</a></h3>
-<p>クライアント側で使用するコンポーネントで，Web サービスへの動的な接続に使用されます．</p>
-<h4>プロパティ</h4>
-<table border="1" width="700">
-<col span="1" width="120">
-<col span="1" width="80">
-<tbody>
-<tr>
-<th>プロパティ</th>
-<th>型</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>baseURL</code></td>
-<td><code>String</code></td>
-<td>接続するサービスの基礎になるURLを指定します．<br>
-このURLと，S2RemotinのRemotingInterceptorをアスペクトとして設定されたプロキシコンポーネントの名前
-(&lt;component&gt;要素のname属性の値) を連結したURLが，接続するサービスのURLとなります．</td>
-</tr>
-<tr>
-<td><code>timeout</code></td>
-<td><code>int</code></td>
-<td>サービス呼び出し時のタイムアウト値（ミリ秒）を指定します。</td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,7 @@
+org.apache.axis.encoding
+org.seasar.remoting.axis
+org.seasar.remoting.axis.connector
+org.seasar.remoting.axis.deployer
+org.seasar.remoting.axis.deployment
+org.seasar.remoting.axis.deployment.provider
+org.seasar.remoting.axis.providers
