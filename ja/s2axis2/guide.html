@@ -62,15 +62,7 @@
         &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
     &lt;/filter-mapping&gt;
 
-    &lt;servlet&gt;
-        &lt;servlet-name&gt;AxisServlet&lt;/servlet-name&gt;
-        &lt;servlet-class&gt;org.apache.axis2.transport.http.AxisServlet&lt;/servlet-class&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;repository&lt;/param-name&gt;
-            &lt;param-value&gt;/WEB-INF&lt;/param-value&gt;
-        &lt;/init-param&gt;
-        &lt;load-on-startup&gt;<strong>10</strong>&lt;/load-on-startup&gt;
-    &lt;/servlet&gt;
+    &lt;servlet&gt;<br>        &lt;servlet-name&gt;AxisServlet&lt;/servlet-name&gt;<br>        &lt;servlet-class&gt;org.apache.axis2.transport.http.AxisServlet&lt;/servlet-class&gt;<br>            &lt;!--&lt;init-param&gt;--&gt;<br>            &lt;!--&lt;param-name&gt;axis2.xml.path&lt;/param-name&gt;--&gt;<br>            &lt;!--&lt;param-value&gt;/WEB-INF/conf/axis2.xml&lt;/param-value&gt;--&gt;<br>            &lt;!--&lt;param-name&gt;axis2.repository.path&lt;/param-name&gt;--&gt;<br>            &lt;!--&lt;param-value&gt;/WEB-INF&lt;/param-value&gt;--&gt;<br>            &lt;!--&lt;/init-param&gt;--&gt;<br>        &lt;load-on-startup&gt;10&lt;/load-on-startup&gt;<br>    &lt;/servlet&gt;
 
     &lt;servlet&gt;
         &lt;servlet-name&gt;s2servlet&lt;/servlet-name&gt;
@@ -133,15 +125,17 @@
 </pre>
 
 <h2><a name="config-server">サーバ側の設定</a></h2>
-<h3><code>s2-axis.dicon</code>ファイルのインクルード</h3>
-<p>S2Axis2を使用するサーバ側では、<code>app.dicon</code>ファイルの中で<code>s2-axis.dicon</code>ファイルをインクルードします。</p>
+<h3><code>s2axis2.dicon</code>ファイルのインクルード</h3>
+<p>S2Axis2を使用するサーバ側では、<code>app.dicon</code>ファイルの中で<code>s2axis2.dicon</code>ファイルをインクルードします。</p>
 <pre>&lt;components&gt;
-    <strong>&lt;include path=&quot;s2-axis.dicon&quot;/&gt;</strong>
+    <strong>&lt;include path=&quot;s2axis2.dicon&quot;/&gt;</strong>
     ・・・
 &lt;/components&gt;</pre>
-<p><code>s2-axis.dicon</code>は<code>s2axis2-x.x.x.jar</code>の中に含まれているため、ロケーションを気にする必要はありません。</p>
-<h3>サービスのデプロイ</h3>
-<p>基本的には、S2Axisの場合と変わりありません。コンポーネントをWebサービスとしてAxis2にデプロイするには、そのコンポーネントの<code>&lt;component&gt;</code>要素の子として<code>&lt;meta&gt;</code>要素を指定します。</p>
+<p><code>s2axis2.dicon</code>は<code>s2axis2-x.x.x.jar</code>の中に含まれているため、ロケーションを気にする必要はありません。</p>
+
+<br>
+<h3>サービスのデプロイ（コンポーネント定義）</h3>
+<p>S2コンテナで管理しているコンポーネントをWebサービスとしてAxis2にデプロイするには、そのコンポーネントの<code>&lt;component&gt;</code>要素の子として<code>&lt;meta&gt;</code>要素を指定します。</p>
 <pre>    &lt;component <strong>name=&quot;Echo&quot;</strong> class=&quot;org.seasar.remoting.axis2.examples.ex01.EchoImpl&quot;&gt;
         <strong>&lt;meta name=&quot;axis-service&quot;/&gt;</strong>
     &lt;/component&gt;</pre>
@@ -152,6 +146,14 @@
 <dt>diconファイルに名前空間が指定されている場合
 <dd><code><var>context-path</var>/services/<var>namespace</var>/<var>name</var></code>
 </dl>
+
+<h3>サービスのデプロイ（service.xmlでの定義）</h3>
+<p>Axis2では、service.xmlファイルを使用してサービスをデプロイしますが、S2Axis2でも、そのファイルを指定してサービスをデプロイすることができます。</p>
+<p>この場合、<code>&lt;component&gt;</code>要素ではなく、<code>&lt;meta&gt;</code>要素を指定します。</p>
+<pre>
+    &lt;meta name="axis-deploy"&gt;"org/seasar/remoting/axis2/examples/ex05/service.xml"&lt;/meta&gt;
+</pre>
+<p>service.xmlの記述の仕方は、Axis2で利用するものと変わりません。</p>
 
 <h2><a name="config-client">クライアント側の設定</a></h2>
 <p>S2Axis2を使うことで、Webサービスをコンポーネントとして使用することが出来ます。</p>
@@ -178,7 +180,7 @@
 &lt;/component&gt;
 </pre>
 <p> 呼び出すWebサービスごとにプロキシが必要です。プロキシの<code>&lt;component&gt;</code>要素の<code>class</code>属性にはWebサービスのJavaインタフェースを指定します。このコンポーネントには<code>RemotingInterceptor</code>をアスペクトとして指定します。プロキシはWebサービスのインタフェースごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
-<p><code>RemotingIntercepto</code>rはプロキシのメソッド呼び出しを横取りし、Axisコネクタを呼び出します。上の例では、S2の自動バインディングによりRemotingInterceptorのプロパティにAxisコネクタが設定されています。RemotingInterceptorは、Axisコネクタごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
+<p><code>RemotingInterceptor</code>はプロキシのメソッド呼び出しを横取りし、Axisコネクタを呼び出します。上の例では、S2の自動バインディングによりRemotingInterceptorのプロパティにAxisコネクタが設定されています。RemotingInterceptorは、Axisコネクタごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
 <p>AxisコネクタはAxisサービスを通じてWebサービスを呼び出します。上の例では、S2の自動バインディングによりAxisコネクタのプロパティにAxisサービスが設定されています。baseURLプロパティには、WebサービスのエンドポイントのベースURLを指定します。このベースURLにプロキシの&lt;component&gt;要素のname属性で指定された名前を付加したURLが実際の通信で使用されます。AxisコネクタはWebサービスのエンドポイントごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
 
 <h3>メッセージ形式に合わせたAxisコネクタ</h3>

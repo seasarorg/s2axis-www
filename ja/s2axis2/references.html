@@ -33,19 +33,49 @@
 <ul>
 <li><a href="#ref-dicon">diconファイル</a>
 <li><a href="#ref-meta">&lt;meta&gt;要素</a>
+<li><a href="#ref-scope">スコープ</a>
 <li><a href="#ref-component">コンポーネント</a>
 </ul>
 
 <h2><a name="ref-dicon">diconファイル</a></h2>
-<h3>s2-axis.dicon</h3>
-<p>S2Axisが提供するdiconファイルです。s2-axis-x.x.x.jarファイルの中に含まれているので、ロケーションを気にすることなくincludeすることができます。サーバが側では必須となります。</p>
+
+<h3>s2axis2.dicon</h3>
+<p>S2Axis2が提供するdiconファイルです。s2axis2-x.x.x.jarファイルの中に含まれているので、ロケーションを気にすることなくincludeすることができます。サーバが側では必須となります。</p>
+
 <h2><a name="ref-meta">&lt;meta&gt;要素</a></h2>
-<h3><a name="ref-meta-component">&lt;component&gt;要素の下</a></h3>
+
+<p>* C:クライアント／S:サーバ</p>
+
+<h3><a name="ref-meta-components">&lt;components&gt;要素の下</a></h3>
 <table border="1" width="700">
 <col span="1" width="100" valign="middle">
 <col span="2" width="20" valign="middle" align="center">
 <col span="1" width="200" valign="middle">
 <tbody>
+<tr>
+<th>名前</th>
+<th>C</th>
+<th>S</th>
+<th>内容</th>
+<th>説明</th>
+</tr>
+<tr>
+<td><code>axis-deploy</code></td>
+<td>×</td>
+<td>○</td>
+<td>文字列</td>
+<td>内容で指定された文字列をパス名とするservice.xmlファイルをAxisにデプロイします。ファイルのパス名はクラスパスからの相対パスで指定します。<br>
+service.xmlファイルの中で指定されたサービスやハンドラのインスタンス管理はAxisによって行われます。<br>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="ref-meta-component">&lt;component&gt;要素の下</a></h3>
+<table border="1" width="700">
+<col span="1" width="100" valign="middle">
+<col span="2" width="20" valign="middle" align="center">
+<col span="1" width="200" valign="middle">
+<thead>
 <tr>
 <th>プロパティ</th>
 <th>C</th>
@@ -53,6 +83,8 @@
 <th>内容</th>
 <th>説明</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td rowspan="2"><code>axis-service</code></td>
 <td rowspan="2">×</td>
@@ -68,19 +100,34 @@
 </tr>
 </tbody>
 </table>
+
+<h2><a name="ref-scope">スコープ</a></h2>
+<p>S2コンテナが管理コンポーネントのスコープ（diconファイルで指定するinstance属性）と、Axis2が管理するスコープの対応は以下のとおりです。</p>
+<table border="1">
+<tr><th>S2のinstance属性</th><th>Axis2のスコープ</th></tr>
+<tr><td>singleton</td><td>application</td></tr>
+<tr><td>application</td><td>application</td></tr>
+<tr><td>session</td><td>transport session</td></tr>
+<tr><td>request</td><td>request</td></tr>
+<tr><td>prototype</td><td>request</td></tr>
+</table>
+
 <h2><a name="ref-component">コンポーネント</a></h2>
+
 <h3><code><a name="ref-compo-servicedef">org.seasar.remoting.axis2.ServiceDef</a></code></h3>
 <p>サーバ側で使用するコンポーネントで、<code>&lt;meta&gt;</code>要素の内容に設定されます。サービスとして公開するコンポーネントの詳細を指定するために使われます。</p>
 <h4>プロパティ</h4>
 <table border="1" width="700">
 <col span="1" width="120">
 <col span="1" width="80">
-<tbody>
+<thead>
 <tr>
 <th>プロパティ</th>
 <th>型</th>
 <th>説明</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td><code>serviceType</code></td>
 <td><code>Class</code></td>
@@ -93,7 +140,7 @@
 <td>targetNamespace を指定します。省略した場合は、デフォルト値の&quot;http://ws.apache.org/axis2&quot;が使用されます。</td>
 </tr>
 <tr>
-<td>schemaNamespace </td>
+<td>schemaNamespace</td>
 <td><code>String</code></td>
 <td>スキーマの名前空間を指定します。省略した場合は、サービスのパッケージ名を利用した値が使用されます。</td>
 </tr>
@@ -117,7 +164,7 @@
 サービスが使用する、デフォルトのMessageReciverを指定します。以下の引数を指定します。<br>
 <ol>
 <li>MEP（Message Exchange Pattern）</li>
-<li>org.seasar.remoting.axis2.receivers.S2MessageReceiverを継承したコンポーネント</li>
+<li>org.apache.axis2.engine.MessageReceiverを継承したコンポーネント</li>
 </ol>
 </td>
 </tr>
@@ -136,18 +183,20 @@
             
             &lt;initMethod name="addMessageReceiver"&gt;
                 &lt;arg&gt;"http://www.w3.org/2004/08/wsdl/in-out"&lt;/arg&gt;
-                &lt;arg&gt;new org.seasar.remoting.axis2.receivers.S2RPCMessageReceiver()&lt;/arg&gt;
+                &lt;arg&gt;new org.apache.axis2.rpc.receivers.RPCMessageReceiver()&lt;/arg&gt;
             &lt;/initMethod&gt;
             &lt;initMethod name="addMessageReceiver"&gt;
                 &lt;arg&gt;"http://www.w3.org/2004/08/wsdl/in-only"&lt;/arg&gt;
-                &lt;arg&gt;new org.seasar.remoting.axis2.receivers.S2RPCInOnlyMessageReceiver()&lt;/arg&gt;
+                &lt;arg&gt;new org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver()&lt;/arg&gt;
             &lt;/initMethod&gt;
         &lt;/component&gt;
     &lt;/meta&gt;
 &lt;/component&gt;
 </pre>
-<h3><a name="ref-compo-connector">org.seasar.remoting.axis.connector.AxisConnector</a></h3>
-<p>クライアント側で使用するコンポーネントで、Web サービスへの動的な接続に使用されます。</p>
+
+<h3><a name="ref-compo-connector">org.seasar.remoting.axis.connector.AbstractAxisConnector</a></h3>
+<p>クライアント側で使用するコンポーネントで、Web サービスへの動的な接続に使用される抽象クラスです。
+このクラスを継承して、独自の<code>Connector</code>を作成することも可能です。</p>
 <h4>プロパティ</h4>
 <table border="1" width="700">
 <col span="1" width="120">
@@ -159,6 +208,17 @@
 <th>説明</th>
 </tr>
 <tr>
+<tr>
+<td><code>properties</code></td>
+<td><code>java.util.Properties</code></td>
+<td>Axis2で利用するシステムプロパティを指定します。
+Axis2のリポジトリや設定ファイルであるaxis2.xmlのパス指定に利用します。</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>org.apache.axis2.client.Options</code></td>
+<td>Axis2のクライアントで指定するオプションを指定します。</td>
+</tr>
 <td><code>baseURL</code></td>
 <td><code>String</code></td>
 <td>接続するサービスの基礎になるURLを指定します。<br>
@@ -172,13 +232,13 @@
 </tr>
 </tbody>
 </table>
+
 <h3><a name="ref-compo-interceptor">org.seasar.remoting.common.interceptor.RemotingInterceptor</a></h3>
 <p>S2Remotingが提供するコンポーネントです。<br>
 クライアント側でWebサービスをコンポーネントとして使用する場合に、このコンポーネントをアスペクトとして使用します。</p>
 
   <!-- document end -->
   <!-- don't edit start -->
-</h2>
 </td>
 <td width="14"><img height="14" width="14" src="../images/spacer.gif" alt=""></td>
 </tr><tr>

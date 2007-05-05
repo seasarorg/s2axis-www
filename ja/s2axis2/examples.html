@@ -45,6 +45,8 @@
   </ul>
 <li><a href="#ex02">実装ではなくインタフェースを公開する</a></li>
 <li><a href="#ex03">引数／戻り値としてBeanを使用する</a></li>
+<li><a href="#ex04">スコープを指定する</a></li>
+<li><a href="#ex05">service.xmlを利用してサービスを公開する</a></li>
 <li><a href="#rest">Yahoo! WebサービスにRESTで接続する</a></li>
 </ul>
 
@@ -59,7 +61,7 @@
 </dl>
 
 <p>クライアント側では、リモート呼び出しの設定を、以下のdiconファイルで共通化しています。</p>
-<h5>s2-axis-client.dicon</h5>
+<h5>s2axis2-client.dicon</h5>
 <pre style="overflow-y:auto;height:200">
 &lt;components&gt;
     &lt;component name=&quot;<strong>ioRemoting</strong>&quot;
@@ -88,7 +90,6 @@
 &lt;/components&gt;
 </pre>
 
-<br>
 <h2><a name="ex01">コンポーネントをWebサービスとして公開する</a></h2>
 <p>POJOのクラスをWebサービスとして公開することが可能です。</p>
 <p>現在のバージョンでは、<strong>「同期型要求応答形式（Request/Response）」「一方向形式（Oneway）」</strong>をサポートしています。
@@ -153,7 +154,6 @@ public class PingImpl implements Ping {
 &lt;/component&gt;
 </pre>
 
-<br>
 <h2><a name="ex02">特定のインタフェースを公開する</a></h2>
 <p>実装クラスを公開すると、不要なメソッドまで公開されてる場合があります(インタフェースを実装していない場合や複数のインタフェースを実装している場合など)。実装クラス<code>HelloImpl</code>は二つのインタフェースを実装していますが、MessageSettableのメソッド<code>setMessage(String)</code>はWebサービスとして公開しないものとします。<br>
 このような場合には、公開するJavaインタフェースを指定します(実装したインタフェースが一つだけの場合や、実装した複数のインタフェースのメソッドを全て公開する場合には明示的に指定する必要はありません)。</p>
@@ -168,7 +168,6 @@ public class PingImpl implements Ping {
 &lt;/component&gt;
 </pre>
 
-<br>
 <h2><a name="ex03">引数／戻り値としてBeanを使用する</a></h2>
 <p>このサンプルでは、サービスは引数および戻り値の型としてJavaBeansを使用しています。プリミティブ型（およびそのラッパクラス型）を使用している場合は、特に何も指定しなくても動作します。</p>
 
@@ -197,7 +196,51 @@ public class EchoDto {
 }
 </pre>
 
-<br>
+<h2><a name="ex04">スコープを指定する</a></h2>
+<p>Axis2は、スコープを指定して、サービスのインスタンスを管理することができます。
+S2Axis2では、S2コンテナがインスタンスを管理します。サービスをSessionスコープとして利用する場合には、以下のように指定します。</p>
+
+<h5>dicon（サービス側）</h5>
+<pre>
+&lt;components&gt;
+    &lt;component name=&quot;Counter&quot;
+        class=&quot;org.seasar.remoting.axis2.examples.ex04.impl.CounterImpl&quot;
+        <strong>instance=&quot;session&quot;</strong>&gt;
+        &lt;meta name=&quot;axis-service&quot;/&gt;
+    &lt;/component&gt;
+&lt;/components&gt;
+</pre>
+
+<p>S2コンテナとAxis2におけるスコープの関連は、<a href="references.html#ref-scope">リファレンス</a>を参照してください。</p>
+
+<h2><a name="ex05">service.xmlを利用してサービスを公開する</a></h2>
+<p>Axis2で利用するservice.xmlを指定して、サービスをデプロイします。</p>
+<h5>dicon（サービス側）</h5>
+<pre>
+&lt;components&gt;
+    &lt;meta name=&quot;axis-deploy&quot;&gt;
+        &quot;org/seasar/remoting/axis2/examples/ex05/service.xml&quot;
+    &lt;/meta&gt;
+&lt;/components&gt;
+</pre>
+<pre>
+&lt;service name=&quot;EchoBasedXml&quot; scope=&quot;application&quot;&gt;
+    &lt;description&gt;Echo Service.&lt;/description&gt;
+    &lt;messageReceivers&gt;
+        &lt;messageReceiver mep=&quot;http://www.w3.org/ns/wsdl/in-out&quot;
+                         class=&quot;org.apache.axis2.rpc.receivers.RPCMessageReceiver&quot;/&gt;
+        &lt;messageReceiver mep=&quot;http://www.w3.org/ns/wsdl/in-only&quot;
+                         class=&quot;org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver&quot;/&gt;
+    &lt;/messageReceivers&gt;
+    &lt;parameter name=&quot;ServiceClass&quot; locked=&quot;false&quot;&gt;org.seasar.remoting.axis2.examples.ex01.EchoImpl&lt;/parameter&gt;
+    &lt;operation name=&quot;echo&quot;&gt;
+        &lt;actionMapping&gt;urn:echo&lt;/actionMapping&gt;
+    &lt;/operation&gt;
+&lt;/service&gt;
+</pre>
+<p>ここでは、「<A name=ex01>コンポーネントをWebサービスとして公開する</A>」で利用したEchoと同じサービスを定義していますが、クライアントの処理は、変更する必要はありません。</p>
+<p>また、service.xmlを指定してデプロイしたサービスのインスタンス管理に、S2およびS2Axis2は関与しません。
+  service.xmlで指定したサービスのインスタンスは、S2コンテナからは取得できない（他のコンポーネントにインジェクションできない）ことに注意してください。</p>
 <h2><a name="rest">Yahoo! WebサービスにRESTで接続する </a></h2>
 <p>S2Axis2で、Yahoo!のWebサービス用APIを利用してみます。Yahoo!のWebサービスに関する情報は、<a href="http://developer.yahoo.co.jp/">Yahoo!デベロッパーネットワーク</a>から得ることができます。
 Yahoo!のWebサービスは、HTTP REST（Representational State Transfer）によってアクセスすることが可能です。</p>
