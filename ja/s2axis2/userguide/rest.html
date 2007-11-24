@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- don't edit start -->
+<head>
+<title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="../../seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="../../seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="../../seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="../images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="../../images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="../../images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="../../images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="../../images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/index.html"><img src="../../images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/projects.html"><img src="../../images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/products.html"><img src="../../images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
+<td><a href="http://www.seasar.org/resources.html"><img src="../../images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><img src="../../images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
+<td><img height="30" width="34" src="../../images/menu06.gif" alt=""></td></tr><tr>
+<td colspan="6"><img height="19" width="545" src="../../images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="../../images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+<br>
+<h1><a name="guide">S2Axis2 RESTの利用</a></h1>
+<p>
+Axis2では、REST（Representational State Transfer）に対応した形式でサービスをデプロイしたり、そのサービスにアクセスすることが可能です。
+本ドキュメントは<code>S2Axis2</code>におけるRESTの利用方法について記述しています。
+</p>
+
+<h2><a name="cot">目次</a></h2>
+<ul>
+<li><a href="#feature">Axis2におけるRESTful Serviceの特徴</a></li>
+<li>
+  <a href="#config-server">サーバ側の設定</a>
+  <ul>
+    <li><a href="#server-service">デプロイ対象のサービスクラス</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#config-client">クライアント側の設定</a>
+  <ul>
+    <li><a href="#client-buildRequest">リクエストの構築</a></li>
+	<li><a href="#client-httpMethod">HTTPメソッド／Content-Typeの判別</a></li>
+  </ul>
+</li>
+<li><a href="#3rd-party-service">外部サービスの呼び出し</a></li>
+</ul>
+
+<h2><a name="feature">Axis2におけるRESTful Serviceの特徴</a></h2>
+<p>
+RESTに対応したWebサービスをRESTFul Serviceと言いますが、Axis2でのRESTFul Serviceは以下のような特徴があります。
+</p>
+<ol>
+  <li>同期型要求応答形式（Request/Response）である。</li>
+  <li>GETでアクセスする場合、サービスやメソッドはURLに基づいて解釈されます。GETのパラメータは、そのままサービスのパラメータとなります。</li>
+  <li>POSTでアクセスする場合、SOAP EnvelopeやSOAP Bodyは不要です。ヘッダも不要であり、ペイロード（送信データとなるパラメータ群）を直接送信します。</li>
+</ol>
+<p class="warning">
+注意点としては、GET／DELETEではシンプルタイプ（プリミティブ型およびそのラッパ型、java.util.Date／java.util.Calendarの日付型）のみしか、
+サービスのパラメータには利用できません。JavaBeanなどのオブジェクトクラスをサービスのパラメータとして利用する場合は、
+POST／PUTを利用する必要があります（戻り値にオブジェクトクラスを利用するのは可能です）。
+</p>
+
+<h2><a name="config-server">サーバ側の設定</a></h2>
+<h3><a name="server-service">デプロイ対象のサービスクラス</a></h3>
+<p>
+S2Axis2でデプロイしたサービスは、デフォルトの状態でRESTに対応しています。
+また、インタフェースを定義することで、外部のサービスにREST形式でアクセスすることも可能です。
+</p>
+<p>
+デプロイ済みのサービスに対して、以下のようにURLを指定することで、アクセスが可能です（GETでのアクセス）。
+</p>
+<pre>
+http://localhost:8080/s2axis2-examples/services/Echo/echo?id=1&amp;message=test
+</pre>
+<p>
+実行すると、以下のような結果が返ってきます。
+SOAPの形式ではなく、単にXML形式のデータが返ってきていることが分かります。
+</p>
+<pre>
+&lt;ns:echoResponse xmlns:ns=&quot;http://ex01.examples.axis2.remoting.seasar.org&quot;&gt;
+  &lt;ns:return&gt;[id = 1] test&lt;/ns:return&gt; 
+&lt;/ns:echoResponse&gt;
+</pre>
+
+<h2><a name="config-client">クライアント側の設定</a></h2>
+<p>
+REST形式でサービスにアクセスする場合は、専用のConnectorを利用します。
+</p>
+<pre>
+&lt;include path=&quot;s2axis2-client.dicon&quot;/&gt;
+
+&lt;component name=&quot;remoting&quot;
+           class=&quot;org.seasar.remoting.common.interceptor.RemotingInterceptor&quot; /&gt;
+<span class="point">
+&lt;component name=&quot;connector&quot; class=&quot;org.seasar.remoting.axis2.connector.RESTConnector&quot;&gt;
+    &lt;property name=&quot;baseURL&quot;&gt;baseURL&lt;/property&gt;
+    &lt;property name=&quot;appendAction&quot;&gt;true&lt;/property&gt;
+&lt;/component&gt;
+</span>
+&lt;component class=&quot;org.seasar.remoting.axis2.examples.rest.ex01.RESTfulEcho&quot;&gt;
+    &lt;aspect&gt;remoting&lt;/aspect&gt;
+&lt;/component&gt;
+</pre>
+
+<h3><a name="client-buildRequest">リクエストの構築</a></h3>
+
+<h5>dicon定義（クライアント側）</h5>
+<p>
+Axis2でデプロイされたサービスにREST形式でアクセスする場合、URLは以下の形式になります。
+</p>
+<pre>
+http://&lt;host&gt;:&lt;port&gt;/&lt;contextPath&gt;/services/&lt;serviceName&gt;/&lt;methodName&gt;
+</pre>
+<p>
+「http://&lt;host&gt;:&lt;port&gt;/&lt;contextPath&gt;/services/&lt;serviceName&gt;/」の部分は、dicon定義のbaseURLで指定し、
+「serviceName」は呼び出すサービスのクラス名となります。
+</p>
+<p>
+さらに、上記のようにメソッド名を付加する必要がありますが、そのような場合は、
+クライアント側のdiconで以下のようにappendActionプロパティを設定する必要があります。</p>
+<pre>
+&lt;component name=&quot;connector&quot; class=&quot;org.seasar.remoting.axis2.connector.RESTConnector&quot;&gt;
+    &lt;property name=&quot;baseURL&quot;&gt;baseURL&lt;/property&gt;
+    <font color="#FF0000">&lt;property name=&quot;appendAction&quot;&gt;true&lt;/property&gt;</font>
+&lt;/component&gt;
+</pre>
+<p>
+これは、通常RESTFul Serviceでは、メソッド名は使用せずにリソース名（=サービス名）とパラメータのみで呼び出しを行われることが多いのですが、
+Axis2は仕様としてメソッド名を付加する必要があるため、外部サービスなどを呼び出す場合とアクセスするURLに差分ができてしまいます。
+そのため、S2Axis2では、このようなプロパティを指定するようにしています。
+</p>
+
+<h5>パラメータの指定</h5>
+<p>
+リクエストパラメータは、呼び出すサービスのメソッド引数を利用して構築されます。サービスのメソッドの引数は、
+1つのDTO（setter／getterを保持するJavaBeanクラス）として指定するか、シンプルタイプのパラメータ（複数可）として指定します。
+</p>
+<p>
+また、リクエストを構築する上で、アノテーションを利用することにより、より細かな指定が可能となります。
+詳細は、<a href="../references.html#ref-annotaion-rest">RESTに関するアノテーション</a>を参照してください。
+</p>
+
+<h5>DTOとしてパラメータを指定する場合</h5>
+<p>
+以下のように、サービスのメソッド引数がDTOの場合の例を示します。
+</p>
+<pre>
+public interface RESTfulBeanEcho {
+    EchoDto postEchoByBean(EchoDto dto);
+}
+</pre>
+<pre>
+public class EchoDto {
+    private Integer id;
+    private String  message;
+
+
+    // setter/getter
+}
+</pre>
+
+<p>
+上記のサービスを呼び出した場合、HTTPリクエストは以下のようになります。
+EchoDtoのパラメータ名が、そのままリクエストのパラメータに利用されます。
+</p>
+<pre>
+POST /s2axis2-examples/services/RESTfulBeanEcho/postEchoByBean HTTP/1.1
+Content-Type: application/xml; charset=UTF-8
+SOAPAction: urn:postEchoByBean
+User-Agent: Axis2
+Host: 127.0.0.1:8088
+
+
+&lt;postEchoByBean xmlns=&quot;http://ex01.rest.examples.axis2.remoting.seasar.org&quot;&gt;
+    &lt;echoDto xmlns=&quot;&quot; type=&quot;org.seasar.remoting.axis2.examples.rest.ex01.EchoDto&quot;&gt;
+        &lt;id&gt;1&lt;/id&gt;
+        &lt;message&gt;メッセージ&lt;/message&gt;
+    &lt;/echoDto&gt;
+&lt;/postEchoByBean&gt;
+</pre>
+
+<h5>シンプルタイプのパラメータを指定する場合</h5>
+<p>
+以下のように、サービスのメソッド引数がシンプルタイプである場合の例を示します。
+<span class="point">この場合、必ず@RestUriParamアノテーションを指定してください。</span>
+</p>
+<pre>
+public interface RESTfulEcho {
+    EchoDto postEcho(@RestUriParam("id") Integer id, @RestUriParam("message") String message);
+}
+</pre>
+
+<p>
+上記のサービスを呼び出した場合、HTTPリクエストは以下のようになります。
+@RestUriParamアノテーションで指定したパラメータ名が、リクエストのパラメータに利用されます。
+</p>
+<pre>
+POST /s2axis2-examples/services/RESTfulEcho/postEcho HTTP/1.1
+Content-Type: application/xml; charset=UTF-8
+SOAPAction: urn:postEcho
+User-Agent: Axis2
+Host: 127.0.0.1:8088
+Transfer-Encoding: chunked
+
+
+&lt;postEcho xmlns=&quot;http://ex01.rest.examples.axis2.remoting.seasar.org&quot;&gt;
+    &lt;id xmlns=&quot;&quot;&gt;1&lt;/id&gt;
+    &lt;message xmlns=&quot;&quot;&gt;メッセージ&lt;/message&gt;
+&lt;/postEcho&gt;
+</pre>
+
+<h3><a name="client-httpMethod">HTTPメソッド／Content-Typeの判別</a></h3>
+<p>
+RESTFul Serviceには、POST／GET／PUT／DELETEのHTTPメソッドを指定してサービスにアクセスすることになりますが、
+S2Axis2では、呼び出すサービスのメソッド名から、自動的に上記のHTTPメソッドやその際に利用されるContent-Typeを判別します。
+</p>
+
+<h5>呼び出すサービスのメソッドの命名規則</h5>
+<table border="1">
+  <tr>
+    <th scope="col">処理</th>
+    <th scope="col">HTTPメソッド</th>
+	<th scope="col">Content-Type</th>
+    <th scope="col">メソッドの接頭文字列</th>
+  </tr>
+  <tr>
+    <td>挿入</td>
+    <td>POST</td>
+	<td>application/xml</td>
+    <td>post, create, insert, add</td>
+  </tr>
+  <tr>
+    <td>更新</td>
+    <td>PUT</td>
+	<td>application/xml</td>
+    <td>update, modify, store</td>
+  </tr>
+  <tr>
+    <td>削除</td>
+    <td>DELETE</td>
+	<td>application/x-www-form-urlencoded</td>
+    <td>delete, remove</td>
+  </tr>
+  <tr>
+    <td>取得</td>
+    <td>GET</td>
+	<td>application/x-www-form-urlencoded</td>
+    <td>上記以外</td>
+  </tr>
+</table>
+<br>
+<p>
+HTTPメソッド／Content-Typeに対しても、アノテーションを利用することにより、より細かな指定が可能となります。
+詳細は、<a href="../references.html#ref-annotaion-rest">RESTに関するアノテーション</a>を参照してください。
+</p>
+
+<h2><a name="3rd-party-service">外部サービスの呼び出し</a></h2>
+<p>
+サービスのインタフェースのみを定義することで、外部サービスを呼び出すことが可能です。
+ここでは、<a href="http://www.amazon.co.jp/gp/feature.html?docId=451209">AmazonのWebサービス</a>を呼び出す例を示します。
+</p>
+
+<h5>サービスのインタフェース</h5>
+<p>
+ここでは、インタフェースやメソッド、DTOのプロパティにアノテーションを指定することによって、
+デフォルトの設定を変更しています。
+</p>
+
+<pre>
+@RestUriTemplate("/onca/xml3")
+public interface AmazonSearch {
+
+    @RestMethod(contentType = "application/x-www-form-urlencoded")
+    String postSearchResult(AmazonSearchDto dto);
+
+    String getSearchResult(AmazonSearchDto dto);
+}
+</pre>
+<pre>
+public class AmazonSearchDto {
+    private String t;
+	
+    @RestUriParam("dev-t")
+    private String devT;
+	
+    @RestUriParam("AsinSearch")
+    private String asinSearch;
+    
+    private String locale;
+    
+    private String type;
+    
+    private String f;
+	
+    // setter/getter
+}
+</pre>
+
+<h5>クライアント</h5>
+<pre>
+public class AmazonSearchClient {
+
+    AmazonSearch restService;
+	
+    public void executePost() {
+
+        AmazonSearchDto dto = createDto();
+        String result = restService.postSearchResult(dto);
+		
+        System.out.println(result);
+    }
+
+
+    private AmazonSearchDto createDto() {
+        AmazonSearchDto dto = new AmazonSearchDto();
+        dto.setT(&quot;webservice-20&quot;);
+        dto.setDevT(&quot;xxxxx&quot;);
+        dto.setAsinSearch(&quot;4774128554&quot;);
+        dto.setLocale(&quot;jp&quot;);
+        dto.setType(&quot;heavy&quot;);
+        dto.setF(&quot;xml&quot;);
+		
+        return dto;
+    }
+}
+</pre>
+
+<h5>dicon定義</h5>
+最終的にアクセスしたいURLが「http://xml-jp.amznxslt.com/onca/xml3」であるため、サービス名で指定した「/onca/xml3」を除いたURLを、
+baseURLとして定義します。
+<pre>
+&lt;include path=&quot;s2axis2.dicon&quot; /&gt;
+
+&lt;component name=&quot;remoting&quot; class=&quot;org.seasar.remoting.common.interceptor.RemotingInterceptor&quot;/&gt;
+
+&lt;component name=&quot;connector&quot; class=&quot;org.seasar.remoting.axis2.connector.RESTConnector&quot;&gt;
+    &lt;property name=&quot;baseURL&quot;&gt;
+      new java.net.URL(&quot;http://xml-jp.amznxslt.com/&quot;)
+    &lt;/property&gt;
+&lt;/component&gt;
+
+&lt;component class=&quot;org.seasar.remoting.axis2.examples.rest.amazon.AmazonSearch&quot;&gt;
+    &lt;aspect&gt;remoting&lt;/aspect&gt;
+&lt;/component&gt;
+</pre>
+
+<!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="../../images/spacer.gif" alt=""></td>
+</tr>
+<tr>
+<td width="14"><img height="30" width="14" src="../../images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="../../images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="14" width="14" src="../../images/spacer.gif" alt=""></td>
+<td width="766" class="copyright">&copy; Copyright The Seasar Foundation and the others 2004, all rights reserved.</td>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table></body>
+<!-- don't edit end -->
+</html>

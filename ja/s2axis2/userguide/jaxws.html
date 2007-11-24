@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- don't edit start -->
+<head>
+<title>Seasar - DI Container with AOP - </title>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="../../seasar_b.css" type="text/css" rel="stylesheet" media="screen">
+<link href="../../seasar_p.css" type="text/css" rel="stylesheet" media="print">
+<script src="../../seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+</head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
+<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr><td colspan="7"><img height="5" width="780" src="../images/top01_b.gif" alt=""></td></tr>
+<tr><td><img height="117" width="235" src="../../images/top02_b.gif" alt="Seasar"></td>
+<td colspan="3"><img height="117" width="289" src="../../images/top03.gif" alt="DI Container with AOP"></td>
+<td colspan="3"><img height="117" width="256" src="../../images/spacer.gif" alt=""></td>
+</tr><tr><td rowspan="2"><img src="../../images/top04.gif" alt="" height="49" width="235"></td>
+<td><a href="http://www.seasar.org/index.html"><img src="../../images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+<td><a href="http://www.seasar.org/projects.html"><img src="../../images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+<td><a href="http://www.seasar.org/products.html"><img src="../../images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
+<td><a href="http://www.seasar.org/resources.html"><img src="../../images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+<td><img src="../../images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
+<td><img height="30" width="34" src="../../images/menu06.gif" alt=""></td></tr><tr>
+<td colspan="6"><img height="19" width="545" src="../../images/spacer.gif" alt=""></td></tr></table>
+<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
+<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="../../images/spacer.gif" alt=""></td><td width="740" class="main">
+<!-- don't edit end -->
+<!-- document start -->
+<br>
+<h1><a name="guide">S2Axis2 JAX-WSの利用</a></h1>
+<p>
+Javaの標準仕様である<a href="https://jax-ws.dev.java.net/">JAX-WS</a>を利用することで、POJOのクラスをWebサービスとして公開することが可能となります。
+本ドキュメントは<code>S2Axis2</code>におけるJAX-WSの利用方法について記述しています。
+</p>
+
+<h2><a name="cot">目次</a></h2>
+<ul>
+<li><a href="#config-server">サーバ側の設定</a></li>
+<li><a href="#config-client">クライアント側の設定</a></li>
+</ul>
+
+<h2><a name="config-server">サーバ側の設定</a></h2>
+<h3>デプロイ対象のサービスクラス</h3>
+<p>
+S2Axis2では、デプロイするサービスに@WebSerivceアノテーションが指定されている場合に、JAX-WSのサービスとしてデプロイします。
+diconの指定などは、通常のサービスと同様です。
+JAX-WSで利用可能なアノテーションの詳細については、<a href="https://jax-ws.dev.java.net/jax-ws-21-ea3/docs/annotations.html">JAX-WSのユーザーズガイド</a>を参照してください。
+</p>
+
+<h5>サービスとして公開するクラス</h5>
+<pre>
+package org.seasar.remoting.axis2.examples.jaxws.ex01;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+@WebService
+public class JAXWSEcho {
+
+    public JAXWSEcho() {}
+
+    @WebMethod
+    public String echo(int id, String message) {
+        return "[id = " + id + "] " + message;
+    }
+}
+</pre>
+
+<p>
+diconでのコンポーネント定義は、通常のサービスクラスと同様です。
+</p>
+<h5>dicon（サービス側）</h5>
+<pre>
+&lt;component class="org.seasar.remoting.axis2.examples.jaxws.ex01.JAXWSEcho"&gt;
+    &lt;meta name="axis-service"/&gt;
+&lt;/component&gt;
+</pre>
+
+<h5>サービスのアドレス</h5>
+<p>
+デプロイされたサービスのアドレスは、以下のような形式になります。
+</p>
+<pre>
+http://&lt;host&gt;:&lt;port&gt;/&lt;contextPath&gt;/services/&lt;serviceName&gt;.&lt;serviceClassName&gt;Port
+</pre>
+<p>
+以下のようにアドレスを指定して、WSDLが参照できれば、デプロイに成功しています。
+</p>
+&nbsp;&nbsp;&nbsp;&nbsp;例）<br>
+&nbsp;&nbsp;&nbsp;&nbsp;http://localhost:8080/s2axis2-examples/services/JAXWSEchoService.JAXWSEchoPort?wsdl<br>
+
+<h2><a name="config-client">クライアント側の設定</a></h2>
+<p>
+クライアントの定義についても、通常のサービスにアクセスする場合と同様です（ここでは、実装クラスを直接サービスとして公開しているため、RemotingInterceptorのforceRemoteプロパティをtrueに設定しています）。
+</p>
+<p>
+ただし、<span class="point">デプロイされているサービス名に合わせてname属性を明示的に指定してください。</span>
+</p>
+<h5>dicon（クライアント側）</h5>
+
+<pre>
+&lt;include path=&quot;s2axis2-client.dicon&quot;/&gt;
+
+&lt;component name=&quot;jaxwsRemoting&quot;
+           class=&quot;org.seasar.remoting.common.interceptor.RemotingInterceptor&quot;&gt;
+    &lt;property name=&quot;connector&quot;&gt;ioConnector&lt;/property&gt;
+    &lt;property name=&quot;forceRemote&quot;&gt;true&lt;/property&gt;
+&lt;/component&gt;
+
+&lt;component name=&quot;JAXWSEchoService.JAXWSEchoPort&quot;
+           class=&quot;org.seasar.remoting.axis2.examples.jaxws.ex01.JAXWSEcho&quot;&gt;
+    &lt;aspect pointcut=&quot;echo&quot;&gt;jaxwsRemoting&lt;/aspect&gt;
+&lt;/component&gt;
+</pre>
+<p>
+また、Java SE 6（Mustang）からはJAX-WSが標準で搭載されており、それに対応したツールも付属しています。
+S2Axis2では、AOPを利用して、JAX-WSを特に意識することなく簡単にサービスを呼び出すことが可能ですが、
+それらのツールを利用することで、デプロイ対象のサービスクラスから、サービスを呼び出すのに必要なソースやWSDLファイルを自動生成することも可能です。
+</p>
+<p>
+詳細については、以下のページを参照してください。
+</p>
+<ul>
+<li><a href="http://java.sun.com/javase/ja/6/docs/ja/technotes/tools/share/wsgen.html">wsgen</a></li>
+<li><a href="http://java.sun.com/javase/ja/6/docs/ja/technotes/tools/share/wsimport.html">wsimport</a></li>
+</ul>
+
+<!-- document end -->
+<!-- don't edit start -->
+</td>
+<td width="14"><img height="14" width="14" src="../../images/spacer.gif" alt=""></td>
+</tr>
+<tr>
+<td width="14"><img height="30" width="14" src="../../images/spacer.gif" alt=""></td>
+<td width="766"><img height="30" width="592" src="../../images/spacer.gif" alt=""></td>
+</tr><tr>
+<td width="14"><img height="14" width="14" src="../../images/spacer.gif" alt=""></td>
+<td width="766" class="copyright">&copy; Copyright The Seasar Foundation and the others 2004, all rights reserved.</td>
+</tr></table>
+<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
+<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
+<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+</tr></table></body>
+<!-- don't edit end -->
+</html>

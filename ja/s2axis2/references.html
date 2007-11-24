@@ -31,10 +31,22 @@
 <p>–{ƒhƒLƒ…ƒƒ“ƒg‚Í<code>S2Axis2</code>‚É‚Â‚¢‚Ä‹Lq‚µ‚Ä‚¢‚Ü‚·B</p>
 <h2><a name="cot">–ÚŸ</a></h2>
 <ul>
-<li><a href="#ref-dicon">diconƒtƒ@ƒCƒ‹</a>
-<li><a href="#ref-meta">&lt;meta&gt;—v‘f</a>
-<li><a href="#ref-scope">ƒXƒR[ƒv</a>
-<li><a href="#ref-component">ƒRƒ“ƒ|[ƒlƒ“ƒg</a>
+  <li>
+    <a href="#ref-dicon">diconƒtƒ@ƒCƒ‹</a>
+	<ul>
+	  <li><a href="#ref-dicon-meta">&lt;meta&gt;—v‘f</a></li>
+      <li><a href="#ref-dicon-scope">ƒXƒR[ƒv</a></li>
+      <li><a href="#ref-dicon-component">ƒRƒ“ƒ|[ƒlƒ“ƒg</a></li>
+	</ul>
+  </li>
+  <li>
+    <a href="#ref-annotaion-rest">ƒAƒmƒe[ƒVƒ‡ƒ“iRESTŠÖ˜Aj</a>
+	<ul>
+	  <li><a href="#ref-annotaion-rest-RestUriTemplate">RestUriTemplate</a></li>
+	  <li><a href="#ref-annotaion-rest-RestMethod">RestMethod</a></li>
+	  <li><a href="#ref-annotaion-rest-RestUriParam">RestUriParam</a></li>
+	</ul>
+  </li>
 </ul>
 
 <h2><a name="ref-dicon">diconƒtƒ@ƒCƒ‹</a></h2>
@@ -42,11 +54,11 @@
 <h3>s2axis2.dicon</h3>
 <p>S2Axis2‚ª’ñ‹Ÿ‚·‚édiconƒtƒ@ƒCƒ‹‚Å‚·Bs2axis2-x.x.x.jarƒtƒ@ƒCƒ‹‚Ì’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚Ì‚ÅAƒƒP[ƒVƒ‡ƒ“‚ğ‹C‚É‚·‚é‚±‚Æ‚È‚­include‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·BƒT[ƒo‚ª‘¤‚Å‚Í•K{‚Æ‚È‚è‚Ü‚·B</p>
 
-<h2><a name="ref-meta">&lt;meta&gt;—v‘f</a></h2>
+<h2><a name="ref-dicon-meta">&lt;meta&gt;—v‘f</a></h2>
 
 <p>* C:ƒNƒ‰ƒCƒAƒ“ƒg^S:ƒT[ƒo</p>
 
-<h3><a name="ref-meta-components">&lt;components&gt;—v‘f‚Ì‰º</a></h3>
+<h3><a name="ref-dicon-meta-components">&lt;components&gt;—v‘f‚Ì‰º</a></h3>
 <table border="1" width="700">
 <col span="1" width="100" valign="middle">
 <col span="2" width="20" valign="middle" align="center">
@@ -70,7 +82,7 @@ service.xmlƒtƒ@ƒCƒ‹‚Ì’†‚Åw’è‚³‚ê‚½ƒT[ƒrƒX‚âƒnƒ“ƒhƒ‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—‚ÍAxis‚É‚
 </tbody>
 </table>
 
-<h3><a name="ref-meta-component">&lt;component&gt;—v‘f‚Ì‰º</a></h3>
+<h3><a name="ref-dicon-meta-component">&lt;component&gt;—v‘f‚Ì‰º</a></h3>
 <table border="1" width="700">
 <col span="1" width="100" valign="middle">
 <col span="2" width="20" valign="middle" align="center">
@@ -101,7 +113,7 @@ service.xmlƒtƒ@ƒCƒ‹‚Ì’†‚Åw’è‚³‚ê‚½ƒT[ƒrƒX‚âƒnƒ“ƒhƒ‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—‚ÍAxis‚É‚
 </tbody>
 </table>
 
-<h2><a name="ref-scope">ƒXƒR[ƒv</a></h2>
+<h2><a name="ref-dicon-scope">ƒXƒR[ƒv</a></h2>
 <p>S2ƒRƒ“ƒeƒi‚ªŠÇ—ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌƒXƒR[ƒvidiconƒtƒ@ƒCƒ‹‚Åw’è‚·‚éinstance‘®«j‚ÆAAxis2‚ªŠÇ—‚·‚éƒXƒR[ƒv‚Ì‘Î‰‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·B</p>
 <table border="1">
 <tr><th>S2‚Ìinstance‘®«</th><th>Axis2‚ÌƒXƒR[ƒv</th></tr>
@@ -112,9 +124,9 @@ service.xmlƒtƒ@ƒCƒ‹‚Ì’†‚Åw’è‚³‚ê‚½ƒT[ƒrƒX‚âƒnƒ“ƒhƒ‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—‚ÍAxis‚É‚
 <tr><td>prototype</td><td>request</td></tr>
 </table>
 
-<h2><a name="ref-component">ƒRƒ“ƒ|[ƒlƒ“ƒg</a></h2>
+<h2><a name="ref-dicon-component">ƒRƒ“ƒ|[ƒlƒ“ƒg</a></h2>
 
-<h3><code><a name="ref-compo-servicedef">org.seasar.remoting.axis2.ServiceDef</a></code></h3>
+<h3><code><a name="ref-dicon-compo-servicedef">org.seasar.remoting.axis2.ServiceDef</a></code></h3>
 <p>ƒT[ƒo‘¤‚Åg—p‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚ÅA<code>&lt;meta&gt;</code>—v‘f‚Ì“à—e‚Éİ’è‚³‚ê‚Ü‚·BƒT[ƒrƒX‚Æ‚µ‚ÄŒöŠJ‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌÚ×‚ğw’è‚·‚é‚½‚ß‚Ég‚í‚ê‚Ü‚·B</p>
 <h4>ƒvƒƒpƒeƒB</h4>
 <table border="1" width="700">
@@ -194,7 +206,7 @@ service.xmlƒtƒ@ƒCƒ‹‚Ì’†‚Åw’è‚³‚ê‚½ƒT[ƒrƒX‚âƒnƒ“ƒhƒ‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—‚ÍAxis‚É‚
 &lt;/component&gt;
 </pre>
 
-<h3><a name="ref-compo-connector">org.seasar.remoting.axis.connector.AbstractAxisConnector</a></h3>
+<h3><a name="ref-dicon-compo-connector">org.seasar.remoting.axis.connector.AbstractAxisConnector</a></h3>
 <p>ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚Åg—p‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚ÅAWeb ƒT[ƒrƒX‚Ö‚Ì“®“I‚ÈÚ‘±‚Ég—p‚³‚ê‚é’ŠÛƒNƒ‰ƒX‚Å‚·B
 ‚±‚ÌƒNƒ‰ƒX‚ğŒp³‚µ‚ÄA“Æ©‚Ì<code>Connector</code>‚ğì¬‚·‚é‚±‚Æ‚à‰Â”\‚Å‚·B</p>
 <h4>ƒvƒƒpƒeƒB</h4>
@@ -207,7 +219,6 @@ service.xmlƒtƒ@ƒCƒ‹‚Ì’†‚Åw’è‚³‚ê‚½ƒT[ƒrƒX‚âƒnƒ“ƒhƒ‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒXŠÇ—‚ÍAxis‚É‚
 <th>Œ^</th>
 <th>à–¾</th>
 </tr>
-<tr>
 <tr>
 <td><code>properties</code></td>
 <td><code>java.util.Properties</code></td>
@@ -233,9 +244,89 @@ Axis2‚ÌƒŠƒ|ƒWƒgƒŠ‚âİ’èƒtƒ@ƒCƒ‹‚Å‚ ‚éaxis2.xml‚ÌƒpƒXw’è‚É—˜—p‚µ‚Ü‚·B</td>
 </tbody>
 </table>
 
-<h3><a name="ref-compo-interceptor">org.seasar.remoting.common.interceptor.RemotingInterceptor</a></h3>
+<h3><a name="ref-dicon-compo-interceptor">org.seasar.remoting.common.interceptor.RemotingInterceptor</a></h3>
 <p>S2Remoting‚ª’ñ‹Ÿ‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚Å‚·B<br>
 ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÅWebƒT[ƒrƒX‚ğƒRƒ“ƒ|[ƒlƒ“ƒg‚Æ‚µ‚Äg—p‚·‚éê‡‚ÉA‚±‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ğƒAƒXƒyƒNƒg‚Æ‚µ‚Äg—p‚µ‚Ü‚·B</p>
+
+<h2><a name="ref-annotaion-rest">ƒAƒmƒe[ƒVƒ‡ƒ“iRESTŠÖ˜Aj</a></h2>
+RESTŒ`®‚ÅAƒT[ƒrƒX‚ÉƒAƒNƒZƒX‚·‚éÛ‚É•K—v‚Æ‚È‚éƒAƒmƒe[ƒVƒ‡ƒ“‚Å‚·B‚±‚ÌƒAƒmƒe[ƒVƒ‡ƒ“‚ÍA
+«—ˆ“I‚É<a href="http://jcp.org/en/jsr/detail?id=311">JAX-RSiJSR311j</a>‚É’u‚«Š·‚í‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B
+
+<h3><a name="ref-annotaion-rest-RestUriTemplate">org.seasar.remoting.axis2.annotation.RestUriTemplate</a></h3>
+<dl>
+  <dt><b>“K—p‘ÎÛ</b></dt>
+  <dd>ƒT[ƒrƒX‚ÌƒCƒ“ƒ^ƒtƒF[ƒX</dd>
+</dl>
+<br>
+<table border="1" width="700">
+  <col span="1" width="150">
+  <col span="1" width="150">
+  <col span="1" width="400">
+  <tr>
+    <th scope="col">ƒvƒƒpƒeƒB</th>
+    <th scope="col">ƒfƒtƒHƒ‹ƒg’l</th>
+    <th scope="col">à–¾</th>
+  </tr>
+  <tr>
+    <td>value</td>
+    <td>ƒT[ƒrƒX‚ÌƒCƒ“ƒ^ƒtƒF[ƒX–¼</td>
+    <td>ŒöŠJ‚³‚ê‚éƒT[ƒrƒX‚ÌƒŠƒ\[ƒX–¼i=ƒT[ƒrƒX–¼j‚Å‚·B</td>
+  </tr>
+</table>
+
+<h3><a name="ref-annotaion-rest-RestMethod">org.seasar.remoting.axis2.annotation.RestMethod</a></h3>
+<dl>
+  <dt><b>“K—p‘ÎÛ</b></dt>
+  <dd>ƒT[ƒrƒX‚Ìƒƒ\ƒbƒh</dd>
+</dl>
+<br>
+<table border="1" width="700">
+  <col span="1" width="150">
+  <col span="1" width="150">
+  <col span="1" width="400">
+  <tr>
+    <th scope="col">ƒvƒƒpƒeƒB</th>
+    <th scope="col">ƒfƒtƒHƒ‹ƒg’l</th>
+    <th scope="col">à–¾</th>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>ƒT[ƒrƒX‚Ìƒƒ\ƒbƒh–¼</td>
+    <td>URI‚É•t‰Á‚³‚ê‚éƒT[ƒrƒX‚Ìƒƒ\ƒbƒh–¼‚Å‚·B</td>
+  </tr>
+  <tr>
+    <td>httpMethod</td>
+    <td>ƒT[ƒrƒX‚Ìƒƒ\ƒbƒh–¼‚©‚ç©“®”»•Ê</td>
+    <td>ƒŠƒNƒGƒXƒg‚Åw’è‚³‚ê‚éHTTPƒƒ\ƒbƒh‚Å‚·B’Êí‚ÍAƒT[ƒrƒX‚Ìƒƒ\ƒbƒh–¼‚©‚ç©“®”»•Ê‚³‚ê‚Ü‚·‚ªA–¾¦“I‚Éw’è‚µ‚½‚¢ê‡‚É—˜—p‚µ‚Ü‚·B</td>
+  </tr>
+  <tr>
+    <td>contentType</td>
+    <td>ƒT[ƒrƒX‚Ìƒƒ\ƒbƒh–¼‚©‚ç©“®”»•Ê</td>
+    <td>ƒŠƒNƒGƒXƒg‚ÌHTTPƒwƒbƒ_‚Åw’è‚³‚ê‚éContent-Type‚Å‚·B’Êí‚ÍAƒT[ƒrƒX‚Ìƒƒ\ƒbƒh–¼‚©‚ç©“®”»•Ê‚³‚ê‚Ü‚·‚ªA–¾¦“I‚Éw’è‚µ‚½‚¢ê‡‚É—˜—p‚µ‚Ü‚·B</td>
+  </tr>
+</table>
+
+<h3><a name="ref-annotaion-rest-RestUriParam">org.seasar.remoting.axis2.annotation.RestUriParam</a></h3>
+<dl>
+  <dt><b>“K—p‘ÎÛ</b></dt>
+  <dd>ƒT[ƒrƒX‚Ìƒƒ\ƒbƒhˆø”‚ªDTO‚Ìê‡‚ÍDTO‚ÌƒvƒƒpƒeƒBAƒVƒ“ƒvƒ‹ƒ^ƒCƒviƒvƒŠƒ~ƒeƒBƒuŒ^‚¨‚æ‚Ñ‚»‚Ìƒ‰ƒbƒpŒ^Ajava.util.Date^java.util.Calendar‚Ì“ú•tŒ^j‚Ìƒpƒ‰ƒ[ƒ^‚Ìê‡‚Íˆø”©‘Ì</dd>
+</dl>
+<br>
+<table border="1" width="700">
+  <col span="1" width="150">
+  <col span="1" width="150">
+  <col span="1" width="400">
+  <tr>
+    <th scope="col">ƒvƒƒpƒeƒB</th>
+    <th scope="col">ƒfƒtƒHƒ‹ƒg’l</th>
+    <th scope="col">à–¾</th>
+  </tr>
+  <tr>
+    <td>value</td>
+    <td>ˆø”–¼</td>
+    <td>ƒŠƒNƒGƒXƒg‚Åw’è‚³‚ê‚éƒpƒ‰ƒ[ƒ^–¼‚Å‚·BƒT[ƒrƒX‚Ìˆø”‚ªƒVƒ“ƒvƒ‹ƒ^ƒCƒv‚Ìƒpƒ‰ƒ[ƒ^‚Ìê‡‚ÍA•K‚¸w’è‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B</td>
+  </tr>
+</table>
 
   <!-- document end -->
   <!-- don't edit start -->
