@@ -2,69 +2,115 @@
 <html>
 <!-- don't edit start -->
 <head>
-<title>Seasar - DI Container with AOP - </title>
+<title>Seasar - DI Container with AOP -</title>
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<link href="../seasar_b.css" type="text/css" rel="stylesheet" media="screen">
-<link href="../seasar_p.css" type="text/css" rel="stylesheet" media="print">
-<script src="../seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+<link href="../seasar_b.css" type="text/css" rel="stylesheet"
+	media="screen">
+<link href="../seasar_p.css" type="text/css" rel="stylesheet"
+	media="print">
+<script src="../seasar_b.js" type="text/JavaScript"
+	language="JavaScript"></script>
 <style type="text/css">
 <!--
-.style1 {color: #FF0000}
+.style1 {
+	color: #FF0000
+}
 -->
 </style>
-</head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
-<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
-<tr><td colspan="7"><img height="5" width="780" src="../images/top01_b.gif" alt=""></td></tr>
-<tr><td><img height="117" width="235" src="../images/top02_b.gif" alt="Seasar"></td>
-<td colspan="3"><img height="117" width="289" src="../images/top03.gif" alt="DI Container with AOP"></td>
-<td colspan="3"><img height="117" width="256" src="../images/spacer.gif" alt=""></td>
-</tr><tr><td rowspan="2"><img src="../images/top04.gif" alt="" height="49" width="235"></td>
-<td><a href="http://www.seasar.org/index.html"><img src="../images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
-<td><a href="http://www.seasar.org/projects.html"><img src="../images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
-<td><a href="http://www.seasar.org/products.html"><img src="../images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
-<td><a href="http://www.seasar.org/resources.html"><img src="../images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
-<td><img src="../images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
-<td><img height="30" width="34" src="../images/menu06.gif" alt=""></td></tr><tr>
-<td colspan="6"><img height="19" width="545" src="../images/spacer.gif" alt=""></td></tr></table>
-<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
-<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="../images/spacer.gif" alt=""></td><td width="740" class="main">
-<!-- don't edit end -->
-<!-- document start -->
-<br>
-<h1><a name="examples">S2Axis2 サンプル</a></h1>
-<p>本ドキュメントは<code>S2Axis2</code>について記述しています。</p>
+</head>
+<body onload="preload('ja')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0"
+	align="left">
+	<tr>
+		<td align="left" valign="top" width="780">
+		<table width="780" border="0" cellspacing="0" cellpadding="0"
+			class="white">
+			<tr>
+				<td colspan="7"><img height="5" width="780"
+					src="../images/top01_b.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td><img height="117" width="235" src="../images/top02_b.gif"
+					alt="Seasar"></td>
+				<td colspan="3"><img height="117" width="289"
+					src="../images/top03.gif" alt="DI Container with AOP"></td>
+				<td colspan="3"><img height="117" width="256"
+					src="../images/spacer.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td rowspan="2"><img src="../images/top04.gif" alt=""
+					height="49" width="235"></td>
+				<td><a href="http://www.seasar.org/index.html"><img
+					src="../images/menu01_b_ja.gif" height="30" width="78" border="0"
+					alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+				<td><a href="http://www.seasar.org/projects.html"><img
+					src="../images/menu02_b_ja.gif" height="30" width="101" border="0"
+					alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+				<td><a href="http://www.seasar.org/products.html"><img
+					src="../images/menu03_b_ja.gif" height="30" width="110" border="0"
+					alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
+				<td><a href="http://www.seasar.org/resources.html"><img
+					src="../images/menu04_b_ja.gif" height="30" width="113" border="0"
+					alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+				<td><img src="../images/menu05_b_ja.gif" height="30"
+					width="109" border="0" alt="" id="menu05" onmouseover="swap(5)"
+					onmouseout="restore(5)"></td>
+				<td><img height="30" width="34" src="../images/menu06.gif"
+					alt=""></td>
+			</tr>
+			<tr>
+				<td colspan="6"><img height="19" width="545"
+					src="../images/spacer.gif" alt=""></td>
+			</tr>
+		</table>
+		<table width="780" border="0" cellspacing="0" cellpadding="0"
+			class="white">
+			<tr align="left" valign="top">
+				<td width="14"><img height="14" width="14"
+					src="../images/spacer.gif" alt=""></td>
+				<td width="740" class="main"><!-- don't edit end --> <!-- document start -->
+				<br>
+				<h1><a name="examples">S2Axis2 サンプル</a></h1>
+				<p>本ドキュメントは<code>S2Axis2</code>について記述しています。</p>
 
-<h2><a name="cot">目次</a></h2>
-<ul>
-<li><a href="#abstraction">概要</a></li>
-<li><a href="#ex01">コンポーネントをWebサービスとして公開する</a></li>
-  <ul>
-  <li><a href="#ex01-Echo">同期型要求応答形式（Request/Response）</a></li>
-  <li><a href="#ex01-Ping">一方向形式（Oneway）</a></li>
-  </ul>
-<li><a href="#ex02">実装ではなくインタフェースを公開する</a></li>
-<li><a href="#ex03">引数／戻り値としてBeanを使用する</a></li>
-<li><a href="#ex04">スコープを指定する</a></li>
-<li><a href="#ex05">service.xmlを利用してサービスを公開する</a></li>
-<li><a href="#rest">Yahoo! WebサービスにRESTで接続する</a></li>
-</ul>
+				<h2><a name="cot">目次</a></h2>
+				<ul>
+					<li><a href="#abstraction">概要</a></li>
+					<li><a href="#ex01">コンポーネントをWebサービスとして公開する</a></li>
+					<ul>
+						<li><a href="#ex01-Echo">同期型要求応答形式（Request/Response）</a></li>
+						<li><a href="#ex01-Ping">一方向形式（Oneway）</a></li>
+					</ul>
+					<li><a href="#ex02">実装ではなくインタフェースを公開する</a></li>
+					<li><a href="#ex03">引数／戻り値としてBeanを使用する</a></li>
+					<li><a href="#ex04">スコープを指定する</a></li>
+					<li><a href="#ex05">services.xmlを利用してサービスを公開する</a></li>
+					<li><a href="#ex06">独自のWSDLファイルを利用してサービスを公開する</a></li>
+					<li><a href="#context">クライアントで動的にオプションパラメータを変更する</a></li>
+					<li><a href="#rest">Yahoo! WebサービスにRESTで接続する</a></li>
+				</ul>
 
-<h2><a name="abstraction">概要</a></h2>
-<p>S2Axis2Examplesは、S2Axis2の基本的な機能を一通り使用したサンプルです。インストールについては<a href="setup.html">セットアップ</a>を参照してください。</p>
-<p>ソースはサーバ側とクライアント側に分かれており、クライアント側はJUnit (S2Unit) のテストケースとして作成されています。それぞれ、以下のソースフォルダにあります。</p>
-<dl>
-<dt>サーバ側
-<dd><code>src/server</code>フォルダの<code>org.seasar.axis.examples</code> パッケージ
-<dt>クライアント側
-<dd><code>src/client</code>フォルダの<code>org.seasar.axis.examples</code> パッケージ
-</dl>
+				<h2><a name="abstraction">概要</a></h2>
+				<p>S2Axis2Examplesは、S2Axis2の基本的な機能を一通り使用したサンプルです。インストールについては<a
+					href="setup.html">セットアップ</a>を参照してください。</p>
+				<p>ソースはサーバ側とクライアント側に分かれており、クライアント側はJUnit (S2Unit)
+				のテストケースとして作成されています。それぞれ、以下のソースフォルダにあります。</p>
+				<dl>
+					<dt>サーバ側
+					<dd><code>src/main</code>フォルダの<code>org.seasar.axis.examples</code>
+					パッケージ
+					<dt>クライアント側
+					<dd><code>src/test</code>フォルダの<code>org.seasar.axis.examples</code>
+					パッケージ
+				</dl>
 
-<p>クライアント側では、リモート呼び出しの設定を、以下のdiconファイルで共通化しています。</p>
-<h5>s2axis2-client.dicon</h5>
-<pre style="overflow-y:auto;height:200">
+				<p>クライアント側では、リモート呼び出しの設定を、以下のdiconファイルで共通化しています。</p>
+				<h5>dicon（クライアント側）<br>
+				&nbsp;&nbsp;s2axis2-client.dicon</h5>
+				<pre style="overflow-y: auto; height: 200">
 &lt;components&gt;
-    &lt;component name=&quot;<strong>ioRemoting</strong>&quot;
+    &lt;component name=&quot;<span class="point">ioRemoting</span>&quot;
                class=&quot;org.seasar.remoting.common.interceptor.RemotingInterceptor&quot;&gt;
         &lt;property name=&quot;connector&quot;&gt;ioConnector&lt;/property&gt;
     &lt;/component&gt;
@@ -73,7 +119,7 @@
         &lt;property name=&quot;baseURL&quot;&gt;baseURL&lt;/property&gt;
     &lt;/component&gt;
 
-    &lt;component name=&quot;<strong>oneWayRemoting</strong>&quot;
+    &lt;component name=&quot;<span class="point">oneWayRemoting</span>&quot;
                class=&quot;org.seasar.remoting.common.interceptor.RemotingInterceptor&quot;&gt;
         &lt;property name=&quot;connector&quot;&gt;oneWayConnector&lt;/property&gt;
     &lt;/component&gt;
@@ -90,14 +136,16 @@
 &lt;/components&gt;
 </pre>
 
-<h2><a name="ex01">コンポーネントをWebサービスとして公開する</a></h2>
-<p>POJOのクラスをWebサービスとして公開することが可能です。</p>
-<p>現在のバージョンでは、<strong>「同期型要求応答形式（Request/Response）」「一方向形式（Oneway）」</strong>をサポートしています。
-一方向形式では、戻り値なし（void）でなければなりません。</p>
+				<h2><a name="ex01">コンポーネントをWebサービスとして公開する</a></h2>
+				<p>POJOのクラスをWebサービスとして公開することが可能です。</p>
+				<p>現在のバージョンでは、<strong>「同期型要求応答形式（Request/Response）」「一方向形式（Oneway）」</strong>をサポートしています。
+				一方向形式では、戻り値なし（void）でなければなりません。</p>
 
-<h3><a name="ex01-Echo">同期型要求応答形式（Request/Response）</a></h3>
-<h5>サービスとして公開するクラス</h5>
-<pre>
+				<h3><a name="ex01-Echo">同期型要求応答形式（Request/Response）</a></h3>
+				<h5>サービスとして公開するクラス<br>
+				&nbsp;&nbsp;src/main/java/org/seasar/remoting/axis2/examples/ex01/Echo.java<br>
+				&nbsp;&nbsp;src/main/java/org/seasar/remoting/axis2/examples/ex01/EchoImpl.java</h5>
+				<pre>
 public interface Echo {
     String echo(int id, String message);
 }
@@ -109,24 +157,28 @@ public class EchoImpl implements Echo {
 }
 </pre>
 
-<h5>dicon（サービス側）</h5>
-<pre>
+				<h5>dicon（サービス側）<br>
+				&nbsp;&nbsp;src/main/resources/org/seasar/remoting/axis2/examples/ex01/deploy.dicon</h5>
+				<pre>
 &lt;component name=&quot;Echo&quot; class=&quot;org.seasar.remoting.axis2.examples.ex01.EchoImpl&quot;&gt;
     &lt;meta name=&quot;axis-service&quot;/&gt;
 &lt;/component&gt;
 </pre>
 
-<h5>dicon（クライアント側）</h5>
-<pre>
+				<h5>dicon（クライアント側）<br>
+				&nbsp;&nbsp;src/test/resources/org/seasar/remoting/axis2/examples/ex01/EchoTest.dicon</h5>
+				<pre>
 &lt;include path="s2-axis-client.dicon"/&gt;
 &lt;component class="org.seasar.remoting.axis2.examples.ex01.Echo"&gt;
     &lt;aspect&gt;ioRemoting&lt;/aspect&gt;
 &lt;/component&gt;
 </pre>
 
-<h3><a name="ex01-Ping">一方向形式（Oneway）</a></h3>
-<h5>サービスとして公開するクラス</h5>
-<pre>
+				<h3><a name="ex01-Ping">一方向形式（Oneway）</a></h3>
+				<h5>サービスとして公開するクラス<br>
+				&nbsp;&nbsp;src/main/java/org/seasar/remoting/axis2/examples/ex01/Ping.java<br>
+				&nbsp;&nbsp;src/main/java/org/seasar/remoting/axis2/examples/ex01/PingImpl.java</h5>
+				<pre>
 public interface Ping {
     void ping(String message);
 }
@@ -139,39 +191,50 @@ public class PingImpl implements Ping {
 
 </pre>
 
-<h5>dicon（サービス側）</h5>
-<pre>
+				<h5>dicon（サービス側）<br>
+				&nbsp;&nbsp;src/main/resources/org/seasar/remoting/axis2/examples/ex01/deploy.dicon</h5>
+				<pre>
 &lt;component name=&quot;Ping&quot; class=&quot;org.seasar.remoting.axis2.examples.ex01.PingImpl&quot;&gt;
     &lt;meta name=&quot;axis-service&quot;/&gt;
 &lt;/component&gt;
 </pre>
 
-<h5>dicon（クライアント側）</h5>
-<pre>
+				<h5>dicon（クライアント側）<br>
+				&nbsp;&nbsp;src/test/resources/org/seasar/remoting/axis2/examples/ex01/PingTest.dicon</h5>
+				<pre>
 &lt;include path="s2-axis-client.dicon"/&gt;
 &lt;component class="org.seasar.remoting.axis2.examples.ex01.Ping"&gt;
     &lt;aspect&gt;oneWayRemoting&lt;/aspect&gt;
 &lt;/component&gt;
 </pre>
 
-<h2><a name="ex02">特定のインタフェースを公開する</a></h2>
-<p>実装クラスを公開すると、不要なメソッドまで公開されてる場合があります(インタフェースを実装していない場合や複数のインタフェースを実装している場合など)。実装クラス<code>HelloImpl</code>は二つのインタフェースを実装していますが、MessageSettableのメソッド<code>setMessage(String)</code>はWebサービスとして公開しないものとします。<br>
-このような場合には、公開するJavaインタフェースを指定します(実装したインタフェースが一つだけの場合や、実装した複数のインタフェースのメソッドを全て公開する場合には明示的に指定する必要はありません)。</p>
-<pre>
+				<h2><a name="ex02">特定のインタフェースを公開する</a></h2>
+				<p>実装クラスを公開すると、不要なメソッドまで公開されてる場合があります(インタフェースを実装していない場合や複数のインタフェースを実装している場合など)。実装クラス<code>HelloImpl</code>は二つのインタフェースを実装していますが、MessageSettableのメソッド<code>setMessage(String)</code>はWebサービスとして公開しないものとします。<br>
+				このような場合には、公開するJavaインタフェースを指定します(実装したインタフェースが一つだけの場合や、実装した複数のインタフェースのメソッドを全て公開する場合には明示的に指定する必要はありません)。</p>
+
+				<h5>dicon（サービス側）<br>
+				&nbsp;&nbsp;src/main/resources/org/seasar/remoting/axis2/examples/ex02/deploy.dicon</h5>
+				<pre>
 &lt;component name="Hello" class="org.seasar.remoting.axis2.examples.ex02.impl.HelloImpl"&gt;
     &lt;meta name="axis-service"&gt;
-        <strong>&lt;component class="org.seasar.remoting.axis2.ServiceDef"&gt;</strong>
-            <strong>&lt;property name="serviceType"&gt;@org.seasar.remoting.axis2.examples.ex02.Hello@class&lt;/property&gt;</strong>
-        <strong>&lt;/component&gt;</strong>
+        <span class="point">&lt;component class="org.seasar.remoting.axis2.ServiceDef"&gt;
+            &lt;property name="serviceType"&gt;
+                @org.seasar.remoting.axis2.examples.ex02.Hello@class
+            &lt;/property&gt;
+        &lt;/component&gt;</span>
     &lt;/meta&gt;
     &lt;property name="message"&gt;"Hello"&lt;/property&gt;
 &lt;/component&gt;
 </pre>
 
-<h2><a name="ex03">引数／戻り値としてBeanを使用する</a></h2>
-<p>このサンプルでは、サービスは引数および戻り値の型としてJavaBeansを使用しています。プリミティブ型（およびそのラッパクラス型）を使用している場合は、特に何も指定しなくても動作します。</p>
+				<h2><a name="ex03">引数／戻り値としてBeanを使用する</a></h2>
+				<p>このサンプルでは、サービスは引数および戻り値の型としてJavaBeansを使用しています。プリミティブ型（およびそのラッパクラス型）を使用している場合は、特に何も指定しなくても動作します。</p>
 
-<pre>
+				<h5>サービスとして公開するクラス<br>
+				&nbsp;&nbsp;src/main/java/org/seasar/remoting/axis2/examples/ex03/BeanEcho.java<br>
+				&nbsp;&nbsp;src/main/java/org/seasar/remoting/axis2/examples/ex03/impl/BeanEchoImpl.java<br>
+				</h5>
+				<pre>
 public interface BeanEcho {
     EchoDto echo(EchoDto echoDto);
 }
@@ -196,34 +259,41 @@ public class EchoDto {
 }
 </pre>
 
-<h2><a name="ex04">スコープを指定する</a></h2>
-<p>Axis2は、スコープを指定して、サービスのインスタンスを管理することができます。
-S2Axis2では、S2コンテナがインスタンスを管理します。サービスをSessionスコープとして利用する場合には、以下のように指定します。</p>
+				<h2><a name="ex04">スコープを指定する</a></h2>
+				<p>Axis2は、スコープを指定して、サービスのインスタンスを管理することができます。
+				S2Axis2では、S2コンテナがインスタンスを管理します。サービスをSessionスコープとして利用する場合には、以下のように指定します。</p>
 
-<h5>dicon（サービス側）</h5>
-<pre>
+				<h5>dicon（サービス側）<br>
+				&nbsp;&nbsp;src/main/resources/org/seasar/remoting/axis2/examples/ex04/deploy.dicon</h5>
+				<pre>
 &lt;components&gt;
     &lt;component name=&quot;Counter&quot;
         class=&quot;org.seasar.remoting.axis2.examples.ex04.impl.CounterImpl&quot;
-        <strong>instance=&quot;session&quot;</strong>&gt;
+        <span class="point">instance=&quot;session&quot;</span>&gt;
         &lt;meta name=&quot;axis-service&quot;/&gt;
     &lt;/component&gt;
 &lt;/components&gt;
 </pre>
 
-<p>S2コンテナとAxis2におけるスコープの関連は、<a href="references.html#ref-scope">リファレンス</a>を参照してください。</p>
+				<p>S2コンテナとAxis2におけるスコープの関連は、<a href="references.html#ref-scope">リファレンス</a>を参照してください。</p>
 
-<h2><a name="ex05">service.xmlを利用してサービスを公開する</a></h2>
-<p>Axis2で利用するservice.xmlを指定して、サービスをデプロイします。</p>
-<h5>dicon（サービス側）</h5>
-<pre>
+				<h2><a name="ex05">services.xmlを利用してサービスを公開する</a></h2>
+				<p>Axis2で利用するservices.xmlを指定して、サービスをデプロイします。</p>
+
+				<h5>dicon（サービス側）<br>
+				&nbsp;&nbsp;src/main/resources/org/seasar/remoting/axis2/examples/ex06/deploy.dicon</h5>
+				<pre>
 &lt;components&gt;
     &lt;meta name=&quot;axis-deploy&quot;&gt;
-        &quot;org/seasar/remoting/axis2/examples/ex05/service.xml&quot;
+        &quot;org/seasar/remoting/axis2/examples/ex05/services.xml&quot;
     &lt;/meta&gt;
 &lt;/components&gt;
 </pre>
-<pre>
+
+				<h5>services.xml（Axis2のサービス定義ファイル）<br>
+				&nbsp;&nbsp;src/main/resources/org/seasar/remoting/axis2/examples/ex05/services.xml</h5>
+
+				<pre>
 &lt;service name=&quot;EchoBasedXml&quot; scope=&quot;application&quot;&gt;
     &lt;description&gt;Echo Service.&lt;/description&gt;
     &lt;messageReceivers&gt;
@@ -232,27 +302,111 @@ S2Axis2では、S2コンテナがインスタンスを管理します。サービスをSessionスコープとし
         &lt;messageReceiver mep=&quot;http://www.w3.org/ns/wsdl/in-only&quot;
                          class=&quot;org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver&quot;/&gt;
     &lt;/messageReceivers&gt;
-    &lt;parameter name=&quot;ServiceClass&quot; locked=&quot;false&quot;&gt;org.seasar.remoting.axis2.examples.ex01.EchoImpl&lt;/parameter&gt;
+    &lt;parameter name=&quot;ServiceClass&quot; locked=&quot;false&quot;&gt;
+        org.seasar.remoting.axis2.examples.ex01.EchoImpl
+    &lt;/parameter&gt;
     &lt;operation name=&quot;echo&quot;&gt;
         &lt;actionMapping&gt;urn:echo&lt;/actionMapping&gt;
     &lt;/operation&gt;
 &lt;/service&gt;
 </pre>
-<p>ここでは、「<A name=ex01>コンポーネントをWebサービスとして公開する</A>」で利用したEchoと同じサービスを定義していますが、クライアントの処理は、変更する必要はありません。</p>
-<p>また、service.xmlを指定してデプロイしたサービスのインスタンス管理に、S2およびS2Axis2は関与しません。
-  service.xmlで指定したサービスのインスタンスは、S2コンテナからは取得できない（他のコンポーネントにインジェクションできない）ことに注意してください。</p>
-<h2><a name="rest">Yahoo! WebサービスにRESTで接続する </a></h2>
-<p>S2Axis2で、Yahoo!のWebサービス用APIを利用してみます。Yahoo!のWebサービスに関する情報は、<a href="http://developer.yahoo.co.jp/">Yahoo!デベロッパーネットワーク</a>から得ることができます。
-Yahoo!のWebサービスは、HTTP REST（Representational State Transfer）によってアクセスすることが可能です。</p>
-<p>本サンプルでは、Web検索のAPIを利用します。サービスはYahoo!のWebサービスとなるため、S2Axis2のクライアントの機能のみ使用します。</p>
+				<p>ここでは、「<A name=ex01>コンポーネントをWebサービスとして公開する</A>」で利用したEchoと同じサービスを定義していますが、クライアントの処理は、変更する必要はありません。</p>
+				<p>また、services.xmlを指定してデプロイしたサービスのインスタンス管理に、S2およびS2Axis2は関与しません。
+				services.xmlで指定したサービスのインスタンスは、S2コンテナからは取得できない（他のコンポーネントにインジェクションできない）ことに注意してください。</p>
 
-<h5>YahooSearchDto.java（リクエストパラメータを保持するクラス）</h5>
-<p>
-まず、<a href="http://developer.yahoo.co.jp/search/web/V1/webSearch.html">ウェブ検索WebサービスのAPI</a>にしたがって、リクエストパラメータを保持するDTOクラスを作成します。
-ここでは、必須パラメータである、appid および query のみ指定しています。
-</p>
 
-<pre>
+				<h2><a name="ex06">独自のWSDLファイルを利用してサービスを公開する</a></h2>
+				<p>エンドポイントのURLを変更したい場合など、独自のWSDLファイルを指定してサービスをデプロイすることが可能です。
+				独自のWSDLファイルを適用するにはServiceDefを利用します。
+				独自のWSDLファイルを適用するには、まず、利用するWSDLファイルをクラスパス直下のMETA-INFディレクトリ配下に配置します。
+				WSDLのファイル名は、適用するサービス名に一致するようにします。</p>
+				<p><b>例）WEB-INF/classes/META-INF/EchoFormCustomWSDL.wsdl</b></p>
+				<p>WSDLを配置したら、以下のように、公開するサービスのdicon定義ファイルでServiceDefにパラメータを指定してください。</p>
+
+				<h5>dicon（サービス側）<br>
+				&nbsp;&nbsp;src/main/resources/org/seasar/remoting/axis2/examples/ex06/deploy.dicon</h5>
+				<pre>
+&lt;component name=&quot;EchoFormCustomWSDL&quot;
+    class=&quot;org.seasar.remoting.axis2.examples.ex01.EchoImpl&quot;&gt;
+    &lt;meta name=&quot;axis-service&quot;&gt;
+        <span class="point">&lt;component class=&quot;org.seasar.remoting.axis2.ServiceDef&quot;&gt;
+            &lt;initMethod name=&quot;addParameter&quot;&gt;
+                &lt;arg&gt;&quot;useOriginalwsdl&quot;&lt;/arg&gt;
+                &lt;arg&gt;&quot;true&quot;&lt;/arg&gt;
+            &lt;/initMethod&gt;
+            &lt;initMethod name=&quot;addParameter&quot;&gt;
+                &lt;arg&gt;&quot;modifyUserWSDLPortAddress&quot;&lt;/arg&gt;
+                &lt;arg&gt;&quot;false&quot;&lt;/arg&gt;
+            &lt;/initMethod&gt;
+        &lt;/component&gt;</span>
+    &lt;/meta&gt;
+&lt;/component&gt;
+</pre>
+
+				<p>ServiceDef#addParameterメソッドで、「useOriginalwsdl」を「true」と指定することで、独自のWSDLが適用されます。
+				「modifyUserWSDLPortAddress」は、エンドポイントのURLを変更したい場合に指定してください。デフォルトは「true」ですが、
+				「false」を指定すると、WSDLで指定した値がそのまま利用されるようになります。</p>
+				<p>サービスをデプロイ後、ブラウザで以下のようにURLを指定すると、WSDLを確認することができます。</p>
+				<p><a
+					href="http://localhost:8080/s2axis2-examples/services/EchoFormCustomWSDL?wsdl">http://localhost:8080/s2axis2-examples/services/EchoFormCustomWSDL?wsdl</a></p>
+
+
+				<h2><a name="context">クライアントで動的にオプションパラメータを変更する</a></h2>
+				<p>処理に応じて接続先を変更したい場合など、クライアントの処理でオプションパラメータを指定することが可能です。
+				変更するには<a href="references.html#ref-dicon-compo-s2axisclientcontext">S2AxisClientContextクラス</a>を利用します。</p>
+
+				<h5>dicon（サービス側）</h5>
+				<pre>
+public class EchoClient {
+
+    private Echo service;
+    
+    public EchoClient(Echo echo) {
+        this.service = echo;
+    }
+
+    public void execute() {
+        int id = 1;
+        String msg = "echo message";
+        String result;
+        
+        // diconに設定されているURLで接続
+        <span class="point"> S2AxisClientContext.setEndpointURL(null);</span>
+        result = service.echo(id, msg);
+        System.out.println(result);
+        
+        // このクラスで指定したURLで接続
+        <span class="point"> S2AxisClientContext.setEndpointURL("http://localhost:8081/Echo");</span>
+        result = service.echo(id, msg);
+        System.out.println(result);
+    }
+
+    public static void main(String[] args) {
+        SingletonS2ContainerFactory.setConfigPath("EchoTest.dicon");
+        SingletonS2ContainerFactory.init();
+        S2Container container = SingletonS2ContainerFactory.getContainer();
+        Echo echo = (Echo)container.getComponent(Echo.class);
+
+        EchoClient client = new EchoClient(echo);
+        client.execute();
+    }
+}
+				</pre>
+
+
+				<h2><a name="rest">Yahoo! WebサービスにRESTで接続する </a></h2>
+				<p>S2Axis2で、Yahoo!のWebサービス用APIを利用してみます。Yahoo!のWebサービスに関する情報は、<a
+					href="http://developer.yahoo.co.jp/">Yahoo!デベロッパーネットワーク</a>から得ることができます。
+				Yahoo!のWebサービスは、HTTP REST（Representational State
+				Transfer）によってアクセスすることが可能です。</p>
+				<p>本サンプルでは、Web検索のAPIを利用します。サービスはYahoo!のWebサービスとなるため、S2Axis2のクライアントの機能のみ使用します。</p>
+
+				<h5>YahooSearchDto.java（リクエストパラメータを保持するクラス）</h5>
+				<p>まず、<a
+					href="http://developer.yahoo.co.jp/search/web/V1/webSearch.html">ウェブ検索WebサービスのAPI</a>にしたがって、リクエストパラメータを保持するDTOクラスを作成します。
+				ここでは、必須パラメータである、appid および query のみ指定しています。</p>
+
+				<pre>
 public class YahooSearchDto {
     private String appid;  // アプリケーションID
     private String query;  // 検索クエリー
@@ -261,35 +415,36 @@ public class YahooSearchDto {
 }
 </pre>
 
-<h5>YahooSearch.java（サービス呼び出しのインタフェース）</h5>
-<p>次に、サービスを呼び出すためのインタフェースを作成します。インタフェースのみを定義すれば、サービスを呼び出すことが可能です。</p>
-<p class="style1">S2Axis2では、メソッドの名前に合わせてRESTの通信方式（Axis2 1.0 では、GET／POSTのみがサポートされています）を特定するため、メソッドの名前の付け方に注意してください。</p>
+				<h5>YahooSearch.java（サービス呼び出しのインタフェース）</h5>
+				<p>次に、サービスを呼び出すためのインタフェースを作成します。インタフェースのみを定義すれば、サービスを呼び出すことが可能です。</p>
+				<p class="style1">S2Axis2では、メソッドの名前に合わせてRESTの通信方式（Axis2 1.0
+				では、GET／POSTのみがサポートされています）を特定するため、メソッドの名前の付け方に注意してください。</p>
 
-<dl>
-  <dl>
-    <dt><strong>getXxx</strong></dt>
-    <dd>GET としてサービスを呼び出します。</dd>
-    <dt><strong>postXXX</strong></dt>
-    <dd>POST としてサービスを呼び出します。</dd>
-  </dl>
-</dl>
+				<dl>
+					<dl>
+						<dt><span class="point">getXxx</span></dt>
+						<dd>GET としてサービスを呼び出します。</dd>
+						<dt><span class="point">postXXX</span></dt>
+						<dd>POST としてサービスを呼び出します。</dd>
+					</dl>
+				</dl>
 
-<pre>
+				<pre>
 public interface YahooSearch {
     String postSearch(YahooSearchDto dto);
     String getSearchResult(YahooSearchDto dto);
 }
 </pre>
 
-<h5>YahooSearchTest.dicon</h5>
-<p>コネクタにはorg.seasar.remoting.axis2.connector.RESTConnectorを指定し、接続先のURLには、ウェブ検索WebサービスのリクエストURLを指定してください。</p>
-<p>上で作成したYahooSearchインタフェースに、RESTConnectorを設定したRemotingInterceptorをアスペクトとして指定します。</p>
-<pre>
+				<h5>YahooSearchTest.dicon</h5>
+				<p>コネクタにはorg.seasar.remoting.axis2.connector.RESTConnectorを指定し、接続先のURLには、ウェブ検索WebサービスのリクエストURLを指定してください。</p>
+				<p>上で作成したYahooSearchインタフェースに、RESTConnectorを設定したRemotingInterceptorをアスペクトとして指定します。</p>
+				<pre>
 &lt;component name="remoting" class="org.seasar.remoting.common.interceptor.RemotingInterceptor"/&gt;
 
-&lt;component name="connector" class="<strong>org.seasar.remoting.axis2.connector.RESTConnector</strong>"&gt;
+&lt;component name="connector" class="<span class="point">org.seasar.remoting.axis2.connector.RESTConnector</span>"&gt;
     &lt;property name="baseURL"&gt;
-        new java.net.URL("<strong>http://api.search.yahoo.co.jp/WebSearchService/V1/webSearch</strong>")
+        new java.net.URL("<span class="point">http://api.search.yahoo.co.jp/WebSearchService/V1/webSearch</span>")
     &lt;/property&gt;
 &lt;/component&gt;
 
@@ -298,12 +453,12 @@ public interface YahooSearch {
 &lt;/component&gt;
 </pre>
 
-<p>以上で、サービスを呼び出す準備が整いました。</p>
+				<p>以上で、サービスを呼び出す準備が整いました。</p>
 
-<h5>クライアント</h5>
-<p>ウェブ検索Webサービスを呼び出します。ここでは、S2TestCaseとして作成しています。</p>
+				<h5>クライアント</h5>
+				<p>ウェブ検索Webサービスを呼び出します。ここでは、S2TestCaseとして作成しています。</p>
 
-<pre>
+				<pre>
 public class YahooSearchTest extends S2TestCase {
     public void setUp() {
         include("YahooSearchTest.dicon");
@@ -323,22 +478,31 @@ public class YahooSearchTest extends S2TestCase {
         return dto;
     }
 }
-</pre>
-
-<!-- document end -->
-<!-- don't edit start -->
-</td>
-  <td width="14"><img height="14" width="14" src="../images/spacer.gif" alt=""></td>
-</tr><tr>
-<td width="14"><img height="30" width="14" src="../images/spacer.gif" alt=""></td>
-<td width="766"><img height="30" width="592" src="../images/spacer.gif" alt=""></td>
-</tr><tr>
-<td width="14"><img height="14" width="14" src="../images/spacer.gif" alt=""></td>
-<td width="766" class="copyright">&copy; Copyright The Seasar Foundation and the others 2004, all rights reserved.</td>
-</tr></table>
-<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
-<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
-<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
-</tr></table></body>
+</pre> <!-- document end --> <!-- don't edit start --></td>
+				<td width="14"><img height="14" width="14"
+					src="../images/spacer.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td width="14"><img height="30" width="14"
+					src="../images/spacer.gif" alt=""></td>
+				<td width="766"><img height="30" width="592"
+					src="../images/spacer.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td width="14"><img height="14" width="14"
+					src="../images/spacer.gif" alt=""></td>
+				<td width="766" class="copyright">Copyright&copy; 2004-2008,
+				The Seasar Foundation and the others. All rights reserved.</td>
+			</tr>
+		</table>
+		<td class="backright" align="left" valign="top">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="backunder" align="left" valign="top" width="780"
+			height="16">&nbsp;</td>
+		<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+	</tr>
+</table>
+</body>
 <!-- don't edit end -->
 </html>

@@ -2,189 +2,251 @@
 <html>
 <!-- don't edit start -->
 <head>
-<title>Seasar - DI Container with AOP - </title>
+<title>Seasar - DI Container with AOP -</title>
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<link href="../seasar_b.css" type="text/css" rel="stylesheet" media="screen">
-<link href="../seasar_p.css" type="text/css" rel="stylesheet" media="print">
-<script src="../seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
-</head><body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
-<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
-<tr><td colspan="7"><img height="5" width="780" src="../images/top01_b.gif" alt=""></td></tr>
-<tr><td><img height="117" width="235" src="../images/top02_b.gif" alt="Seasar"></td>
-<td colspan="3"><img height="117" width="289" src="../images/top03.gif" alt="DI Container with AOP"></td>
-<td colspan="3"><img height="117" width="256" src="../images/spacer.gif" alt=""></td>
-</tr><tr><td rowspan="2"><img src="../images/top04.gif" alt="" height="49" width="235"></td>
-<td><a href="http://www.seasar.org/index.html"><img src="../images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
-<td><a href="http://www.seasar.org/projects.html"><img src="../images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
-<td><a href="http://www.seasar.org/products.html"><img src="../images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
-<td><a href="http://www.seasar.org/resources.html"><img src="../images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
-<td><img src="../images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
-<td><img height="30" width="34" src="../images/menu06.gif" alt=""></td></tr><tr>
-<td colspan="6"><img height="19" width="545" src="../images/spacer.gif" alt=""></td></tr></table>
-<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
-<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="../images/spacer.gif" alt=""></td><td width="740" class="main">
-<!-- don't edit end -->
-<!-- document start -->
-<br>
-<h1><a name="reference">S2Axis2 クイックリファレンス</a></h1>
-<p>本ドキュメントは<code>S2Axis2</code>について記述しています。</p>
-<h2><a name="cot">目次</a></h2>
-<ul>
-  <li>
-    <a href="#ref-dicon">diconファイル</a>
-	<ul>
-	  <li><a href="#ref-dicon-meta">&lt;meta&gt;要素</a></li>
-      <li><a href="#ref-dicon-scope">スコープ</a></li>
-      <li><a href="#ref-dicon-component">コンポーネント</a></li>
-	</ul>
-  </li>
-  <li>
-    <a href="#ref-annotaion-rest">アノテーション（REST関連）</a>
-	<ul>
-	  <li><a href="#ref-annotaion-rest-RestUriTemplate">RestUriTemplate</a></li>
-	  <li><a href="#ref-annotaion-rest-RestMethod">RestMethod</a></li>
-	  <li><a href="#ref-annotaion-rest-RestUriParam">RestUriParam</a></li>
-	</ul>
-  </li>
-</ul>
+<link href="../seasar_b.css" type="text/css" rel="stylesheet"
+	media="screen">
+<link href="../seasar_p.css" type="text/css" rel="stylesheet"
+	media="print">
+<script src="../seasar_b.js" type="text/JavaScript"
+	language="JavaScript"></script>
+</head>
+<body onload="preload('ja')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0"
+	align="left">
+	<tr>
+		<td align="left" valign="top" width="780">
+		<table width="780" border="0" cellspacing="0" cellpadding="0"
+			class="white">
+			<tr>
+				<td colspan="7"><img height="5" width="780"
+					src="../images/top01_b.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td><img height="117" width="235" src="../images/top02_b.gif"
+					alt="Seasar"></td>
+				<td colspan="3"><img height="117" width="289"
+					src="../images/top03.gif" alt="DI Container with AOP"></td>
+				<td colspan="3"><img height="117" width="256"
+					src="../images/spacer.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td rowspan="2"><img src="../images/top04.gif" alt=""
+					height="49" width="235"></td>
+				<td><a href="http://www.seasar.org/index.html"><img
+					src="../images/menu01_b_ja.gif" height="30" width="78" border="0"
+					alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
+				<td><a href="http://www.seasar.org/projects.html"><img
+					src="../images/menu02_b_ja.gif" height="30" width="101" border="0"
+					alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
+				<td><a href="http://www.seasar.org/products.html"><img
+					src="../images/menu03_b_ja.gif" height="30" width="110" border="0"
+					alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
+				<td><a href="http://www.seasar.org/resources.html"><img
+					src="../images/menu04_b_ja.gif" height="30" width="113" border="0"
+					alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
+				<td><img src="../images/menu05_b_ja.gif" height="30"
+					width="109" border="0" alt="" id="menu05" onmouseover="swap(5)"
+					onmouseout="restore(5)"></td>
+				<td><img height="30" width="34" src="../images/menu06.gif"
+					alt=""></td>
+			</tr>
+			<tr>
+				<td colspan="6"><img height="19" width="545"
+					src="../images/spacer.gif" alt=""></td>
+			</tr>
+		</table>
+		<table width="780" border="0" cellspacing="0" cellpadding="0"
+			class="white">
+			<tr align="left" valign="top">
+				<td width="14"><img height="14" width="14"
+					src="../images/spacer.gif" alt=""></td>
+				<td width="740" class="main"><!-- don't edit end --> <!-- document start -->
+				<br>
+				<h1><a name="reference">S2Axis2 クイックリファレンス</a></h1>
+				<p>本ドキュメントは<code>S2Axis2</code>について記述しています。</p>
+				<h2><a name="cot">目次</a></h2>
+				<ul>
+					<li><a href="#ref-dicon">diconファイル</a>
+					<ul>
+						<li><a href="#ref-dicon-meta">&lt;meta&gt;要素</a></li>
+						<li><a href="#ref-dicon-scope">スコープ</a></li>
+						<li><a href="#ref-dicon-component">コンポーネント</a></li>
+					</ul>
+					</li>
+					<li><a href="#ref-annotaion-rest">アノテーション（REST関連）</a>
+					<ul>
+						<li><a href="#ref-annotaion-rest-RestUriTemplate">RestUriTemplate</a></li>
+						<li><a href="#ref-annotaion-rest-RestMethod">RestMethod</a></li>
+						<li><a href="#ref-annotaion-rest-RestUriParam">RestUriParam</a></li>
+					</ul>
+					</li>
+				</ul>
 
-<h2><a name="ref-dicon">diconファイル</a></h2>
+				<h2><a name="ref-dicon">diconファイル</a></h2>
 
-<h3>s2axis2.dicon</h3>
-<p>S2Axis2が提供するdiconファイルです。s2axis2-x.x.x.jarファイルの中に含まれているので、ロケーションを気にすることなくincludeすることができます。サーバが側では必須となります。</p>
+				<h3>s2axis2.dicon</h3>
+				<p>S2Axis2が提供するdiconファイルです。s2axis2-x.x.x.jarファイルの中に含まれているので、ロケーションを気にすることなくincludeすることができます。サーバが側では必須となります。</p>
 
-<h2><a name="ref-dicon-meta">&lt;meta&gt;要素</a></h2>
+				<h2><a name="ref-dicon-meta">&lt;meta&gt;要素</a></h2>
 
-<p>* C:クライアント／S:サーバ</p>
+				<p>* C:クライアント／S:サーバ</p>
 
-<h3><a name="ref-dicon-meta-components">&lt;components&gt;要素の下</a></h3>
-<table border="1" width="700">
-<col span="1" width="100" valign="middle">
-<col span="2" width="20" valign="middle" align="center">
-<col span="1" width="200" valign="middle">
-<tbody>
-<tr>
-<th>名前</th>
-<th>C</th>
-<th>S</th>
-<th>内容</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>axis-deploy</code></td>
-<td>×</td>
-<td>○</td>
-<td>文字列</td>
-<td>内容で指定された文字列をパス名とするservice.xmlファイルをAxisにデプロイします。ファイルのパス名はクラスパスからの相対パスで指定します。<br>
-service.xmlファイルの中で指定されたサービスやハンドラのインスタンス管理はAxisによって行われます。<br>
-</tr>
-</tbody>
-</table>
+				<h3><a name="ref-dicon-meta-components">&lt;components&gt;要素の下</a></h3>
+				<table border="1" width="700">
+					<col span="1" width="100" valign="middle">
+					<col span="2" width="20" valign="middle" align="center">
+					<col span="1" width="200" valign="middle">
+					<tbody>
+						<tr>
+							<th>名前</th>
+							<th>C</th>
+							<th>S</th>
+							<th>内容</th>
+							<th>説明</th>
+						</tr>
+						<tr>
+							<td><code>axis-deploy</code></td>
+							<td>×</td>
+							<td>○</td>
+							<td>文字列</td>
+							<td>内容で指定された文字列をパス名とするservice.xmlファイルをAxisにデプロイします。ファイルのパス名はクラスパスからの相対パスで指定します。<br>
+							service.xmlファイルの中で指定されたサービスやハンドラのインスタンス管理はAxisによって行われます。<br>
+						</tr>
+					</tbody>
+				</table>
 
-<h3><a name="ref-dicon-meta-component">&lt;component&gt;要素の下</a></h3>
-<table border="1" width="700">
-<col span="1" width="100" valign="middle">
-<col span="2" width="20" valign="middle" align="center">
-<col span="1" width="200" valign="middle">
-<thead>
-<tr>
-<th>プロパティ</th>
-<th>C</th>
-<th>S</th>
-<th>内容</th>
-<th>説明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td rowspan="2"><code>axis-service</code></td>
-<td rowspan="2">×</td>
-<td rowspan="2">○</td>
-<td>空</td>
-<td>親要素で記述されたコンポーネントをサービスとしてAxisにデプロイします。<br>
-コンポーネントがメソッドの定義されたインタフェースを実装している場合は、そのメソッドが公開されます。インタフェースを実装していなければ、<code>java.lang.Object</code>型で定義されているものを除いた<code>public</code>メソッドが公開されます。</td>
-</tr>
-<tr>
-<td><code>ServiceDef</code>型のコンポーネント</td>
-<td>親要素で記述されたコンポーネントをサービスとしてAxisにデプロイします。<br>
-詳細は<code>ServiceDef</code>の説明を参照してください。</td>
-</tr>
-</tbody>
-</table>
+				<h3><a name="ref-dicon-meta-component">&lt;component&gt;要素の下</a></h3>
+				<table border="1" width="700">
+					<col span="1" width="100" valign="middle">
+					<col span="2" width="20" valign="middle" align="center">
+					<col span="1" width="200" valign="middle">
+					<thead>
+						<tr>
+							<th>プロパティ</th>
+							<th>C</th>
+							<th>S</th>
+							<th>内容</th>
+							<th>説明</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2"><code>axis-service</code></td>
+							<td rowspan="2">×</td>
+							<td rowspan="2">○</td>
+							<td>空</td>
+							<td>親要素で記述されたコンポーネントをサービスとしてAxisにデプロイします。<br>
+							コンポーネントがメソッドの定義されたインタフェースを実装している場合は、そのメソッドが公開されます。インタフェースを実装していなければ、<code>java.lang.Object</code>型で定義されているものを除いた<code>public</code>メソッドが公開されます。</td>
+						</tr>
+						<tr>
+							<td><code>ServiceDef</code>型のコンポーネント</td>
+							<td>親要素で記述されたコンポーネントをサービスとしてAxisにデプロイします。<br>
+							詳細は<a href="#ref-dicon-compo-servicedef"><code>ServiceDef</code></a>の説明を参照してください。</td>
+						</tr>
+					</tbody>
+				</table>
 
-<h2><a name="ref-dicon-scope">スコープ</a></h2>
-<p>S2コンテナが管理コンポーネントのスコープ（diconファイルで指定するinstance属性）と、Axis2が管理するスコープの対応は以下のとおりです。</p>
-<table border="1">
-<tr><th>S2のinstance属性</th><th>Axis2のスコープ</th></tr>
-<tr><td>singleton</td><td>application</td></tr>
-<tr><td>application</td><td>application</td></tr>
-<tr><td>session</td><td>transport session</td></tr>
-<tr><td>request</td><td>request</td></tr>
-<tr><td>prototype</td><td>request</td></tr>
-</table>
+				<h2><a name="ref-dicon-scope">スコープ</a></h2>
+				<p>S2コンテナが管理コンポーネントのスコープ（diconファイルで指定するinstance属性）と、Axis2が管理するスコープの対応は以下のとおりです。</p>
+				<table border="1">
+					<tr>
+						<th>S2のinstance属性</th>
+						<th>Axis2のスコープ</th>
+					</tr>
+					<tr>
+						<td>singleton</td>
+						<td>application</td>
+					</tr>
+					<tr>
+						<td>application</td>
+						<td>application</td>
+					</tr>
+					<tr>
+						<td>session</td>
+						<td>transport session</td>
+					</tr>
+					<tr>
+						<td>request</td>
+						<td>request</td>
+					</tr>
+					<tr>
+						<td>prototype</td>
+						<td>request</td>
+					</tr>
+				</table>
 
-<h2><a name="ref-dicon-component">コンポーネント</a></h2>
+				<h2><a name="ref-dicon-component">コンポーネント</a></h2>
 
-<h3><code><a name="ref-dicon-compo-servicedef">org.seasar.remoting.axis2.ServiceDef</a></code></h3>
-<p>サーバ側で使用するコンポーネントで、<code>&lt;meta&gt;</code>要素の内容に設定されます。サービスとして公開するコンポーネントの詳細を指定するために使われます。</p>
-<h4>プロパティ</h4>
-<table border="1" width="700">
-<col span="1" width="120">
-<col span="1" width="80">
-<thead>
-<tr>
-<th>プロパティ</th>
-<th>型</th>
-<th>説明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>serviceType</code></td>
-<td><code>Class</code></td>
-<td>公開するサービスの型を指定します。特定のインタフェース型を指定することで、不要なメソッドが公開されることを防ぐことが出来ます。<br>
-省略するとコンポーネントの型になります。ただし、コンポーネントがメソッドの定義されたインタフェースを一つだけ実装している場合には、そのインタフェース型になります。</td>
-</tr>
-<tr>
-<td><code>targetNamespace</code></td>
-<td><code>String</code></td>
-<td>targetNamespace を指定します。省略した場合は、デフォルト値の&quot;http://ws.apache.org/axis2&quot;が使用されます。</td>
-</tr>
-<tr>
-<td>schemaNamespace</td>
-<td><code>String</code></td>
-<td>スキーマの名前空間を指定します。省略した場合は、サービスのパッケージ名を利用した値が使用されます。</td>
-</tr>
-<tr>
-<td>excludeOperations</td>
-<td>Stringのリスト</td>
-<td>公開しないメソッドの名前を指定します。String型のリストとして指定します。</td>
-</tr>
-</tbody>
-</table>
-<h4>メソッド</h4>
-<table border="1" width="700">
-<tbody>
-<tr>
-<th>メソッド</th>
-<th>説明</th>
-</tr>
-<tr>
-<td>addMessageReceiver</td>
-<td>
-サービスが使用する、デフォルトのMessageReciverを指定します。以下の引数を指定します。<br>
-<ol>
-<li>MEP（Message Exchange Pattern）</li>
-<li>org.apache.axis2.engine.MessageReceiverを継承したコンポーネント</li>
-</ol>
-</td>
-</tr>
-</tbody>
-</table>
+				<h3><a name="ref-dicon-compo-servicedef">org.seasar.remoting.axis2.ServiceDef</a></h3>
+				<p>サーバ側で使用するコンポーネントで、<code>&lt;meta&gt;</code>要素の内容に設定されます。サービスとして公開するコンポーネントの詳細を指定するために使われます。</p>
+				<h4>プロパティ</h4>
+				<table border="1" width="700">
+					<col span="1" width="120">
+					<col span="1" width="80">
+					<thead>
+						<tr>
+							<th>プロパティ</th>
+							<th>型</th>
+							<th>説明</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>serviceType</code></td>
+							<td><code>Class</code></td>
+							<td>公開するサービスの型を指定します。特定のインタフェース型を指定することで、不要なメソッドが公開されることを防ぐことが出来ます。<br>
+							省略するとコンポーネントの型になります。ただし、コンポーネントがメソッドの定義されたインタフェースを一つだけ実装している場合には、そのインタフェース型になります。</td>
+						</tr>
+						<tr>
+							<td><code>targetNamespace</code></td>
+							<td><code>String</code></td>
+							<td>targetNamespace
+							を指定します。省略した場合は、デフォルト値の&quot;http://ws.apache.org/axis2&quot;が使用されます。</td>
+						</tr>
+						<tr>
+							<td>schemaNamespace</td>
+							<td><code>String</code></td>
+							<td>スキーマの名前空間を指定します。省略した場合は、サービスのパッケージ名を利用した値が使用されます。</td>
+						</tr>
+						<tr>
+							<td>excludeOperations</td>
+							<td>Stringのリスト</td>
+							<td>公開しないメソッドの名前を指定します。String型のリストとして指定します。</td>
+						</tr>
+					</tbody>
+				</table>
+				<h4>メソッド</h4>
+				<table border="1" width="700">
+					<tbody>
+						<tr>
+							<th>メソッド</th>
+							<th>説明</th>
+						</tr>
+						<tr>
+							<td>addMessageReceiver</td>
+							<td>サービスが使用する、デフォルトのMessageReciverを指定します。以下の引数を指定します。<br>
+							<ol>
+								<li>MEP（Message Exchange Pattern）</li>
+								<li>org.apache.axis2.engine.MessageReceiverを継承したコンポーネント</li>
+							</ol>
+							</td>
+						</tr>
+						<tr>
+							<td>addParameter</td>
+							<td>サービスが使用するパラメータを指定します。以下の引数を指定します。<br>
+							<ol>
+								<li>パラメータ名</li>
+								<li>パラメータ値</li>
+							</ol>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
-<h4>diconファイルの定義例</h4>
-<pre style="overflow:auto;height:200">
+				<h4>diconファイルの定義例</h4>
+				<pre style="overflow: auto; height: 200">
 &lt;component name="Echo" class="org.seasar.remoting.axis2.examples.ex01.EchoImpl"&gt;
     &lt;meta name="axis-service"&gt;
         &lt;component class="org.seasar.remoting.axis2.ServiceDef"&gt;
@@ -206,142 +268,177 @@ service.xmlファイルの中で指定されたサービスやハンドラのインスタンス管理はAxisに�
 &lt;/component&gt;
 </pre>
 
-<h3><a name="ref-dicon-compo-connector">org.seasar.remoting.axis.connector.AbstractAxisConnector</a></h3>
-<p>クライアント側で使用するコンポーネントで、Web サービスへの動的な接続に使用される抽象クラスです。
-このクラスを継承して、独自の<code>Connector</code>を作成することも可能です。</p>
-<h4>プロパティ</h4>
-<table border="1" width="700">
-<col span="1" width="120">
-<col span="1" width="80">
-<tbody>
-<tr>
-<th>プロパティ</th>
-<th>型</th>
-<th>説明</th>
-</tr>
-<tr>
-<td><code>properties</code></td>
-<td><code>java.util.Properties</code></td>
-<td>Axis2で利用するシステムプロパティを指定します。
-Axis2のリポジトリや設定ファイルであるaxis2.xmlのパス指定に利用します。</td>
-</tr>
-<tr>
-<td><code>options</code></td>
-<td><code>org.apache.axis2.client.Options</code></td>
-<td>Axis2のクライアントで指定するオプションを指定します。</td>
-</tr>
-<td><code>baseURL</code></td>
-<td><code>String</code></td>
-<td>接続するサービスの基礎になるURLを指定します。<br>
-このURLと、S2RemotinのRemotingInterceptorをアスペクトとして設定されたプロキシコンポーネントの名前
-(&lt;component&gt;要素のname属性の値) を連結したURLが、接続するサービスのURLとなります。</td>
-</tr>
-<tr>
-<td><code>timeout</code></td>
-<td><code>int</code></td>
-<td>サービス呼び出し時のタイムアウト値（ミリ秒）を指定します。</td>
-</tr>
-</tbody>
+				<h3><a name="ref-dicon-compo-connector">org.seasar.remoting.axis.connector.AbstractAxisConnector</a></h3>
+				<p>クライアント側で使用するコンポーネントで、Web サービスへの動的な接続に使用される抽象クラスです。
+				このクラスを継承して、独自の<code>Connector</code>を作成することも可能です。</p>
+				<h4>プロパティ</h4>
+				<table border="1" width="700">
+					<col span="1" width="120">
+					<col span="1" width="80">
+					<tbody>
+						<tr>
+							<th>プロパティ</th>
+							<th>型</th>
+							<th>説明</th>
+						</tr>
+						<tr>
+							<td><code>properties</code></td>
+							<td><code>java.util.Properties</code></td>
+							<td>Axis2で利用するシステムプロパティを指定します。
+							Axis2のリポジトリや設定ファイルであるaxis2.xmlのパス指定に利用します。</td>
+						</tr>
+						<tr>
+							<td><code>options</code></td>
+							<td><code>org.apache.axis2.client.Options</code></td>
+							<td>Axis2のクライアントで指定するオプションを指定します。</td>
+						</tr>
+						<tr>
+							<td><code>baseURL</code></td>
+							<td><code>String</code></td>
+							<td>接続するサービスの基礎になるURLを指定します。<br>
+							このURLと、S2RemotinのRemotingInterceptorをアスペクトとして設定されたプロキシコンポーネントの名前
+							(&lt;component&gt;要素のname属性の値) を連結したURLが、接続するサービスのURLとなります。</td>
+						</tr>
+						<tr>
+							<td><code>timeout</code></td>
+							<td><code>int</code></td>
+							<td>サービス呼び出し時のタイムアウト値（ミリ秒）を指定します。</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3><a name="ref-dicon-compo-interceptor">org.seasar.remoting.common.interceptor.RemotingInterceptor</a></h3>
+				<p>S2Remotingが提供するコンポーネントです。<br>
+				クライアント側でWebサービスをコンポーネントとして使用する場合に、このコンポーネントをアスペクトとして使用します。</p>
+
+				<h3><a name="ref-dicon-compo-s2axisclientcontext">org.seasar.remoting.axis2.client.S2AxisClientContext</a></h3>
+				<p>クライアント側で、動的にパラメータを指定するために使われます。</p>
+				<h4>プロパティ</h4>
+				<table border="1" width="700">
+					<col span="1" width="120">
+					<col span="1" width="80">
+					<thead>
+						<tr>
+							<th>プロパティ</th>
+							<th>型</th>
+							<th>説明</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>endpointURL</code></td>
+							<td><code>String</code></td>
+							<td>サービスに接続するURLです。nullを指定した場合は、dicon定義で指定されたものが利用されます。</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h2><a name="ref-annotaion-rest">アノテーション（REST関連）</a></h2>
+				REST形式で、サービスにアクセスする際に必要となるアノテーションです。このアノテーションは、 将来的に<a
+					href="http://jcp.org/en/jsr/detail?id=311">JAX-RS（JSR311）</a>に置き換わる可能性があります。
+
+				<h3><a name="ref-annotaion-rest-RestUriTemplate">org.seasar.remoting.axis2.annotation.RestUriTemplate</a></h3>
+				<dl>
+					<dt><b>適用対象</b></dt>
+					<dd>サービスのインタフェース</dd>
+				</dl>
+				<br>
+				<table border="1" width="700">
+					<col span="1" width="150">
+					<col span="1" width="150">
+					<col span="1" width="400">
+					<tr>
+						<th scope="col">プロパティ</th>
+						<th scope="col">デフォルト値</th>
+						<th scope="col">説明</th>
+					</tr>
+					<tr>
+						<td>value</td>
+						<td>サービスのインタフェース名</td>
+						<td>公開されるサービスのリソース名（=サービス名）です。</td>
+					</tr>
+				</table>
+
+				<h3><a name="ref-annotaion-rest-RestMethod">org.seasar.remoting.axis2.annotation.RestMethod</a></h3>
+				<dl>
+					<dt><b>適用対象</b></dt>
+					<dd>サービスのメソッド</dd>
+				</dl>
+				<br>
+				<table border="1" width="700">
+					<col span="1" width="150">
+					<col span="1" width="150">
+					<col span="1" width="400">
+					<tr>
+						<th scope="col">プロパティ</th>
+						<th scope="col">デフォルト値</th>
+						<th scope="col">説明</th>
+					</tr>
+					<tr>
+						<td>name</td>
+						<td>サービスのメソッド名</td>
+						<td>URIに付加されるサービスのメソッド名です。</td>
+					</tr>
+					<tr>
+						<td>httpMethod</td>
+						<td>サービスのメソッド名から自動判別</td>
+						<td>リクエストで指定されるHTTPメソッドです。通常は、サービスのメソッド名から自動判別されますが、明示的に指定したい場合に利用します。</td>
+					</tr>
+					<tr>
+						<td>contentType</td>
+						<td>サービスのメソッド名から自動判別</td>
+						<td>リクエストのHTTPヘッダで指定されるContent-Typeです。通常は、サービスのメソッド名から自動判別されますが、明示的に指定したい場合に利用します。</td>
+					</tr>
+				</table>
+
+				<h3><a name="ref-annotaion-rest-RestUriParam">org.seasar.remoting.axis2.annotation.RestUriParam</a></h3>
+				<dl>
+					<dt><b>適用対象</b></dt>
+					<dd>サービスのメソッド引数がDTOの場合はDTOのプロパティ、シンプルタイプ（プリミティブ型およびそのラッパ型、java.util.Date／java.util.Calendarの日付型）のパラメータの場合は引数自体</dd>
+				</dl>
+				<br>
+				<table border="1" width="700">
+					<col span="1" width="150">
+					<col span="1" width="150">
+					<col span="1" width="400">
+					<tr>
+						<th scope="col">プロパティ</th>
+						<th scope="col">デフォルト値</th>
+						<th scope="col">説明</th>
+					</tr>
+					<tr>
+						<td>value</td>
+						<td>引数名</td>
+						<td>リクエストで指定されるパラメータ名です。サービスの引数がシンプルタイプのパラメータの場合は、必ず指定する必要があります。</td>
+					</tr>
+				</table>
+
+				<!-- document end --> <!-- don't edit start --></td>
+				<td width="14"><img height="14" width="14"
+					src="../images/spacer.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td width="14"><img height="30" width="14"
+					src="../images/spacer.gif" alt=""></td>
+				<td width="766"><img height="30" width="592"
+					src="../images/spacer.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td width="14"><img height="14" width="14"
+					src="../images/spacer.gif" alt=""></td>
+				<td width="766" class="copyright">Copyright&copy; 2004-2008,
+				The Seasar Foundation and the others. All rights reserved.</td>
+			</tr>
+		</table>
+		<td class="backright" align="left" valign="top">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="backunder" align="left" valign="top" width="780"
+			height="16">&nbsp;</td>
+		<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+	</tr>
 </table>
-
-<h3><a name="ref-dicon-compo-interceptor">org.seasar.remoting.common.interceptor.RemotingInterceptor</a></h3>
-<p>S2Remotingが提供するコンポーネントです。<br>
-クライアント側でWebサービスをコンポーネントとして使用する場合に、このコンポーネントをアスペクトとして使用します。</p>
-
-<h2><a name="ref-annotaion-rest">アノテーション（REST関連）</a></h2>
-REST形式で、サービスにアクセスする際に必要となるアノテーションです。このアノテーションは、
-将来的に<a href="http://jcp.org/en/jsr/detail?id=311">JAX-RS（JSR311）</a>に置き換わる可能性があります。
-
-<h3><a name="ref-annotaion-rest-RestUriTemplate">org.seasar.remoting.axis2.annotation.RestUriTemplate</a></h3>
-<dl>
-  <dt><b>適用対象</b></dt>
-  <dd>サービスのインタフェース</dd>
-</dl>
-<br>
-<table border="1" width="700">
-  <col span="1" width="150">
-  <col span="1" width="150">
-  <col span="1" width="400">
-  <tr>
-    <th scope="col">プロパティ</th>
-    <th scope="col">デフォルト値</th>
-    <th scope="col">説明</th>
-  </tr>
-  <tr>
-    <td>value</td>
-    <td>サービスのインタフェース名</td>
-    <td>公開されるサービスのリソース名（=サービス名）です。</td>
-  </tr>
-</table>
-
-<h3><a name="ref-annotaion-rest-RestMethod">org.seasar.remoting.axis2.annotation.RestMethod</a></h3>
-<dl>
-  <dt><b>適用対象</b></dt>
-  <dd>サービスのメソッド</dd>
-</dl>
-<br>
-<table border="1" width="700">
-  <col span="1" width="150">
-  <col span="1" width="150">
-  <col span="1" width="400">
-  <tr>
-    <th scope="col">プロパティ</th>
-    <th scope="col">デフォルト値</th>
-    <th scope="col">説明</th>
-  </tr>
-  <tr>
-    <td>name</td>
-    <td>サービスのメソッド名</td>
-    <td>URIに付加されるサービスのメソッド名です。</td>
-  </tr>
-  <tr>
-    <td>httpMethod</td>
-    <td>サービスのメソッド名から自動判別</td>
-    <td>リクエストで指定されるHTTPメソッドです。通常は、サービスのメソッド名から自動判別されますが、明示的に指定したい場合に利用します。</td>
-  </tr>
-  <tr>
-    <td>contentType</td>
-    <td>サービスのメソッド名から自動判別</td>
-    <td>リクエストのHTTPヘッダで指定されるContent-Typeです。通常は、サービスのメソッド名から自動判別されますが、明示的に指定したい場合に利用します。</td>
-  </tr>
-</table>
-
-<h3><a name="ref-annotaion-rest-RestUriParam">org.seasar.remoting.axis2.annotation.RestUriParam</a></h3>
-<dl>
-  <dt><b>適用対象</b></dt>
-  <dd>サービスのメソッド引数がDTOの場合はDTOのプロパティ、シンプルタイプ（プリミティブ型およびそのラッパ型、java.util.Date／java.util.Calendarの日付型）のパラメータの場合は引数自体</dd>
-</dl>
-<br>
-<table border="1" width="700">
-  <col span="1" width="150">
-  <col span="1" width="150">
-  <col span="1" width="400">
-  <tr>
-    <th scope="col">プロパティ</th>
-    <th scope="col">デフォルト値</th>
-    <th scope="col">説明</th>
-  </tr>
-  <tr>
-    <td>value</td>
-    <td>引数名</td>
-    <td>リクエストで指定されるパラメータ名です。サービスの引数がシンプルタイプのパラメータの場合は、必ず指定する必要があります。</td>
-  </tr>
-</table>
-
-  <!-- document end -->
-  <!-- don't edit start -->
-</td>
-<td width="14"><img height="14" width="14" src="../images/spacer.gif" alt=""></td>
-</tr><tr>
-<td width="14"><img height="30" width="14" src="../images/spacer.gif" alt=""></td>
-<td width="766"><img height="30" width="592" src="../images/spacer.gif" alt=""></td>
-</tr><tr>
-<td width="14"><img height="14" width="14" src="../images/spacer.gif" alt=""></td>
-<td width="766" class="copyright">&copy; Copyright The Seasar Foundation and the others 2004、 all rights reserved.</td>
-</tr></table>
-<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
-<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
-<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
-</tr></table></body>
+</body>
 <!-- don't edit end -->
 </html>

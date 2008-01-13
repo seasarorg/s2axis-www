@@ -2,47 +2,88 @@
 <html>
 <!-- don't edit start -->
 <head>
-<title>Seasar - DI Container with AOP - </title>
+<title>Seasar - DI Container with AOP -</title>
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<link href="../../seasar_b.css" type="text/css" rel="stylesheet" media="screen">
-<link href="../../seasar_p.css" type="text/css" rel="stylesheet" media="print">
-<script src="../../seasar_b.js" type="text/JavaScript" language="JavaScript"></script>
+<link href="../../seasar_b.css" type="text/css" rel="stylesheet"
+	media="screen">
+<link href="../../seasar_p.css" type="text/css" rel="stylesheet"
+	media="print">
+<script src="../../seasar_b.js" type="text/JavaScript"
+	language="JavaScript"></script>
 </head>
-<body onload="preload('ja')"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left"><tr>
-<td align="left" valign="top" width="780"><table width="780" border="0" cellspacing="0" cellpadding="0" class="white">
-<tr><td colspan="7"><img height="5" width="780" src="../images/top01_b.gif" alt=""></td></tr>
-<tr><td><img height="117" width="235" src="../../images/top02_b.gif" alt="Seasar"></td>
-<td colspan="3"><img height="117" width="289" src="../../images/top03.gif" alt="DI Container with AOP"></td>
-<td colspan="3"><img height="117" width="256" src="../../images/spacer.gif" alt=""></td>
-</tr><tr><td rowspan="2"><img src="../../images/top04.gif" alt="" height="49" width="235"></td>
-<td><a href="http://www.seasar.org/index.html"><img src="../../images/menu01_b_ja.gif" height="30" width="78" border="0" alt="" id="menu01" onmouseover="swap(1)" onmouseout="restore(1)"></a></td>
-<td><a href="http://www.seasar.org/projects.html"><img src="../../images/menu02_b_ja.gif" height="30" width="101" border="0" alt="" id="menu02" onmouseover="swap(2)" onmouseout="restore(2)"></a></td>
-<td><a href="http://www.seasar.org/products.html"><img src="../../images/menu03_b_ja.gif" height="30" width="110" border="0" alt="" id="menu03" onmouseover="swap(3)" onmouseout="restore(3)"></a></td>
-<td><a href="http://www.seasar.org/resources.html"><img src="../../images/menu04_b_ja.gif" height="30" width="113" border="0" alt="" id="menu04" onmouseover="swap(4)" onmouseout="restore(4)"></a></td>
-<td><img src="../../images/menu05_b_ja.gif" height="30" width="109" border="0" alt="" id="menu05" onmouseover="swap(5)" onmouseout="restore(5)"></td>
-<td><img height="30" width="34" src="../../images/menu06.gif" alt=""></td></tr><tr>
-<td colspan="6"><img height="19" width="545" src="../../images/spacer.gif" alt=""></td></tr></table>
-<table  width="780" border="0" cellspacing="0" cellpadding="0" class="white">
-<tr align="left" valign="top"><td width="14"><img height="14" width="14" src="../../images/spacer.gif" alt=""></td><td width="740" class="main">
-<!-- don't edit end -->
-<!-- document start -->
-<br>
-<h1><a name="guide">S2Axis2 基本的な使い方</a></h1>
-<p>本ドキュメントは<code>S2Axis2の基本的な使い方</code>について記述しています。</p>
+<body onload="preload('ja')">
+<table width="100%" border="0" cellspacing="0" cellpadding="0"
+	align="left">
+	<tr>
+		<td align="left" valign="top" width="780">
+		<table width="780" border="0" cellspacing="0" cellpadding="0"
+			class="white">
+			<tr>
+				<td colspan="7"><img height="5" width="780"
+					src="../images/top01_b.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td><img height="117" width="235"
+					src="../../images/top02_b.gif" alt="Seasar"></td>
+				<td colspan="3"><img height="117" width="289"
+					src="../../images/top03.gif" alt="DI Container with AOP"></td>
+				<td colspan="3"><img height="117" width="256"
+					src="../../images/spacer.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td rowspan="2"><img src="../../images/top04.gif" alt=""
+					height="49" width="235"></td>
+				<td><a href="http://www.seasar.org/index.html"><img
+					src="../../images/menu01_b_ja.gif" height="30" width="78"
+					border="0" alt="" id="menu01" onmouseover="swap(1)"
+					onmouseout="restore(1)"></a></td>
+				<td><a href="http://www.seasar.org/projects.html"><img
+					src="../../images/menu02_b_ja.gif" height="30" width="101"
+					border="0" alt="" id="menu02" onmouseover="swap(2)"
+					onmouseout="restore(2)"></a></td>
+				<td><a href="http://www.seasar.org/products.html"><img
+					src="../../images/menu03_b_ja.gif" height="30" width="110"
+					border="0" alt="" id="menu03" onmouseover="swap(3)"
+					onmouseout="restore(3)"></a></td>
+				<td><a href="http://www.seasar.org/resources.html"><img
+					src="../../images/menu04_b_ja.gif" height="30" width="113"
+					border="0" alt="" id="menu04" onmouseover="swap(4)"
+					onmouseout="restore(4)"></a></td>
+				<td><img src="../../images/menu05_b_ja.gif" height="30"
+					width="109" border="0" alt="" id="menu05" onmouseover="swap(5)"
+					onmouseout="restore(5)"></td>
+				<td><img height="30" width="34" src="../../images/menu06.gif"
+					alt=""></td>
+			</tr>
+			<tr>
+				<td colspan="6"><img height="19" width="545"
+					src="../../images/spacer.gif" alt=""></td>
+			</tr>
+		</table>
+		<table width="780" border="0" cellspacing="0" cellpadding="0"
+			class="white">
+			<tr align="left" valign="top">
+				<td width="14"><img height="14" width="14"
+					src="../../images/spacer.gif" alt=""></td>
+				<td width="740" class="main"><!-- don't edit end --> <!-- document start -->
+				<br>
+				<h1><a name="guide">S2Axis2 基本的な使い方</a></h1>
+				<p>本ドキュメントは<code>S2Axis2の基本的な使い方</code>について記述しています。</p>
 
-<h2><a name="cot">目次</a></h2>
-<ul>
-<li><a href="#webapp">Webアプリケーションの設定</a></li>
-<li><a href="#config-server">サーバ側の設定</a></li>
-<li><a href="#config-client">クライアント側の設定</a></li>
-</ul>
+				<h2><a name="cot">目次</a></h2>
+				<ul>
+					<li><a href="#webapp">Webアプリケーションの設定</a></li>
+					<li><a href="#config-server">サーバ側の設定</a></li>
+					<li><a href="#config-client">クライアント側の設定</a></li>
+				</ul>
 
-<h2><a name="webapp">Webアプリケーションの設定</a></h2>
-<p>S2Axis2を使用するには、Axis2およびS2を<code>web.xml</code>に設定する必要があります。Axis2およびS2の設定の詳細はそれぞれのドキュメントを参照してください。</p>
-<p> S2Axis2はS2コンテナの初期化時にコンポーネントをAxisに登録します。このため、S2よりも先にAxis2が初期化されている必要があります。そのためには、Axis2が提供するサーブレットの<code>load-on-startup</code>をS2よりも小さくします。</p>
-<p>以下はS2Axis2Examplesに含まれている<code>web.xml</code>です。このサンプルでは、Axis2の<code>load-on-startup</code>を10、S2の<code>load-on-startup</code>を20に設定しています。ただし、S2Axisの場合と、Axis2のサーブレット部分の設定内容が異なっている点に注意してください。</p>
-<pre style="overflow:auto;height:200">
+				<h2><a name="webapp">Webアプリケーションの設定</a></h2>
+				<p>S2Axis2を使用するには、Axis2およびS2を<code>web.xml</code>に設定する必要があります。Axis2およびS2の設定の詳細はそれぞれのドキュメントを参照してください。</p>
+				<p>
+				S2Axis2はS2コンテナの初期化時にコンポーネントをAxisに登録します。このため、S2よりも先にAxis2が初期化されている必要があります。そのためには、Axis2が提供するサーブレットの<code>load-on-startup</code>をS2よりも小さくします。</p>
+				<p>以下はS2Axis2Examplesに含まれている<code>web.xml</code>です。このサンプルでは、Axis2の<code>load-on-startup</code>を10、S2の<code>load-on-startup</code>を20に設定しています。ただし、S2Axisの場合と、Axis2のサーブレット部分の設定内容が異なっている点に注意してください。</p>
+				<pre style="overflow: auto; height: 200">
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;web-app id=&quot;WebApp_ID&quot; version=&quot;2.4&quot;
     xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
@@ -135,16 +176,15 @@
 &lt;/web-app&gt;
 </pre>
 
-<h2><a name="config-server">サーバ側の設定</a></h2>
+				<h2><a name="config-server">サーバ側の設定</a></h2>
 
-<h3>公開するサービスクラス</h3>
-<p>POJOのクラスを、Webサービスとして公開することが可能です。サービスは、公開するインタフェースと、その実装クラスに分けて作成します。</p>
-<pre>
+				<h3>公開するサービスクラス</h3>
+				<p>POJOのクラスを、Webサービスとして公開することが可能です。サービスは、公開するインタフェースと、その実装クラスに分けて作成します。</p>
+				<pre>
 public interface Echo {
     String echo(int id, String message);
 }
-</pre>
-<pre>
+</pre> <pre>
 public class EchoImpl implements Echo {
     public String echo(int id, String message) {
         return &quot;[id = &quot; + id + &quot;] &quot; + message;
@@ -152,45 +192,45 @@ public class EchoImpl implements Echo {
 }
 </pre>
 
-<h3>dicon定義</h3>
-<p>S2Axis2を使用するサーバ側では、<code>app.dicon</code>ファイルの中で<code>s2axis2.dicon</code>ファイルをインクルードします。</p>
-<pre>&lt;components&gt;
+				<h3>dicon定義</h3>
+				<p>S2Axis2を使用するサーバ側では、<code>app.dicon</code>ファイルの中で<code>s2axis2.dicon</code>ファイルをインクルードします。</p>
+				<pre>&lt;components&gt;
     <strong>&lt;include path=&quot;s2axis2.dicon&quot;/&gt;</strong>
     ・・・
 &lt;/components&gt;</pre>
-<p><code>s2axis2.dicon</code>は<code>s2axis2-x.x.x.jar</code>の中に含まれているため、ロケーションを気にする必要はありません。</p>
+				<p><code>s2axis2.dicon</code>は<code>s2axis2-x.x.x.jar</code>の中に含まれているため、ロケーションを気にする必要はありません。</p>
 
-<h3>サービスのデプロイ（コンポーネント定義）</h3>
-<p>S2コンテナで管理しているコンポーネントをWebサービスとしてAxis2にデプロイするには、そのコンポーネントの<code>&lt;component&gt;</code>要素の子として<code>&lt;meta&gt;</code>要素を指定します。</p>
-<p class="point">公開するサービスのコンポーネント定義には、実装クラスを指定します。</p>
-<pre>    &lt;component <strong>name=&quot;Echo&quot;</strong> class=&quot;org.seasar.remoting.axis2.examples.ex01.EchoImpl&quot;&gt;
+				<h3>サービスのデプロイ（コンポーネント定義）</h3>
+				<p>S2コンテナで管理しているコンポーネントをWebサービスとしてAxis2にデプロイするには、そのコンポーネントの<code>&lt;component&gt;</code>要素の子として<code>&lt;meta&gt;</code>要素を指定します。</p>
+				<p class="point">公開するサービスのコンポーネント定義には、実装クラスを指定します。</p>
+				<pre>    &lt;component <strong>name=&quot;Echo&quot;</strong> class=&quot;org.seasar.remoting.axis2.examples.ex01.EchoImpl&quot;&gt;
         <strong>&lt;meta name=&quot;axis-service&quot;/&gt;</strong>
     &lt;/component&gt;</pre>
-<p><code>&lt;component&gt;</code>要素の<code>name</code>属性は必須です。公開されるサービスのURLは次のようになります。</p>
-<dl>
-<dt>diconファイルに名前空間が指定されていない場合
-<dd><code><var>context-path</var>/services/<var>name</var></code>
-<dt>diconファイルに名前空間が指定されている場合
-<dd><code><var>context-path</var>/services/<var>namespace</var>/<var>name</var></code>
-</dl>
+				<p><code>&lt;component&gt;</code>要素の<code>name</code>属性は必須です。公開されるサービスのURLは次のようになります。</p>
+				<dl>
+					<dt>diconファイルに名前空間が指定されていない場合
+					<dd><code><var>context-path</var>/services/<var>name</var></code>
+					<dt>diconファイルに名前空間が指定されている場合
+					<dd><code><var>context-path</var>/services/<var>namespace</var>/<var>name</var></code>
+				</dl>
 
-<h3>サービスのデプロイ（service.xmlでの定義）</h3>
-<p>
-Axis2では、service.xmlファイルを使用してサービスをデプロイしますが、S2Axis2でも、そのファイルを指定してサービスをデプロイすることができます。
-この場合、<code>&lt;component&gt;</code>要素ではなく、<code>&lt;meta&gt;</code>要素を指定します。
-</p>
-<pre>
+				<h3>サービスのデプロイ（service.xmlでの定義）</h3>
+				<p>
+				Axis2では、service.xmlファイルを使用してサービスをデプロイしますが、S2Axis2でも、そのファイルを指定してサービスをデプロイすることができます。
+				この場合、<code>&lt;component&gt;</code>要素ではなく、<code>&lt;meta&gt;</code>要素を指定します。
+				</p>
+				<pre>
     &lt;meta name="axis-deploy"&gt;"org/seasar/remoting/axis2/examples/ex05/service.xml"&lt;/meta&gt;
 </pre>
-<p>service.xmlの記述の仕方は、Axis2で利用するものと変わりません。</p>
+				<p>service.xmlの記述の仕方は、Axis2で利用するものと変わりません。</p>
 
-<h2><a name="config-client">クライアント側の設定</a></h2>
+				<h2><a name="config-client">クライアント側の設定</a></h2>
 
-<h3>サービスの呼び出し</h3>
-<p>
-POJOのクラスをサービスとして公開しているため、クライアント側でも、通常のクラスを呼び出すのと同様の処理で、サービスを呼び出すことが可能です。
-</p>
-<pre>
+				<h3>サービスの呼び出し</h3>
+				<p>
+				POJOのクラスをサービスとして公開しているため、クライアント側でも、通常のクラスを呼び出すのと同様の処理で、サービスを呼び出すことが可能です。
+				</p>
+				<pre>
 public class EchoClient {
 
     private Echo service;
@@ -221,12 +261,10 @@ public class EchoClient {
 }
 </pre>
 
-<h3>dicon定義</h3>
-<p>
-S2Axis2を使うことで、Webサービスをコンポーネントとして使用することが出来ます。
-Javaインタフェースを使用してサービスを呼び出すには、diconファイルを次のように記述します。
-</p>
-<pre style="overflow-y:auto;height:200">
+				<h3>dicon定義</h3>
+				<p>S2Axis2を使うことで、Webサービスをコンポーネントとして使用することが出来ます。
+				Javaインタフェースを使用してサービスを呼び出すには、diconファイルを次のように記述します。</p>
+				<pre style="overflow-y: auto; height: 200">
 &lt;!-- リモート呼び出しのインターセプタ --&gt;
 &lt;component name=&quot;remoting&quot;
            class=&quot;org.seasar.remoting.common.interceptor.RemotingInterceptor&quot;/&gt;
@@ -247,33 +285,35 @@ Javaインタフェースを使用してサービスを呼び出すには、diconファイルを次のように記�
     &lt;aspect&gt;remoting&lt;/aspect&gt;
 &lt;/component&gt;
 </pre>
-<p> 呼び出すWebサービスごとにプロキシが必要です。プロキシの<code>&lt;component&gt;</code>要素の<code>class</code>属性にはWebサービスのJavaインタフェースを指定します。このコンポーネントには<code>RemotingInterceptor</code>をアスペクトとして指定します。プロキシはWebサービスのインタフェースごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
-<p><code>RemotingInterceptor</code>はプロキシのメソッド呼び出しを横取りし、Axisコネクタを呼び出します。上の例では、S2の自動バインディングによりRemotingInterceptorのプロパティにAxisコネクタが設定されています。RemotingInterceptorは、Axisコネクタごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
-<p>AxisコネクタはAxisサービスを通じてWebサービスを呼び出します。上の例では、S2の自動バインディングによりAxisコネクタのプロパティにAxisサービスが設定されています。baseURLプロパティには、WebサービスのエンドポイントのベースURLを指定します。このベースURLにプロキシの&lt;component&gt;要素のname属性で指定された名前を付加したURLが実際の通信で使用されます。AxisコネクタはWebサービスのエンドポイントごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
+				<p>呼び出すWebサービスごとにプロキシが必要です。プロキシの<code>&lt;component&gt;</code>要素の<code>class</code>属性にはWebサービスのJavaインタフェースを指定します。このコンポーネントには<code>RemotingInterceptor</code>をアスペクトとして指定します。プロキシはWebサービスのインタフェースごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
+				<p><code>RemotingInterceptor</code>はプロキシのメソッド呼び出しを横取りし、Axisコネクタを呼び出します。上の例では、S2の自動バインディングによりRemotingInterceptorのプロパティにAxisコネクタが設定されています。RemotingInterceptorは、Axisコネクタごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
+				<p>AxisコネクタはAxisサービスを通じてWebサービスを呼び出します。上の例では、S2の自動バインディングによりAxisコネクタのプロパティにAxisサービスが設定されています。baseURLプロパティには、WebサービスのエンドポイントのベースURLを指定します。このベースURLにプロキシの&lt;component&gt;要素のname属性で指定された名前を付加したURLが実際の通信で使用されます。AxisコネクタはWebサービスのエンドポイントごとに一つの<code>&lt;component&gt;</code>定義が必要です。</p>
 
-<h3>メッセージ形式に合わせたAxisコネクタ</h3>
-<p>Axis2では、同期型だけでなく非同期型のメッセージ形式もサポートしています。S2Axis2では、メッセージ形式に合わせてAxisコネクタを変更します。</p>
-<p>各メッセージ形式と、Axisコネクタの対応は以下のようになっています。システムに合わせて、diconファイルで指定するAxisコネクタを適宜変更してください。</p>
-<table border="1">
-  <tr>
-    <th scope="col">メッセージ形式</th>
-    <th scope="col">説明</th>
-    <th scope="col">Axisコネクタ</th>
-  </tr>
-  <tr>
-    <td>同期型要求応答形式<br>（Request/Response）</td>
-    <td>クライアントから要求を送信した後、サービスから応答が返るまで処理を待ち受ける。</td>
-    <td>org.seasar.remoting.axis2.connector.AxisInOutConnector</td>
-  </tr>
-  <tr>
-    <td>一方向形式<br>（Oneway）</td>
-    <td>サービス処理の終了を待たずにクライアントの処理継続する。戻り値はなく、クライアントでは例外の検出もしない。 </td>
-    <td>org.seasar.remoting.axis2.connector.AxisOnewayConnector</td>
-  </tr>
-</table>
-<p></p>
-<p>diconファイルは、次のように記述します。</p>
-<pre style="overflow-y:auto;height:200">
+				<h3>メッセージ形式に合わせたAxisコネクタ</h3>
+				<p>Axis2では、同期型だけでなく非同期型のメッセージ形式もサポートしています。S2Axis2では、メッセージ形式に合わせてAxisコネクタを変更します。</p>
+				<p>各メッセージ形式と、Axisコネクタの対応は以下のようになっています。システムに合わせて、diconファイルで指定するAxisコネクタを適宜変更してください。</p>
+				<table border="1">
+					<tr>
+						<th scope="col">メッセージ形式</th>
+						<th scope="col">説明</th>
+						<th scope="col">Axisコネクタ</th>
+					</tr>
+					<tr>
+						<td>同期型要求応答形式<br>
+						（Request/Response）</td>
+						<td>クライアントから要求を送信した後、サービスから応答が返るまで処理を待ち受ける。</td>
+						<td>org.seasar.remoting.axis2.connector.AxisInOutConnector</td>
+					</tr>
+					<tr>
+						<td>一方向形式<br>
+						（Oneway）</td>
+						<td>サービス処理の終了を待たずにクライアントの処理継続する。戻り値はなく、クライアントでは例外の検出もしない。</td>
+						<td>org.seasar.remoting.axis2.connector.AxisOnewayConnector</td>
+					</tr>
+				</table>
+				<p></p>
+				<p>diconファイルは、次のように記述します。</p>
+				<pre style="overflow-y: auto; height: 200">
 &lt;!-- 同期型要求応答形式 --&gt;
 &lt;component name="ioRemoting"
            class="org.seasar.remoting.common.interceptor.RemotingInterceptor"&gt;
@@ -297,22 +337,31 @@ Javaインタフェースを使用してサービスを呼び出すには、diconファイルを次のように記�
 &lt;component name="baseURL" class="java.net.URL" autoBinding="none"&gt;
     &lt;arg&gt;"http://localhost:8080/s2axis2-examples/services/"&lt;/arg&gt;
 &lt;/component&gt;
-</pre>
-
-<!-- document end -->
-<!-- don't edit start -->
-</td>
-<td width="14"><img height="14" width="14" src="../../images/spacer.gif" alt=""></td>
-</tr><tr>
-<td width="14"><img height="30" width="14" src="../../images/spacer.gif" alt=""></td>
-<td width="766"><img height="30" width="592" src="../../images/spacer.gif" alt=""></td>
-</tr><tr>
-<td width="14"><img height="14" width="14" src="../../images/spacer.gif" alt=""></td>
-<td width="766" class="copyright">&copy; Copyright The Seasar Foundation and the others 2004, all rights reserved.</td>
-</tr></table>
-<td class="backright" align="left" valign="top">&nbsp;</td></tr><tr>
-<td class="backunder" align="left"  valign="top" width="780" height="16">&nbsp;</td>
-<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
-</tr></table></body>
+</pre> <!-- document end --> <!-- don't edit start --></td>
+				<td width="14"><img height="14" width="14"
+					src="../../images/spacer.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td width="14"><img height="30" width="14"
+					src="../../images/spacer.gif" alt=""></td>
+				<td width="766"><img height="30" width="592"
+					src="../../images/spacer.gif" alt=""></td>
+			</tr>
+			<tr>
+				<td width="14"><img height="14" width="14"
+					src="../../images/spacer.gif" alt=""></td>
+				<td width="766" class="copyright">Copyright&copy; 2004-2008,
+				The Seasar Foundation and the others. All rights reserved.</td>
+			</tr>
+		</table>
+		<td class="backright" align="left" valign="top">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="backunder" align="left" valign="top" width="780"
+			height="16">&nbsp;</td>
+		<td class="backcorner" align="left" valign="top" height="16">&nbsp;</td>
+	</tr>
+</table>
+</body>
 <!-- don't edit end -->
 </html>
